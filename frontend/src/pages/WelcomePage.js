@@ -1,5 +1,7 @@
+import WelcomeLayout from '../layouts/WelcomeLayout'
+
 function WelcomePage() {
-  return <div>환영 페이지</div>
+    return <WelcomeLayout></WelcomeLayout>
 }
 
 export default WelcomePage
