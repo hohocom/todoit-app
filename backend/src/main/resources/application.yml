@@ -1,0 +1,18 @@
+# File Size Setting
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+# mybatis 사용시
+mybatis:
+  mapper-locations: mappers/**/*.xml
+  #  type-aliases-package: 필요하면 사용
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 서비스 환경 : dev, prod
+---
+spring:
+  profiles:
+    active: dev
+---

@@ -1,0 +1,17 @@
+spring:
+  # DATABASE INFO
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test
+    username: # user name
+    password: # user password
+  # JPA 사용시
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+custom:
+  jwt-secret: 'rhwoqjacjswo'
+  upload-path:
+    images: '/home/ubuntu/apps/todoit/upload'
