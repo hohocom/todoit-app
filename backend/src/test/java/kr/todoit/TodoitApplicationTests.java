@@ -1,10 +1,10 @@
-package com.example.api;
+package kr.todoit;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringApiserverStarterpackApplicationTests {
+class TodoitApplicationTests {
 
     @Test
     void contextLoads() {

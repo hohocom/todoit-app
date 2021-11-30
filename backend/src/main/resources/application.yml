@@ -1,16 +1,20 @@
-# File Size Setting
 spring:
   servlet:
     multipart:
       max-file-size: 10MB
-# mybatis 사용시
-mybatis:
-  mapper-locations: mappers/**/*.xml
-  #  type-aliases-package: 필요하면 사용
-  configuration:
-    map-underscore-to-camel-case: true
+      max-request-size: 10MB
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: hohoco0701@gmail.com
+    password: hoho0701!!
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
-# 서비스 환경 : dev, prod
 ---
 spring:
   profiles:
