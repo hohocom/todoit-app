@@ -23,14 +23,14 @@ function LoginPage() {
           </div>
           <a
             href="/"
-            className="w-full h-[60px] flex justify-center items-center bg-[#FEE500] border border-yellow-400 border-c-sm"
+            className="w-full h-[60px] flex justify-center items-center bg-[#FEE500] border border-c-sm"
           >
             <img src={kakaoImg} alt="img" className="w-[40px]" />
             <span className="pt-1 text-xl">카카오 로그인</span>
           </a>
           <a
             href="/"
-            className="w-full h-[60px] pt-1 mt-2 flex justify-center items-center bg-[#03C75A] color-white border border-green-600 border-c-sm"
+            className="w-full h-[60px] pt-1 mt-2 flex justify-center items-center bg-[#03C75A] color-white border  border-c-sm"
           >
             <img src={naverImg} alt="img" className="w-[40px] pb-1" />
             <span className="text-xl">네이버 로그인</span>
