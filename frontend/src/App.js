@@ -6,7 +6,7 @@ import WelcomePage from './pages/WelcomePage'
 import DashboardPage from './pages/workspace/DashboardPage'
 import MemberPage from './pages/workspace/MemberPage'
 import AttendancePage from './pages/workspace/AttendancePage'
-import WorkspaceListPage from './pages/workspace/WorkspaceListPage'
+import WorkspaceListPage from './pages/WorkspaceListPage'
 import PhotoListPage from './pages/workspace/PhotoListPage'
 
 function App() {

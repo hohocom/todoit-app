@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'apple-h';
+  src: url(../assets/fonts/AppleSDGothicNeoH.ttf);
+}
+@font-face {
+  font-family: 'apple-b';
+  src: url(../assets/fonts/AppleSDGothicNeoB.ttf);
+}
+@font-face {
+  font-family: 'apple-r';
+  src: url(../assets/fonts/AppleSDGothicNeoR.ttf);
+}
+@font-face {
+  font-family: 'apple-l';
+  src: url(../assets/fonts/AppleSDGothicNeoL.ttf);
+}
+@font-face {
+  font-family: 'apple-t';
+  src: url(../assets/fonts/AppleSDGothicNeoT.ttf);
+}
+
+.font-shadow{
+  text-shadow: 5px 5px #e46c80, 10px 10px #e46c80;
+}
+.font-shadow2{
+  text-shadow: 5px 5px #e74661, 10px 10px #e74661;
+}
+.border-c-sm{
+  border-radius: 4px;
+}

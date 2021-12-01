@@ -4,7 +4,15 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'apple-hard': ['apple-h'],
+        'apple-bold': ['apple-b'],
+        'apple-light': ['apple-l'],
+        'apple-regular': ['apple-r'],
+        'apple-tiny': ['apple-t'],
+      },
+    },
   },
   variants: {},
   plugins: [],
