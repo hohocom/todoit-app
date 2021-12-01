@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import WelcomeLayout from '../layouts/WelcomeLayout'
@@ -34,6 +35,12 @@ function WelcomePage() {
       <div className="w-full h-screen bg-red-300"></div>
     </WelcomeLayout>
   )
+=======
+import WelcomeLayout from '../layouts/WelcomeLayout'
+
+function WelcomePage() {
+    return <WelcomeLayout></WelcomeLayout>
+>>>>>>> f138b5692d43578dcf46f06d452ee0ad779a6497
 }
 
 export default WelcomePage

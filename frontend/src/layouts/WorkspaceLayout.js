@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function WorkspaceLayout({ children }) {
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
@@ -16,3 +17,12 @@ function WorkspaceLayout({ children }) {
 }
 
 export default WorkspaceLayout
+=======
+function WorkspaceLayout() {
+    return (
+        <div>워크스페이스 레이아웃</div>
+    )
+}
+
+export default WorkspaceLayout
+>>>>>>> f138b5692d43578dcf46f06d452ee0ad779a6497

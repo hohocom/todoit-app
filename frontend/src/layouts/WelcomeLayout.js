@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from 'react-router-dom'
 import logoImg from '../assets/images/logo/logo01.png'
 
@@ -19,3 +20,12 @@ function WelcomeLayout({ children }) {
 }
 
 export default WelcomeLayout
+=======
+function WelcomeLayout() {
+    return (
+        <div>웰컴 레이아웃</div>
+    )
+}
+
+export default WelcomeLayout
+>>>>>>> f138b5692d43578dcf46f06d452ee0ad779a6497
