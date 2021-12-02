@@ -16,7 +16,7 @@ function LoginNaverRedirectPage() {
     console.log(accessToken)
   }
 
-  return <Navigate to="/login" />
+  return <Navigate to="/workspaces" />
 }
 
 export default LoginNaverRedirectPage

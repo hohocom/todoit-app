@@ -6,8 +6,12 @@ function LoginKakoRedirectPage() {
   const navigate = useNavigate()
   const { search } = useLocation()
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
+  useEffect(() => {
+    getKakaoAccessToken()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  const getKakaoAccessToken = async () => {
     const code = search.split('code=')[1]
     console.log(code)
     const params = new URLSearchParams()
@@ -36,11 +40,9 @@ function LoginKakoRedirectPage() {
       })
 
     console.log(kakaoRes)
+  }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return <Navigate to="/login" />
+  return <Navigate to="/workspaces" />
 }
 
 export default LoginKakoRedirectPage

@@ -24,11 +24,15 @@
 }
 
 .font-shadow{
-  text-shadow: 5px 5px #e46c80, 10px 10px #e46c80;
+  text-shadow: 5px 5px #FF9E5D, 10px 10px #FF9E5D;
 }
 .font-shadow2{
-  text-shadow: 5px 5px #e74661, 10px 10px #e74661;
+  text-shadow: 5px 5px #FF9E5D, 10px 10px #FF9E5D;
 }
 .border-c-sm{
   border-radius: 4px;
+}
+
+.shadow-custom{
+  box-shadow: rgb(0 0 0 / 30%) 0px 12px 60px 5px !important;
 }

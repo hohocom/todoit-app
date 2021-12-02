@@ -3,7 +3,7 @@ export function particles(){
   particlesJS('particles-js', {
     particles: {
       number: { value: 50, density: { enable: true, value_area: 800 } },
-      color: { value: '#faaeae' },
+      color: { value: '#FF9E5D' },
       shape: {
         type: 'circle',
         stroke: { width: 0, color: '#000000' },

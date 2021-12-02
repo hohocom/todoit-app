@@ -38,7 +38,7 @@ function LoginPage() {
 
   return (
     <div className="flex items-center justify-center w-full h-screen text-[#424242]">
-      <div className="relative flex flex-col items-center justify-center flex-1 h-full text-4xl text-white bg-red-400 font-apple-hard ">
+      <div className="relative flex flex-col items-center justify-center flex-1 h-full text-4xl text-white bg-[#FFB45E] font-apple-hard ">
         <div className="font-shadow2">소셜 계정으로 간편하게</div>
         <div className="font-shadow2">투두잇에 로그인하세요.</div>
       </div>
