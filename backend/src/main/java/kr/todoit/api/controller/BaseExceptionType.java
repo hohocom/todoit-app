@@ -1,4 +1,4 @@
-package kr.todoit.api.v1.exception;
+package kr.todoit.api.controller;
 
 public interface BaseExceptionType {
     int getErrorCode();
