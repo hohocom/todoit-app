@@ -1,6 +1,13 @@
-export function particles(){
-  // eslint-disable-next-line no-undef
-  particlesJS('particles-js', {
+import particle from '../lib/particles.min.js'
+
+export function particlesInit() {
+  const script = document.createElement('script')
+  script.src = particle
+  document.body.appendChild(script)
+}
+
+export function particlesPlay(){
+  window.particlesJS('particles-js', {
     particles: {
       number: { value: 50, density: { enable: true, value_area: 800 } },
       color: { value: '#FF9E5D' },

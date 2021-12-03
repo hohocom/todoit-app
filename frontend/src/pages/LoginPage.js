@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
-import { particles } from '../lib/particles'
 import kakaoImg from '../assets/images/kakao_logo.png'
 import naverImg from '../assets/images/naver_logo.png'
+import { particlesInit, particlesPlay } from '../customs/particles'
 
 function LoginPage() {
   useEffect(() => {
     initializeNaverLogin()
     naverLoginButtonCustomize()
-    particles()
+    particlesInit()
+    particlesPlay()
   }, [])
 
   const naverLoginButtonCustomize = () => {
@@ -37,16 +38,16 @@ function LoginPage() {
   }
 
   return (
-    <div className="flex items-center justify-center w-full h-screen text-[#424242]">
-      <div className="relative flex flex-col items-center justify-center flex-1 h-full text-4xl text-white bg-[#FFB45E] font-apple-hard ">
+    <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-[#FFC35E] to-[#ffac5ef3] font-apple-regular text-[#424242]">
+      <div className="relative z-10 flex flex-col items-center justify-center text-2xl text-white py-14 sm:text-4xl sm:py-5 font-apple-hard">
         <div className="font-shadow2">소셜 계정으로 간편하게</div>
         <div className="font-shadow2">투두잇에 로그인하세요.</div>
       </div>
-      <div className="flex items-center justify-center flex-1 w-full h-full bg-white font-apple-regular">
+      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-[#F2F2F2] rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-[30px] z-10">
         <div className="w-[400px] rounded-sm p-4 z-10">
           <div className="flex flex-col items-center justify-center w-full text-4xl font-apple-bold">
             <div>Social Login</div>
-            <div className="h-[50px] border-r border-gray-400 mb-2"></div>
+            <div className="h-[50px] border-gray-400 mb-2"></div>
           </div>
           <a
             href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URL}&response_type=code`}

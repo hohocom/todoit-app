@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
 
 function LoginNaverRedirectPage() {
-  const { hash, search } = useLocation()
+  const { hash } = useLocation()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     getNaverAccessByQuerystring()
