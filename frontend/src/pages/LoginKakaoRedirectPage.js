@@ -39,7 +39,16 @@ function LoginKakoRedirectPage() {
         }
       })
 
-    console.log(kakaoRes)
+    const formData = new FormData()
+    formData.append('providerType', 'KAKAO')
+    formData.append('accessToken', kakaoRes.access_token)
+    const res = await axios({
+      method: 'post',
+      url: '/users/login-by-oauth',
+      data: formData,
+    }).then((data) => data.data)
+
+    console.debug(res)
   }
 
   return <Navigate to="/workspaces" />

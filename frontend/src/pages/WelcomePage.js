@@ -4,14 +4,28 @@ import WelcomeLayout from '../layouts/WelcomeLayout'
 import cloud1Img from '../assets/images/cloud2.svg'
 import cloud2Img from '../assets/images/cloud3.svg'
 import heartImg from '../assets/images/heart.png'
-import { particlesInit } from '../customs/particles'
 import { particlesPlay } from '../customs/particles'
+import '../lib/particles.min.js'
 
 function WelcomePage() {
   useEffect(() => {
-    particlesInit()
     particlesPlay()
+    window.addEventListener('scroll', scrollEvent)
+
+    return () => {
+      window.removeEventListener('scroll', scrollEvent)
+    }
   }, [])
+
+  const scrollEvent = (e) => {
+    if (window.scrollY >= 100 && document.querySelector('header')) {
+      document.querySelector('header').classList.add(['border-b'])
+      document.querySelector('header').classList.add(['bg-white'])
+    } else {
+      document.querySelector('header').classList.remove(['border-b'])
+      document.querySelector('header').classList.remove(['bg-white'])
+    }
+  }
 
   return (
     <WelcomeLayout>

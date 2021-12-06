@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import kakaoImg from '../assets/images/kakao_logo.png'
 import naverImg from '../assets/images/naver_logo.png'
-import { particlesInit, particlesPlay } from '../customs/particles'
+import { particlesPlay } from '../customs/particles'
+import '../lib/particles.min.js'
 
 function LoginPage() {
   useEffect(() => {
     initializeNaverLogin()
     naverLoginButtonCustomize()
-    particlesInit()
     particlesPlay()
   }, [])
 
