@@ -1,9 +1,9 @@
-package kr.todoit.api.controller;
+package kr.todoit.api.exception;
 
 import lombok.Getter;
 
 @Getter
-public enum ExceptionType implements BaseExceptionType{
+public enum DefaultExceptionType implements ExceptionType {
     // 유저
     NOT_FOUND_USER(1001, 200, "해당하는 사용자가 존재하지 않습니다."),
     DUPLICATED_USER(1002, 200, "이미 존재하는 사용자 아이디입니다."),
@@ -20,7 +20,7 @@ public enum ExceptionType implements BaseExceptionType{
     private int httpStatus;
     private String errorMessage;
 
-    ExceptionType(int errorCode, int httpStatus, String errorMessage){
+    DefaultExceptionType(int errorCode, int httpStatus, String errorMessage){
         this.errorCode = errorCode;
         this.httpStatus = httpStatus;
         this.errorMessage = errorMessage;

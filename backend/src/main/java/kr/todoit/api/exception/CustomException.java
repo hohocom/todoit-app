@@ -1,13 +1,13 @@
-package kr.todoit.api.controller;
+package kr.todoit.api.exception;
 
 import lombok.Getter;
 
 public class CustomException extends RuntimeException{
 
     @Getter
-    private BaseExceptionType exceptionType;
+    private ExceptionType exceptionType;
 
-    public CustomException(BaseExceptionType exceptionType) {
+    public CustomException(ExceptionType exceptionType) {
         super(exceptionType.getErrorMessage());
         this.exceptionType = exceptionType;
     }
