@@ -4,6 +4,7 @@ import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.css'
+import './styles/calendar.css'
 import { BrowserRouter } from 'react-router-dom'
 
 window.addEventListener('scroll', (e) => {
