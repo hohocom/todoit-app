@@ -6,16 +6,10 @@ import reportWebVitals from './reportWebVitals'
 import './styles/index.css'
 import './styles/calendar.css'
 import { BrowserRouter } from 'react-router-dom'
+import axios from 'axios'
 
-window.addEventListener('scroll', (e) => {
-  if (window.scrollY >= 100 && document.querySelector('header')) {
-    document.querySelector('header').classList.add(['border-b'])
-    document.querySelector('header').classList.add(['bg-white'])
-  } else {
-    document.querySelector('header').classList.remove(['border-b'])
-    document.querySelector('header').classList.remove(['bg-white'])
-  }
-})
+axios.defaults.baseURL = process.env.REACT_APP_API_URL
+axios.defaults.withCredentials = true
 
 ReactDOM.render(
   <BrowserRouter>

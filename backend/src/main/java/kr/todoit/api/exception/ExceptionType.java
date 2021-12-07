@@ -1,6 +1,6 @@
-package kr.todoit.api.controller;
+package kr.todoit.api.exception;
 
-public interface BaseExceptionType {
+public interface ExceptionType {
     int getErrorCode();
     int getHttpStatus();
     String getErrorMessage();

@@ -1,12 +1,11 @@
-import particle from '../lib/particles.min.js'
-
 export function particlesInit() {
   const script = document.createElement('script')
-  script.src = particle
+  script.id = 'particles-script'
+  // script.innerHTML = `${particle}`
   document.body.appendChild(script)
 }
 
-export function particlesPlay(){
+export function particlesPlay() {
   window.particlesJS('particles-js', {
     particles: {
       number: { value: 50, density: { enable: true, value_area: 800 } },
@@ -72,4 +71,10 @@ export function particlesPlay(){
     },
     retina_detect: false,
   })
+}
+
+export function particlesDestroy() {
+  if (document.querySelector('#particles-script')) {
+    document.body.removeChild(document.querySelector('#particles-script'))
+  }
 }
