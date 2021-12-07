@@ -1,8 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Modal from '../../components/Modal'
 import { particlesPlay } from '../../customs/particles'
 import '../../lib/particles.min.js'
 
 function WorkspacesPage() {
+  const [open, setOpen] = useState(true)
+
   useEffect(() => {
     particlesPlay()
   }, [])
@@ -71,6 +74,18 @@ function WorkspacesPage() {
         id="particles-js"
         className="absolute top-0 left-0 w-full h-screen"
       ></div>
+
+      <Modal
+        state={{ open, setOpen }}
+        options={{
+          backgroundClose: true,
+          closeButtonType: 2, // 1: arrow, 2: X
+        }}
+        children={
+        <div className="w-full h-[100px] border">
+          hello world!!
+        </div>}
+      ></Modal>
     </div>
   )
 }
