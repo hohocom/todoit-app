@@ -1,13 +1,18 @@
 import { useEffect } from 'react'
-import { Navigate, useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
+import { particlesPlay } from '../customs/particles'
+import '../lib/particles.min.js'
 
 function LoginKakoRedirectPage() {
   const navigate = useNavigate()
   const { search } = useLocation()
 
-  useEffect(() => {
-    getKakaoAccessToken()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    particlesPlay()
+    const kakaoAccessToken = await getKakaoAccessToken()
+    await getTotoitAccessToken(kakaoAccessToken)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -39,19 +44,40 @@ function LoginKakoRedirectPage() {
         }
       })
 
+    return kakaoRes.access_token
+  }
+
+  const getTotoitAccessToken = async (kakaoAccessToken) => {
     const formData = new FormData()
     formData.append('providerType', 'KAKAO')
-    formData.append('accessToken', kakaoRes.access_token)
+    formData.append('accessToken', kakaoAccessToken)
     const res = await axios({
       method: 'post',
       url: '/users/login-by-oauth',
       data: formData,
-    }).then((data) => data.data)
+    })
+      .then((data) => data.data)
+      .catch((err) => {
+        window.alert(
+          '투두잇 서버요청에 문제가 발생하였습니다.\n잠시후 다시 시도해주세요.',
+        )
+        navigate('/login')
+        throw new Error(err)
+      })
 
     console.debug(res)
+
+    navigate('/workspaces')
   }
 
-  return <Navigate to="/workspaces" />
+  return (
+    <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-[#FFC35E] to-[#ffac5ef3] font-apple-regular text-[#424242]">
+      <div
+        id="particles-js"
+        className="absolute top-0 left-0 w-full h-screen"
+      ></div>
+    </div>
+  )
 }
 
 export default LoginKakoRedirectPage
