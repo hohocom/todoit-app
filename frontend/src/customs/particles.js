@@ -1,10 +1,3 @@
-export function particlesInit() {
-  const script = document.createElement('script')
-  script.id = 'particles-script'
-  // script.innerHTML = `${particle}`
-  document.body.appendChild(script)
-}
-
 export function particlesPlay() {
   window.particlesJS('particles-js', {
     particles: {
@@ -71,10 +64,4 @@ export function particlesPlay() {
     },
     retina_detect: false,
   })
-}
-
-export function particlesDestroy() {
-  if (document.querySelector('#particles-script')) {
-    document.body.removeChild(document.querySelector('#particles-script'))
-  }
 }

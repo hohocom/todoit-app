@@ -7,14 +7,17 @@ import './styles/index.css'
 import './styles/calendar.css'
 import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios'
+import { RecoilRoot } from 'recoil'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 axios.defaults.withCredentials = true
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <RecoilRoot>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </RecoilRoot>,
   document.getElementById('root'),
 )
 

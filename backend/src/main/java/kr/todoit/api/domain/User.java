@@ -32,14 +32,18 @@ public class User {
     @Column(length = 20, nullable = false)
     private String nickname;
 
-    @Column(length = 1)
-    private Character gender;
+    @Column(length = 200)
+    private String originImagePath;
+
+    @Column(length = 200)
+    private String thumbnailImagePath;
 
     @Builder
-    public User(Long id, String email, String nickname, Character gender) {
+    public User(Long id, String email, String nickname, String originImagePath, String thumbnailImagePath) {
         this.id = id;
         this.email = email;
         this.nickname = nickname;
-        this.gender = gender;
+        this.originImagePath = originImagePath;
+        this.thumbnailImagePath = thumbnailImagePath;
     }
 }
