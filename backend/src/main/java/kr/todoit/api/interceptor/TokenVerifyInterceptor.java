@@ -1,5 +1,7 @@
 package kr.todoit.api.interceptor;
 
+import kr.todoit.api.exception.CustomException;
+import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,6 @@ public class TokenVerifyInterceptor implements HandlerInterceptor {
         String pattern = "/static/images/**";
 
         String requestURI = request.getRequestURI();
-        System.out.println(requestURI);
         if (matcher.match(pattern, requestURI)) {
             return true;
         }
@@ -40,13 +41,14 @@ public class TokenVerifyInterceptor implements HandlerInterceptor {
         String tokenString = request.getHeader("Authorization");
         System.out.println(tokenString);
         if(tokenString == null){
-            throw new AuthenticationException("PERMISSION_NOT_DEFINE");
+            throw new CustomException(DefaultExceptionType.PERMISSION_NOT_DEFINE);
         }
         String token;
+
         try{
             token = tokenString.split("bearer ")[1];
         }catch (Exception e){
-            throw new AuthenticationException("토큰이 올바르지 않습니다.");
+            throw new CustomException(DefaultExceptionType.PERMISSION_NOT_DEFINE);
         }
 
         HashMap<String, Object> tokenInfo = tokenService.verifyToken(token);

@@ -45,7 +45,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/images/**")
                 .excludePathPatterns ("/**/*.png", "/**/*.jpg", "/**/*.jpeg", "/**/*.gif", "/**/*.svg")
                 .excludePathPatterns("/users/login-by-oauth")
-                .excludePathPatterns("/auth/silent-refresh");
+                .excludePathPatterns("/users/refresh-token");
     }
 
     @Override

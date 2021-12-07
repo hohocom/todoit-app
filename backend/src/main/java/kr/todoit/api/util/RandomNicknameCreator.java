@@ -16,9 +16,6 @@ public class RandomNicknameCreator {
                 "겁쟁이", "성급한",
                 "명랑한", "천진난만한",
                 "성실한"};
-        for(int i = 0; i < modifierList.length; i++){
-
-        }
         String modifier = modifierList[(int)(Math.random() * modifierList.length)+1];
         String randomNickname = modifier+" 투두";
 //        System.out.println(randomNickname);
