@@ -74,18 +74,6 @@ function WorkspacesPage() {
         id="particles-js"
         className="absolute top-0 left-0 w-full h-screen"
       ></div>
-
-      <Modal
-        state={{ open, setOpen }}
-        options={{
-          backgroundClose: true,
-          closeButtonType: 2, // 1: arrow, 2: X
-        }}
-        children={
-        <div className="w-full h-[100px] border">
-          hello world!!
-        </div>}
-      ></Modal>
     </div>
   )
 }

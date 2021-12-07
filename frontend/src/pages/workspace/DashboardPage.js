@@ -38,13 +38,9 @@ function DashboardPage() {
                     title: 'event 1',
                     date: '2021-12-06',
                     color: 'pink',
-                    image_url:
-                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBWGxMtjrF82aMLMhHS9C692o6n5Rccj_4Q&usqp=CAU',
                   },
-                  { title: 'event 1', date: '2021-12-06' },
-                  { title: 'event 1', date: '2021-12-06' },
-                  { title: 'event 1', date: '2021-12-06' },
-                  { title: 'event 2', date: '2021-12-07' },
+                  { title: 'event 1', date: '2021-12-06', color: 'pink' },
+                  { title: 'event 2', date: '2021-12-07', color: 'pink' },
                 ]}
               />
             </div>

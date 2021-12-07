@@ -1,6 +1,26 @@
+import { useEffect, useState } from 'react'
 import bgImg from '../assets/images/bg.jpg'
+import plus from '../assets/images/plus.png'
+import Modal from '../components/Modal'
+import { DateRange } from 'react-date-range'
+import { addDays } from 'date-fns'
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css'
+import ko from 'date-fns/locale/ko'
 
 function WorkspaceLayout({ children }) {
+  const [createModalOpen, setCreateModalOpen] = useState(true)
+  const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: addDays(new Date(), 1),
+      key: 'selection',
+    },
+  ])
+  useEffect(() => {
+    console.log(state)
+  }, [state])
+
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
       <aside className="min-w-[300px] h-full border-r border-gray-300">
@@ -97,6 +117,82 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
+
+      <Modal
+        state={{ open: createModalOpen, setOpen: setCreateModalOpen }}
+        options={{
+          backgroundClose: true,
+          closeButtonType: 2, // 1: arrow, 2: X
+        }}
+        children={
+          <div>
+            <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요 :)</p>
+            <input
+              type="text"
+              name="my_name"
+              className="w-full h-10 p-1 mb-2 border rounded-md"
+              placeholder="일정"
+            />
+            <textarea
+              type="text"
+              name="my_name"
+              className="w-full h-24 p-1 overflow-y-scroll border rounded-md custom-scroll"
+              placeholder="내용"
+            />
+            <p className="mt-2 ml-1 text-[15px]">색상</p>
+            <div className="flex ">
+              <div className="relative">
+                <div className="absolute flex items-center justify-center w-10 h-10 ml-1 bg-gray-100 rounded-full"></div>
+                <div className="absolute z-10 flex items-center justify-center w-10 h-10 ml-1 bg-gray-300 rounded-full"></div>
+              </div>
+
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-pink-100 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-red-200 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-yellow-100 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-yellow-200 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-green-200 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-blue-200 rounded-full"></div>
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-purple-200 rounded-full"></div>
+            </div>
+            <p className="mt-2 ml-1 text-[15px] ">참석자</p>
+            <div className="flex">
+              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-gray-100 rounded-full"></div>
+              <img
+                src={bgImg}
+                alt="img"
+                className="w-10 h-10 ml-1 rounded-full"
+              />
+              <img
+                src={bgImg}
+                alt="img"
+                className="w-10 h-10 ml-1 rounded-full"
+              />
+              <img
+                src={bgImg}
+                alt="img"
+                className="w-10 h-10 ml-1 rounded-full"
+              />
+            </div>
+            <DateRange
+              className="flex items-center justify-center w-full"
+              editableDateInputs={true}
+              onChange={(item) => setState([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={state}
+              months={1}
+              rangeColors="#ff935dad"
+              color="#ff935dad"
+              direction="horizontal"
+              locale={ko}
+            />
+            <div className="flex text-white font-apple-bold">
+              <button className="w-full h-10  mt-2  rounded-md bg-[#ff925d]">
+                일정입력
+              </button>
+            </div>
+          </div>
+        }
+      ></Modal>
     </div>
   )
 }

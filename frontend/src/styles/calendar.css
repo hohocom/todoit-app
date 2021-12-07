@@ -50,3 +50,19 @@ td:last-child {
   text-shadow: 2px 2px #c7c7c7;
 
 }
+.fc-event-main{
+  padding-top: 6px;
+  padding-bottom: 6px;
+ 
+}
+.fc-daygrid-event{
+  margin-bottom: 2px;
+}
+.fc-event-title::before{
+  content: "👉";
+  margin-right: 2px;
+}
+
+.rdrDateDisplayWrapper{
+  display: none;
+}
