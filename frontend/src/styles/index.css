@@ -781,6 +781,9 @@ video {
 .border-r {
 	border-right-width: 1px;
 }
+.border-b {
+	border-bottom-width: 1px;
+}
 .border-gray-300 {
 	--tw-border-opacity: 1;
 	border-color: rgba(209, 213, 219, var(--tw-border-opacity));
@@ -939,10 +942,6 @@ video {
 	font-size: 3.75rem;
 	line-height: 1;
 }
-.text-sm {
-	font-size: 0.875rem;
-	line-height: 1.25rem;
-}
 .text-\[\#424242\] {
 	--tw-text-opacity: 1;
 	color: rgba(66, 66, 66, var(--tw-text-opacity));
@@ -1003,7 +1002,7 @@ video {
   font-family: 'apple-t';
   src: url(../assets/fonts/AppleSDGothicNeoT.ttf);
 }
-
+ 
 .font-shadow{
   text-shadow: 5px 5px #FF9E5D, 10px 10px #FF9E5D;
 }
@@ -1049,6 +1048,9 @@ video {
   .hover\:text-red-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(239, 68, 68, var(--tw-text-opacity));
+}
+  .hover\:text-\[\#ffac5ef3\]:hover {
+	color: #ffac5ef3;
 }
   @media (min-width: 640px) {
 

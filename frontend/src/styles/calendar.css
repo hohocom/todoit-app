@@ -1,45 +1,52 @@
- 
+.fc-scrollgrid {
+  border: none !important;
 
-.fc-scrollgrid{
-  border:none !important;
- 
 }
+
 th {
-  border: 1px solid hsla(0, 0%, 93%, 0.082) !important;
-  background-color: hsla(20, 100%, 68%, 0.082) !important;
- 
+  border-left: 1px solid white !important;
+  border-right: 1px solid white !important;
+  border-top: 1px solid #e4e2e2 !important;
+
+
 }
-td:last-child{
-  border-right:none !important;
+
+td:last-child {
+  border-right: none !important;
+
 }
-.fc-scrollgrid-section{
-  border:none !important;
-}
-.fc-scrollgrid-sync-inner{
- 
+
+
+.fc-scrollgrid-sync-inner {
+
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
 .fc-col-header-cell-cushion {}
-.fc-toolbar-title{
+
+.fc-toolbar-title {
+  padding-left: 15px;
   font-family: 'apple-h' !important;
-  color:#ff925d !important;
-  text-shadow: 2px 2px #e4dddd;
+  color: black !important;
+
 }
-.fc-button{
+
+.fc-button {
   background-color: transparent !important;
   color: black !important;
   border: none !important;
- 
+
 
 }
-.fc-today-button{
-  background-color:#ff925d !important;
+
+.fc-today-button {
+  background-color: #ff925d !important;
   border-radius: 100px !important;
-  color:white  !important;
-  padding-left: 20px  !important;
-  padding-right: 20px  !important;
+  color: white !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
   font-family: 'apple-h' !important;
   text-shadow: 2px 2px #c7c7c7;
- 
+
 }

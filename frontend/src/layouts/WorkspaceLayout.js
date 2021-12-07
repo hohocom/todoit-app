@@ -63,32 +63,32 @@ function WorkspaceLayout({ children }) {
               </div>
             </div>
           </div>
-          <div class="mt-10 mb-6">
-            <div class="font-apple-bold text-base">TODAY</div>
-            <div class="flex mt-1 text-base items-center">
-              <p class="font-apple-bold text-lg">재범</p>님 즐거운 아침이에요 :)
-              🍀
+          <div className="mt-10 mb-6">
+            <div className="text-base font-apple-bold">TODAY</div>
+            <div className="flex items-center mt-1 text-base">
+              <p className="text-lg font-apple-bold">재범</p>님 즐거운
+              아침이에요 :) 🍀
             </div>
           </div>
           <div>
-            <div class="w-[100%] h-[100px] bg-white flex items-center p-5 rounded-2xl mb-5 box-shadow2">
-              <div class="flex items-center">
-                <div class="w-16 h-16  bg-[#FFB45E] rounded-full"></div>
-                <div class="flex flex-col ml-4">
-                  <p class="font-apple-bold ">제안서 디자인 PPT</p>
-                  <p class="font-apple-bold text-sm text-gray-500">
+            <div className="w-[100%] h-[100px] bg-white flex items-center p-5 rounded-2xl mb-5 box-shadow2">
+              <div className="flex items-center">
+                <div className="w-16 h-16  bg-[#FFB45E] rounded-full"></div>
+                <div className="flex flex-col ml-4">
+                  <p className="font-apple-bold ">제안서 디자인 PPT</p>
+                  <p className="text-sm text-gray-500 font-apple-bold">
                     UI에 들어갈 페이지 리디자인
                   </p>
                 </div>
               </div>
             </div>
 
-            <div class="w-[100%] h-[100px] bg-white flex items-center p-5 rounded-2xl box-shadow2">
-              <div class="flex items-center">
-                <div class="w-16 h-16  bg-[#FFB45E] rounded-full"></div>
-                <div class="flex flex-col ml-4">
-                  <p class="font-apple-bold ">제안서 디자인 PPT</p>
-                  <p class="font-apple-bold text-sm text-gray-500">
+            <div className="w-[100%] h-[100px] bg-white flex items-center p-5 rounded-2xl box-shadow2">
+              <div className="flex items-center">
+                <div className="w-16 h-16  bg-[#FFB45E] rounded-full"></div>
+                <div className="flex flex-col ml-4">
+                  <p className="font-apple-bold ">제안서 디자인 PPT</p>
+                  <p className="text-sm text-gray-500 font-apple-bold">
                     UI에 들어갈 페이지 리디자인
                   </p>
                 </div>
