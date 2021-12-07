@@ -677,6 +677,9 @@ video {
 .h-24 {
 	height: 6rem;
 }
+.h-7 {
+	height: 1.75rem;
+}
 .h-screen {
 	height: 100vh;
 }
@@ -709,6 +712,9 @@ video {
 }
 .w-10 {
 	width: 2.5rem;
+}
+.w-7 {
+	width: 1.75rem;
 }
 .w-\[400px\] {
 	width: 400px;

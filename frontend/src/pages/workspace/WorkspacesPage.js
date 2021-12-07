@@ -13,16 +13,16 @@ function WorkspacesPage() {
     // 파티클 효과
     particlesPlay()
     // 새로고침되었을 때 토큰 재발급
-    await refreshToken()
+    const { userId } = await refreshToken()
     // 유저 정보 가져오기
-    await getUserInfoThenSetUserState()
+    await getUserInfoThenSetUserState(userId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const getUserInfoThenSetUserState = async () => {
+  const getUserInfoThenSetUserState = async (userId) => {
     const res = await apiScaffold({
       method: 'get',
-      url: '/users/1',
+      url: `/users/${userId}`,
     })
 
     setUser({
@@ -42,7 +42,7 @@ function WorkspacesPage() {
       <div className="w-full sm:w-[400px] h-full sm:h-auto bg-[#F2F2F2] rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-[30px] z-10">
         <div className="w-full mb-4">
           <h2>가입된 워크스페이스 ( {user.workspaces.length} )</h2>
-          {user.workspaces.length > 0 ?
+          {user.workspaces.length > 0 ? (
             user.workspaces.map((workspace, index) => {
               return (
                 <div
@@ -61,9 +61,12 @@ function WorkspacesPage() {
                   </div>
                 </div>
               )
-            }) : 
-            <div className="w-full p-3 pt-4 bg-white border rounded-md">가입된 워크스페이스가 없습니다 😅</div>
-          }
+            })
+          ) : (
+            <div className="w-full p-3 pt-4 bg-white border rounded-md">
+              가입된 워크스페이스가 없습니다 😅
+            </div>
+          )}
         </div>
 
         <div className="w-full">

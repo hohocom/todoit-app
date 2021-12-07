@@ -7,7 +7,8 @@ import { addDays } from 'date-fns'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import ko from 'date-fns/locale/ko'
-
+import checkBlack from '../assets/images/check-black.png'
+import checkWhite from '../assets/images/check-white.png'
 function WorkspaceLayout({ children }) {
   const [createModalOpen, setCreateModalOpen] = useState(true)
   const [state, setState] = useState([
@@ -126,7 +127,7 @@ function WorkspaceLayout({ children }) {
         }}
         children={
           <div>
-            <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요 :)</p>
+            <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
             <input
               type="text"
               name="my_name"
@@ -143,7 +144,9 @@ function WorkspaceLayout({ children }) {
             <div className="flex ">
               <div className="relative">
                 <div className="absolute flex items-center justify-center w-10 h-10 ml-1 bg-gray-100 rounded-full"></div>
-                <div className="absolute z-10 flex items-center justify-center w-10 h-10 ml-1 bg-gray-300 rounded-full"></div>
+                <div className="absolute z-10 flex items-center justify-center w-10 h-10 ml-1 bg-gray-300 rounded-full">
+                  <img alt="" src={checkBlack} className="w-7 h-7" />
+                </div>
               </div>
 
               <div className="flex items-center justify-center w-10 h-10 ml-1 bg-pink-100 rounded-full"></div>
