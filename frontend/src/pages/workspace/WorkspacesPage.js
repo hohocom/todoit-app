@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
+import WorkspaceCreator from '../../components/workspace/WorkspaceCreator'
+import WorkspaceList from '../../components/workspace/WorkspaceList'
 import { apiScaffold, refreshToken } from '../../customs/apis'
 import { particlesPlay } from '../../customs/particles'
 import { userState } from '../../globalState/user'
@@ -39,34 +41,10 @@ function WorkspacesPage() {
         <div className="font-shadow2">{user.nickname}님</div>
         <div className="font-shadow2">환영합니다!</div>
       </div>
-      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-[#F2F2F2] rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-[30px] z-10">
+      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-[#F2F2F2] rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-4 pt-5 z-10">
         <div className="w-full mb-4">
           <h2>가입된 워크스페이스 ( {user.workspaces.length} )</h2>
-          {user.workspaces.length > 0 ? (
-            user.workspaces.map((workspace, index) => {
-              return (
-                <div
-                  className="border rounded-[4px] flex justify-between items-center bg-gray-50 mt-2"
-                  key={index}
-                >
-                  <div
-                    id="title"
-                    className="p-3 mt-1 cursor-pointer hover:text-yellow-500 font-apple-bold"
-                  >
-                    호호컴퍼니
-                  </div>
-                  <div className="p-3">
-                    <i className="mx-2 cursor-pointer far fa-edit hover:text-yellow-500"></i>
-                    <i className="mx-2 cursor-pointer far fa-trash-alt hover:text-red-500"></i>
-                  </div>
-                </div>
-              )
-            })
-          ) : (
-            <div className="w-full p-3 pt-4 bg-white border rounded-md">
-              가입된 워크스페이스가 없습니다 😅
-            </div>
-          )}
+          <WorkspaceList />
         </div>
 
         <div className="w-full">
@@ -79,15 +57,7 @@ function WorkspacesPage() {
 
         <div className="w-full mt-4">
           <h2>워크스페이스 생성</h2>
-          <div className="flex items-center justify-between">
-            <input
-              className="w-full p-3 border rounded-[4px] outline-none"
-              placeholder="워크스페이스 이름"
-            />
-            <button className="min-w-[30%] p-3 bg-[#ffac5ef3] text-white rounded-[4px] ml-1">
-              생성
-            </button>
-          </div>
+          <WorkspaceCreator />
         </div>
 
         <div className="w-full mt-6 text-right">
