@@ -11,24 +11,23 @@ import checkBlack from '../assets/images/check-black.png'
 import checkWhite from '../assets/images/check-white.png'
 function WorkspaceLayout({ children }) {
   const [createModalOpen, setCreateModalOpen] = useState(true)
-  const [state, setState] = useState([
+  const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
       endDate: addDays(new Date(), 1),
       key: 'selection',
     },
   ])
-  useEffect(() => {
-    console.log(state)
-  }, [state])
-
-  const [colorNumber, setColorNumber] = useState(0)
-  const changeColor = (index) => {
-    setColorNumber(index)
+  const dateString = (date) => {
+    var year = date.getFullYear()
+    var month = ('0' + (date.getMonth() + 1)).slice(-2)
+    var day = ('0' + date.getDate()).slice(-2)
+    var dateString = year + '-' + month + '-' + day
+    return dateString
   }
 
   const colors = [
-    'bg-gray-100',
+    'bg-gray-200',
     'bg-pink-200',
     'bg-red-200',
     'bg-yellow-200',
@@ -37,6 +36,45 @@ function WorkspaceLayout({ children }) {
     'bg-blue-200',
     'bg-purple-200',
   ]
+  const [colorNumber, setColorNumber] = useState(0)
+  const [scheduleForm, setScheduleForm] = useState({
+    title: '',
+    content: '',
+    color: colors[0],
+    joinMember: '',
+    startTime: '',
+    endTime: '',
+  })
+  const scheduleFormChange = (e) => {
+    const value = e.target.value
+    const name = e.target.name
+    if (name === 'title') {
+      setScheduleForm({ ...scheduleForm, title: value })
+    } else if (name === 'content') {
+      setScheduleForm({ ...scheduleForm, content: value })
+    }
+  }
+
+  const changeColor = (index) => {
+    setColorNumber(index)
+    setScheduleForm({ ...scheduleForm, color: colors[index] })
+  }
+  const submit = () => {
+    console.log(dateString(dateState[0].startDate))
+
+    setScheduleForm({
+      ...scheduleForm,
+      startTime: dateString(dateState[0].startDate),
+    })
+    setScheduleForm({
+      ...scheduleForm,
+      endTime: dateString(dateState[0].endDate),
+    })
+  }
+  useEffect(() => {
+    // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
+    console.log(scheduleForm)
+  })
 
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
@@ -146,15 +184,17 @@ function WorkspaceLayout({ children }) {
             <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
             <input
               type="text"
-              name="my_name"
+              name="title"
               className="w-full h-10 p-1 mb-2 border rounded-md"
               placeholder="일정"
+              onChange={scheduleFormChange}
             />
             <textarea
               type="text"
-              name="my_name"
+              name="content"
               className="w-full h-24 p-1 overflow-y-scroll border rounded-md custom-scroll"
               placeholder="내용"
+              onChange={scheduleFormChange}
             />
             <p className="mt-2 ml-1 text-[15px]">색상</p>
             <div className="flex ">
@@ -167,7 +207,7 @@ function WorkspaceLayout({ children }) {
                       onClick={() => changeColor(index)}
                     >
                       <div
-                        className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color}`}
+                        className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color} cursor-pointer`}
                       ></div>
                       {colorNumber === index && (
                         <div className="absolute top-0 z-10 flex items-center justify-center w-10 h-10 ml-1 rounded-full">
@@ -180,7 +220,12 @@ function WorkspaceLayout({ children }) {
             </div>
             <p className="mt-2 ml-1 text-[15px] ">참석자</p>
             <div className="flex">
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-gray-100 rounded-full"></div>
+              <img
+                src={plus}
+                alt="img"
+                className="top-0 flex items-center justify-center w-10 h-10 p-2 ml-1 bg-gray-200 rounded-full cursor-pointer"
+              />
+
               <img
                 src={bgImg}
                 alt="img"
@@ -200,9 +245,9 @@ function WorkspaceLayout({ children }) {
             <DateRange
               className="flex items-center justify-center w-full"
               editableDateInputs={true}
-              onChange={(item) => setState([item.selection])}
+              onChange={(item) => setDateState([item.selection])}
               moveRangeOnFirstSelection={false}
-              ranges={state}
+              ranges={dateState}
               months={1}
               rangeColors="#ff935dad"
               color="#ff935dad"
@@ -210,7 +255,10 @@ function WorkspaceLayout({ children }) {
               locale={ko}
             />
             <div className="flex text-white font-apple-bold">
-              <button className="w-full h-10  mt-2  rounded-md bg-[#ff925d]">
+              <button
+                className="w-full h-10  mt-2  rounded-md bg-[#ff925d]"
+                onClick={submit}
+              >
                 일정입력
               </button>
             </div>
