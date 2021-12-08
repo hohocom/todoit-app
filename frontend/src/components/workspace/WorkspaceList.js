@@ -24,7 +24,7 @@ function WorkspaceList() {
       )
     })
   ) : (
-    <div className="w-full p-3 pt-4 bg-white border rounded-md">
+    <div className="w-full p-3 pt-4 border rounded-md bg-gray-50">
       가입된 워크스페이스가 없습니다 😅
     </div>
   )
