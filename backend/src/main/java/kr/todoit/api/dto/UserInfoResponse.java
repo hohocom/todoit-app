@@ -2,11 +2,13 @@ package kr.todoit.api.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
 
 @Getter
+@Setter
 public class UserInfoResponse {
     private Long id;
     private String email;

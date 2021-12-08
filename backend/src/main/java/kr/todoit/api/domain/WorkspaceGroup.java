@@ -1,5 +1,8 @@
 package kr.todoit.api.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,6 +11,8 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "workspace_groups")
+@Getter
+@NoArgsConstructor
 public class WorkspaceGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +38,13 @@ public class WorkspaceGroup {
 
     @Column(length = 20)
     private String duty;
+
+    @Builder
+    public WorkspaceGroup(Long id, Workspace workspace, User user, WorkspaceGroupRoleCategory workspaceGroupRoleCategory, String duty) {
+        this.id = id;
+        this.workspace = workspace;
+        this.user = user;
+        this.workspaceGroupRoleCategory = workspaceGroupRoleCategory;
+        this.duty = duty;
+    }
 }

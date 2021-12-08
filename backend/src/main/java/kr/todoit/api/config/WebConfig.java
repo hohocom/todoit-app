@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://todoit.kr","http://localhost:3000")
+                .allowedOrigins("https://todoit.kr","http://localhost:3000","http://172.30.1.22:3000","http://172.30.1.22")
                 .allowCredentials(true)
                 .exposedHeaders("Authorization")
                 .allowedMethods(
@@ -45,7 +45,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/images/**")
                 .excludePathPatterns ("/**/*.png", "/**/*.jpg", "/**/*.jpeg", "/**/*.gif", "/**/*.svg")
                 .excludePathPatterns("/users/login-by-oauth")
+                .excludePathPatterns("/users/refresh-token-test/{id}")
                 .excludePathPatterns("/users/refresh-token");
+
     }
 
     @Override

@@ -13,6 +13,8 @@ public enum DefaultExceptionType implements ExceptionType {
     EXPIRED_TOKEN(1006, 200, "토큰이 만료되었습니다."),
     NOT_MATCHED_TOKEN(1007, 403, "토큰이 일치하지 않습니다."),
     PERMISSION_NOT_DEFINE(1008, 403, "올바르지 않은 토큰입니다."),
+    // 워크스페이스
+    NOT_FOUND_WORKSPACE(2001, 200, "워크스페이스를 찾을 수 없습니다."),
     // 파일
     FILE_SIZE_OVERFLOW(5001,200, "File Size Overflow: 파일 하나의 사이즈는 최대 2MB로 제한됩니다."),
     NOT_MATCHED_FILE_TYPE(5002, 200, "Is Not Image File: jpg, png, gif, bmp 확장자 파일만 사용할 수 있습니다.");
