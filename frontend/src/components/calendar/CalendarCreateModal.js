@@ -80,7 +80,7 @@ function CalendarCreateModal() {
         closeButtonType: 2, // 1: arrow, 2: X
       }}
     >
-      <div>
+      <div className="h-[720px]">
         <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
         <input
           type="text"
