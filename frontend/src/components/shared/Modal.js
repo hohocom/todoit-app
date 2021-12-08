@@ -1,10 +1,3 @@
-/**
- *
- * @param {options, state, children}
- * <options>
- * 1.
- * @returns JSX
- */
 function Modal({ options, state, children }) {
   return (
     state.open && (
