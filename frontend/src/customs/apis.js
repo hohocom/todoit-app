@@ -16,6 +16,8 @@ export const apiScaffold = async ({ method, url, data }, callback) => {
         }
 
         if (callback) callback(error.message)
+        else alert(error.message)
+
         throw new Error(error.message)
       }
       return data.data
