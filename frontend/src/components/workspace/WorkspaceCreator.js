@@ -29,7 +29,7 @@ function WorkspaceCreator() {
   return (
     <div className="flex items-center justify-between">
       <input
-        className="w-full p-3 border rounded-[4px] outline-none"
+        className="w-full p-3 border rounded-[4px] outline-none bg-gray-50"
         placeholder="워크스페이스 이름"
         value={name}
         onChange={changeName}

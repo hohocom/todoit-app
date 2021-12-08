@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { addDays } from 'date-fns'
 import bgImg from '../../assets/images/bg.jpg'
 import plus from '../../assets/images/plus.png'
@@ -13,8 +13,8 @@ function CalendarCreateModal() {
   const [createModalOpen, setCreateModalOpen] = useState(true)
   const [dateState, setDateState] = useState([
     {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 1),
+      startDate: '',
+      endDate: addDays('', 1),
       key: 'selection',
     },
   ])
@@ -22,8 +22,8 @@ function CalendarCreateModal() {
     var year = date.getFullYear()
     var month = ('0' + (date.getMonth() + 1)).slice(-2)
     var day = ('0' + date.getDate()).slice(-2)
-    var dateString = year + '-' + month + '-' + day
-    return dateString
+    var dateReturn = year + '-' + month + '-' + day
+    return dateReturn
   }
 
   const colors = [
@@ -60,17 +60,18 @@ function CalendarCreateModal() {
     setScheduleForm({ ...scheduleForm, color: colors[index] })
   }
   const submit = () => {
-    console.log(dateString(dateState[0].startDate))
-
     setScheduleForm({
       ...scheduleForm,
       startTime: dateString(dateState[0].startDate),
-    })
-    setScheduleForm({
-      ...scheduleForm,
       endTime: dateString(dateState[0].endDate),
     })
+
+    console.log(scheduleForm)
   }
+  useEffect(() => {
+    // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
+    console.log(scheduleForm)
+  }, [scheduleForm])
   return (
     <Modal
       state={{ open: createModalOpen, setOpen: setCreateModalOpen }}
@@ -79,7 +80,7 @@ function CalendarCreateModal() {
         closeButtonType: 2, // 1: arrow, 2: X
       }}
     >
-      <div>
+      <div className="h-[720px]">
         <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
         <input
           type="text"

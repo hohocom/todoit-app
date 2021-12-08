@@ -44,19 +44,19 @@ function LoginPage() {
         <div className="font-shadow2">소셜 계정으로 간편하게</div>
         <div className="font-shadow2">투두잇에 로그인하세요.</div>
       </div>
-      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-[#F2F2F2] rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-[30px] z-10">
+      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-white rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-[30px] z-10">
         <div className="w-[400px] rounded-sm px-4 z-10">
-          <img src={loginCoverImg} alt="img"/>
+          <img src={loginCoverImg} alt="img" />
           <a
             href={`https://kauth.kakao.com/oauth/authorize?client_id=${process.env.REACT_APP_KAKAO_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_KAKAO_REDIRECT_URL}&response_type=code`}
-            className="w-full h-[60px] flex justify-center items-center bg-[#FEE500] border border-yellow-400 border-c-sm"
+            className="w-full h-[60px] flex justify-center items-center bg-[#FEE500] rounded-[4px]"
           >
             <img src={kakaoImg} alt="img" className="w-[40px]" />
             <span className="pt-1 text-xl font-apple-bold">카카오 로그인</span>
           </a>
           <div
             id="naverIdLogin"
-            className="w-full h-[60px] pt-1 mt-2 flex justify-center items-center bg-[#03C75A] color-white border border-green-500  border-c-sm"
+            className="w-full h-[60px] pt-1 mt-2 flex justify-center items-center bg-[#03C75A] color-white rounded-[4px]"
           ></div>
           <Link
             to="/"

@@ -3,7 +3,7 @@ import bgImg from '../assets/images/bg.jpg'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import CalendarCreateModal from '../components/calendar/CalendarCreateModal'
-
+import CalendarShowModal from '../components/calendar/CalendarShowModal'
 function WorkspaceLayout({ children }) {
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
@@ -11,10 +11,13 @@ function WorkspaceLayout({ children }) {
         <figure className="w-full p-10">LOGO</figure>
       </aside>
       <main className="flex-col w-full h-full">
-        <header className="w-full h-[60px] border-b"></header>
+        <header className="w-full h-[60px] border-b flex justify-between items-center p-4">
+          <h2 className="font-apple-bold">호호컴퍼니</h2>
+          <div>초대</div>
+        </header>
         <section className="w-full h-full   pb-[100px] ">{children}</section>
       </main>
-      <aside className="min-w-[350px] h-full  ">
+      <aside className="min-w-[350px] h-full border-l">
         <div className="w-full h-full bg-[#F2F2F2]  flex flex-col justify-start  p-[30px]">
           <div className="flex items-center justify-between w-full px-2 py-10">
             <i className="far fa-bell text-[#FF9E5D] text-3xl"></i>
@@ -101,8 +104,8 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
-
-      <CalendarCreateModal />
+      <CalendarShowModal />
+      {/* <CalendarCreateModal /> */}
     </div>
   )
 }

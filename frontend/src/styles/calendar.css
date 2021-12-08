@@ -41,13 +41,11 @@ td:last-child {
 }
 
 .fc-today-button {
-  background-color: #ff925d !important;
-  border-radius: 100px !important;
-  color: white !important;
+ 
   padding-left: 20px !important;
   padding-right: 20px !important;
   font-family: 'apple-h' !important;
-  text-shadow: 2px 2px #c7c7c7;
+  color:black !important;
 
 }
 .fc-event-main{
