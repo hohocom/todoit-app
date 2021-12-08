@@ -27,11 +27,14 @@ function WorkspacesPage() {
       url: `/users/${userId}`,
     })
 
+    console.debug(res)
+
     setUser({
       ...user,
       id: res.user.id,
       email: res.user.email,
       nickname: res.user.nickname,
+      workspaces: res.user.workspaces
     })
   }
 

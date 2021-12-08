@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { apiScaffold } from '../../customs/apis'
 import { userState } from '../../globalState/user'
 
 function WorkspaceCreator() {
   const [name, setName] = useState('')
-  const user = useRecoilValue(userState)
+  const [user, setUser] = useRecoilState(userState)
 
   const changeName = (e) => {
     setName(e.target.value)
@@ -24,6 +24,10 @@ function WorkspaceCreator() {
     console.debug(res)
 
     setName('')
+    setUser({
+      ...user,
+      workspaces: res.workspaces
+    })
   }
 
   return (
