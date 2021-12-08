@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import bgImg from '../assets/images/bg.jpg'
 import plus from '../assets/images/plus.png'
 import Modal from '../components/Modal'
@@ -21,6 +21,22 @@ function WorkspaceLayout({ children }) {
   useEffect(() => {
     console.log(state)
   }, [state])
+
+  const [colorNumber, setColorNumber] = useState(0)
+  const changeColor = (index) => {
+    setColorNumber(index)
+  }
+
+  const colors = [
+    'bg-gray-100',
+    'bg-pink-200',
+    'bg-red-200',
+    'bg-yellow-200',
+    'bg-yellow-300',
+    'bg-green-200',
+    'bg-blue-200',
+    'bg-purple-200',
+  ]
 
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
@@ -142,20 +158,25 @@ function WorkspaceLayout({ children }) {
             />
             <p className="mt-2 ml-1 text-[15px]">색상</p>
             <div className="flex ">
-              <div className="relative">
-                <div className="absolute flex items-center justify-center w-10 h-10 ml-1 bg-gray-100 rounded-full"></div>
-                <div className="absolute z-10 flex items-center justify-center w-10 h-10 ml-1 bg-gray-300 rounded-full">
-                  <img alt="" src={checkBlack} className="w-7 h-7" />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-pink-100 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-red-200 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-yellow-100 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-yellow-200 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-green-200 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-blue-200 rounded-full"></div>
-              <div className="flex items-center justify-center w-10 h-10 ml-1 bg-purple-200 rounded-full"></div>
+              {colors.length > 0 &&
+                colors.map((color, index) => {
+                  return (
+                    <div
+                      className="relative"
+                      key={index}
+                      onClick={() => changeColor(index)}
+                    >
+                      <div
+                        className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color}`}
+                      ></div>
+                      {colorNumber === index && (
+                        <div className="absolute top-0 z-10 flex items-center justify-center w-10 h-10 ml-1 rounded-full">
+                          <img alt="" src={checkWhite} className="w-7 h-7" />
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
             </div>
             <p className="mt-2 ml-1 text-[15px] ">참석자</p>
             <div className="flex">
