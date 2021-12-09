@@ -11,13 +11,12 @@ import { userState } from '../globalState/user'
 import { apiScaffold, refreshToken } from '../customs/apis'
 import { useLocation } from 'react-router'
 import { workspaceDetail, workspaceDetailState } from '../globalState/workspace'
-import { showCalendarState } from '../globalState/calendar'
+
 function WorkspaceLayout({ children }) {
   const [user, setUser] = useRecoilState(userState)
   const [workspaceDetail, setWorkspaceDetail] = useRecoilState(
     workspaceDetailState,
   )
-  const [createModalOpen, setCreateModalOpen] = useState(false)
 
   const location = useLocation()
 
@@ -67,14 +66,6 @@ function WorkspaceLayout({ children }) {
         <figure className="w-full p-10">LOGO</figure>
       </aside>
       <main className="relative flex-col w-full h-full">
-        <div
-          className="absolute top-[86px] left-[220px] rounded-md bg-gray-100 px-2 pt-0.5 cursor-pointer hover:bg-[#ffac5ef3] hover:text-white"
-          onClick={() => {
-            setCreateModalOpen(true)
-          }}
-        >
-          일정추가
-        </div>
         <header className="w-full h-[60px] border-b flex justify-between items-center p-4">
           <h2 className="font-apple-bold">{workspaceDetail.name}</h2>
 
@@ -181,10 +172,7 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
-      <CalendarCreateModal
-        createModalOpen={createModalOpen}
-        setCreateModalOpen={setCreateModalOpen}
-      />
+      <CalendarCreateModal />
       <CalendarShowModal />
     </div>
   )

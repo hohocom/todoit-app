@@ -30,7 +30,7 @@ export const apiScaffold = async ({ method, url, data }, callback) => {
 export const refreshToken = async () => {
   const res = await apiScaffold({
     method: 'get',
-    url: '/users/refresh-token-test/2',
+    url: '/users/refresh-token-test/1',
   })
   console.debug(res)
   // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정

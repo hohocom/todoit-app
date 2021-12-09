@@ -29,7 +29,7 @@ td:last-child {
   padding-left: 15px;
   font-family: 'apple-h' !important;
   color: black !important;
-
+ width: 220px;
 }
 
 .fc-button {
@@ -73,4 +73,19 @@ td:last-child {
 }
 .rdrEndEdge{
   background-color: #ff935dad
+}
+
+.fc-myCustomButton-button{
+  width: 80px;
+  border-radius: 10px;
+  padding-top: 2px !important;
+  padding-bottom: 0.5px !important;
+  margin-right:800px !important ;
+  background-color: #f3f1f1  !important;
+  margin-bottom: 2.5px !important;
+}
+.fc-myCustomButton-button:hover{
+   
+  background-color: #FF9E5D  !important;
+ color: white  !important;
 }

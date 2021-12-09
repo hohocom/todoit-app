@@ -8,8 +8,12 @@ import 'react-date-range/dist/theme/default.css'
 import ko from 'date-fns/locale/ko'
 import checkWhite from '../../assets/images/check-white.png'
 import Modal from '../shared/Modal'
-
-function CalendarCreateModal({ createModalOpen, setCreateModalOpen }) {
+import { createCalendarState } from '../../globalState/calendar'
+import { useRecoilState } from 'recoil'
+function CalendarCreateModal() {
+  const [createCalendar, setCreateCalendar] = useRecoilState(
+    createCalendarState,
+  )
   const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
@@ -73,7 +77,7 @@ function CalendarCreateModal({ createModalOpen, setCreateModalOpen }) {
   }, [scheduleForm])
   return (
     <Modal
-      state={{ open: createModalOpen, setOpen: setCreateModalOpen }}
+      state={{ open: createCalendar, setOpen: setCreateCalendar }}
       options={{
         backgroundClose: true,
         closeButtonType: 2, // 1: arrow, 2: X
