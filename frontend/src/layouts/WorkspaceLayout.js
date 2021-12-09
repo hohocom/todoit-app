@@ -1,19 +1,43 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import bgImg from '../assets/images/bg.jpg'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import CalendarCreateModal from '../components/calendar/CalendarCreateModal'
 import CalendarShowModal from '../components/calendar/CalendarShowModal'
+import AvatarGroup from '../components/shared/AvatarGroup'
 function WorkspaceLayout({ children }) {
+  const [createModalOpen, setCreateModalOpen] = useState(false)
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
       <aside className="min-w-[300px] h-full border-r border-gray-300">
         <figure className="w-full p-10">LOGO</figure>
       </aside>
-      <main className="flex-col w-full h-full">
+      <main className="relative flex-col w-full h-full">
+        <div
+          className="absolute top-[86px] left-[220px] rounded-md bg-gray-100 px-2 pt-0.5 cursor-pointer"
+          onClick={() => {
+            setCreateModalOpen(true)
+          }}
+        >
+          일정추가
+        </div>
         <header className="w-full h-[60px] border-b flex justify-between items-center p-4">
           <h2 className="font-apple-bold">호호컴퍼니</h2>
-          <div>초대</div>
+
+          <AvatarGroup
+            items={[
+              {
+                thumbnailImage: bgImg,
+              },
+              {
+                thumbnailImage: bgImg,
+              },
+              {
+                thumbnailImage: bgImg,
+              },
+            ]}
+          />
         </header>
         <section className="w-full h-full   pb-[100px] ">{children}</section>
       </main>
@@ -104,7 +128,11 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
-      <CalendarShowModal />
+      <CalendarCreateModal
+        createModalOpen={createModalOpen}
+        setCreateModalOpen={setCreateModalOpen}
+      />
+
       {/* <CalendarCreateModal /> */}
     </div>
   )
