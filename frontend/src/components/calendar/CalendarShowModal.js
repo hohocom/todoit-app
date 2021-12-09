@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 import bgImg from '../../assets/images/bg.jpg'
 import bgImg2 from '../../assets/images/kakao_logo.png'
 import bgImg3 from '../../assets/images/naver_logo.png'
@@ -7,13 +8,15 @@ import 'react-date-range/dist/theme/default.css'
 import checkWhite from '../../assets/images/check-white.png'
 import Modal from '../shared/Modal'
 import AvatarGroup from '../shared/AvatarGroup'
+import { showCalendarState } from '../../globalState/calendar'
 
 function CalendarShowModal() {
-  const [createModalOpen, setCreateModalOpen] = useState(true)
-
+  const showCalendar = useRecoilValue(showCalendarState)
+  console.log(`showCalendar ${showCalendar}`)
+  const [showModalOpen, setShowModalOpen] = useState(showCalendar)
   return (
     <Modal
-      state={{ open: createModalOpen, setOpen: setCreateModalOpen }}
+      state={{ open: showModalOpen, setOpen: setShowModalOpen }}
       options={{
         backgroundClose: true,
         closeButtonType: 2, // 1: arrow, 2: X

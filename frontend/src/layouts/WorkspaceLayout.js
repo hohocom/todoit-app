@@ -6,17 +6,19 @@ import 'react-date-range/dist/theme/default.css'
 import CalendarCreateModal from '../components/calendar/CalendarCreateModal'
 import CalendarShowModal from '../components/calendar/CalendarShowModal'
 import AvatarGroup from '../components/shared/AvatarGroup'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { userState } from '../globalState/user'
 import { apiScaffold, refreshToken } from '../customs/apis'
 import { useLocation } from 'react-router'
 import { workspaceDetail, workspaceDetailState } from '../globalState/workspace'
-
+import { showCalendarState } from '../globalState/calendar'
 function WorkspaceLayout({ children }) {
   const [user, setUser] = useRecoilState(userState)
   const [workspaceDetail, setWorkspaceDetail] = useRecoilState(
     workspaceDetailState,
   )
+  const [createModalOpen, setCreateModalOpen] = useState(false)
+
   const location = useLocation()
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -59,7 +61,6 @@ function WorkspaceLayout({ children }) {
     })
   }
 
-  const [createModalOpen, setCreateModalOpen] = useState(false)
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
       <aside className="min-w-[300px] h-full border-r border-gray-300">
@@ -185,8 +186,6 @@ function WorkspaceLayout({ children }) {
         setCreateModalOpen={setCreateModalOpen}
       />
       <CalendarShowModal />
-
-      {/* <CalendarCreateModal /> */}
     </div>
   )
 }
