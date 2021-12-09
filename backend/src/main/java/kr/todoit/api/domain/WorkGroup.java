@@ -1,5 +1,7 @@
 package kr.todoit.api.domain;
 
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,6 +10,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "work_groups")
+@NoArgsConstructor
 public class WorkGroup {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +29,11 @@ public class WorkGroup {
     @ManyToOne
     @JoinColumn(name = "work_id")
     private Work work;
+
+    @Builder
+    public WorkGroup(Long id, User user, Work work) {
+        this.id = id;
+        this.user = user;
+        this.work = work;
+    }
 }

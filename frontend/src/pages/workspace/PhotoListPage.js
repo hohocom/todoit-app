@@ -4,17 +4,32 @@ import { useRef, useState } from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
+import { apiScaffold } from '../../customs/apis'
 
 function PhotoListPage() {
   const websocket = useRef()
 
   const [texts, setTexts] = useState([])
 
-  const handleClickSendTo = () => {
-    const data = {
-      text: 'hellow',
-    }
-    websocket.current.sendMessage('/sendTo', JSON.stringify(data))
+  const handleClickSendTo = async () => {
+    const formData = new FormData()
+    formData.append('title', 'hello')
+    formData.append('content', 'hellwoierjoweirjwe')
+    formData.append('workspaceId', '1')
+    formData.append('startDate', '2021-12-10')
+    formData.append('themeColor', 'bg-red-200')
+    const users = ['1', '2']
+    users.forEach((user) => {
+      formData.append('users', user)
+    })
+
+    await apiScaffold({
+      method: 'post',
+      url: '/works',
+      data: formData,
+    })
+
+    websocket.current.sendMessage('/hello', 1)
   }
 
   const handleDateClick = (args) => {
