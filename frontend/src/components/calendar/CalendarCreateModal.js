@@ -12,8 +12,8 @@ import Modal from '../shared/Modal'
 function CalendarCreateModal({ createModalOpen, setCreateModalOpen }) {
   const [dateState, setDateState] = useState([
     {
-      startDate: '',
-      endDate: addDays('', 1),
+      startDate: new Date(),
+      endDate: addDays(new Date(), 0),
       key: 'selection',
     },
   ])
@@ -132,11 +132,13 @@ function CalendarCreateModal({ createModalOpen, setCreateModalOpen }) {
         <DateRange
           className="flex items-center justify-center w-full"
           editableDateInputs={true}
-          onChange={(item) => setDateState([item.selection])}
+          onChange={(item) => {
+            console.log(item.selection)
+            setDateState([item.selection])
+          }}
           moveRangeOnFirstSelection={false}
           ranges={dateState}
           months={1}
-          rangeColors="#ff935dad"
           color="#ff935dad"
           direction="horizontal"
           locale={ko}

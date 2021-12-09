@@ -3,14 +3,13 @@ import React from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { showCalendarState } from '../../globalState/calendar'
 function DashboardPage() {
-  const setShowCalendar = useSetRecoilState(showCalendarState)
+  const [showCalendar, setShowCalendar] = useRecoilState(showCalendarState)
   const handleDateClick = (args) => {}
   const handleEventClick = (args) => {
-    console.log('day click')
-    setShowCalendar(true)
+    setShowCalendar(!showCalendar)
   }
 
   return (

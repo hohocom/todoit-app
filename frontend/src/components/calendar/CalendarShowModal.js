@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import bgImg from '../../assets/images/bg.jpg'
 import bgImg2 from '../../assets/images/kakao_logo.png'
 import bgImg3 from '../../assets/images/naver_logo.png'
@@ -11,12 +11,11 @@ import AvatarGroup from '../shared/AvatarGroup'
 import { showCalendarState } from '../../globalState/calendar'
 
 function CalendarShowModal() {
-  const showCalendar = useRecoilValue(showCalendarState)
-  console.log(`showCalendar ${showCalendar}`)
-  const [showModalOpen, setShowModalOpen] = useState(showCalendar)
+  const [showCalendar, setShowCalendar] = useRecoilState(showCalendarState)
+
   return (
     <Modal
-      state={{ open: showModalOpen, setOpen: setShowModalOpen }}
+      state={{ open: showCalendar, setOpen: setShowCalendar }}
       options={{
         backgroundClose: true,
         closeButtonType: 2, // 1: arrow, 2: X
@@ -53,8 +52,8 @@ function CalendarShowModal() {
                   ]}
                 />
                 <div>
-                  <i class="mx-1 far fa-edit hover:text-yellow-500"></i>
-                  <i class="mx-2 far fa-trash-alt hover:text-red-500"></i>
+                  <i className="mx-1 far fa-edit hover:text-yellow-500"></i>
+                  <i className="mx-2 far fa-trash-alt hover:text-red-500"></i>
                 </div>
               </div>
               <div className="flex items-center">
@@ -113,8 +112,8 @@ function CalendarShowModal() {
                   ]}
                 />
                 <div>
-                  <i class="mx-1 far fa-edit hover:text-yellow-500"></i>
-                  <i class="mx-2 far fa-trash-alt hover:text-red-500"></i>
+                  <i className="mx-1 far fa-edit hover:text-yellow-500"></i>
+                  <i className="mx-2 far fa-trash-alt hover:text-red-500"></i>
                 </div>
               </div>
               <div className="flex items-center">
@@ -173,8 +172,8 @@ function CalendarShowModal() {
                   ]}
                 />
                 <div>
-                  <i class="mx-1 far fa-edit hover:text-yellow-500"></i>
-                  <i class="mx-2 far fa-trash-alt hover:text-red-500"></i>
+                  <i className="mx-1 far fa-edit hover:text-yellow-500"></i>
+                  <i className="mx-2 far fa-trash-alt hover:text-red-500"></i>
                 </div>
               </div>
               <div className="flex items-center">
