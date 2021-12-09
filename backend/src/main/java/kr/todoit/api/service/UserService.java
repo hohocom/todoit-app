@@ -4,6 +4,7 @@ import kr.todoit.api.domain.User;
 import kr.todoit.api.dto.UserInfoResponse;
 import kr.todoit.api.dto.UserLoginRequest;
 import kr.todoit.api.dto.UserTokenResponse;
+import kr.todoit.api.dto.WorkspaceFindResponse;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.exception.ValidExceptionType;
@@ -72,6 +73,16 @@ public class UserService {
                 .build();
     }
 
+    public UserTokenResponse verifyTokenThenGetTokensTest(Long id) {
+        HashMap<String, Object> actInfo = tokenService.getAct(id);
+        HashMap<String, Object> rftInfo = tokenService.getRft(id);
+
+        return UserTokenResponse.builder()
+                .actInfo(actInfo)
+                .rftInfo(rftInfo)
+                .build();
+    }
+
     private User joinUser(String email) {
         log.info("회원가입 진행");
         String nickname = RandomNicknameCreator.getRandomNickname();
@@ -83,9 +94,14 @@ public class UserService {
         return user;
     }
 
+    public User findUserById(Long userId) {
+        User user = userRepository.findUserById(userId);
+        checkNullUser(user);
+        return user;
+    }
+
     public UserInfoResponse getUserInfo(Long id) {
         User user = userRepository.findUserById(id);
-
         checkNullUser(user);
 
         return UserInfoResponse.builder()

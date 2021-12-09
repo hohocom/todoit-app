@@ -3,11 +3,13 @@ package kr.todoit.api.controller;
 import kr.todoit.api.dto.UserInfoResponse;
 import kr.todoit.api.dto.UserLoginRequest;
 import kr.todoit.api.dto.UserTokenResponse;
+import kr.todoit.api.dto.WorkspaceFindResponse;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.exception.ValidExceptionType;
 import kr.todoit.api.service.TokenService;
 import kr.todoit.api.service.UserService;
+import kr.todoit.api.service.WorkspaceService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -28,6 +30,7 @@ import java.util.Map;
 public class UserController {
 
     private UserService userService;
+    private WorkspaceService workspaceService;
 
     @PostMapping("/login-by-oauth")
     public ResponseEntity<Map<String, Object>> loginByOauth(@Valid UserLoginRequest userLoginRequest, BindingResult bindingResult) {
@@ -60,10 +63,21 @@ public class UserController {
         return responseTokens(userTokenResponse, response);
     }
 
+    @GetMapping("/refresh-token-test/{id}")
+    public ResponseEntity<Map<String, Object>> refreshTokenTest(@PathVariable Long id) {
+        log.info("GET/users/refresh-token-test");
+        UserTokenResponse userTokenResponse = userService.verifyTokenThenGetTokensTest(id);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "토큰이 재발급되었습니다.");
+        response.put("statusCode", 200);
+        response.put("act", userTokenResponse.getActInfo());
+        return responseTokens(userTokenResponse, response);
+    }
+
     private ResponseEntity<Map<String, Object>> responseTokens(UserTokenResponse userTokenResponse, Map<String, Object> response) {
         final Long time = 3600 * 24 * 14L;
         ResponseCookie responseCookie = ResponseCookie.from("rft", userTokenResponse.getRftInfo().get("token").toString())
-                .httpOnly(true)
+//                .httpOnly(true)
                 .path("/")
                 .maxAge(time)
                 .sameSite("Strict")
@@ -79,6 +93,9 @@ public class UserController {
         TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         UserInfoResponse userInfoResponse = userService.getUserInfo(id);
+        WorkspaceFindResponse workspaceFindResponse = workspaceService.findWorkspacesByUserId(id);
+        userInfoResponse.setWorkspaces(workspaceFindResponse.getWorkspaces());
+
         Map<String, Object> response = new HashMap<>();
         response.put("message", "회원 데이터를 정상적으로 전달하였습니다.");
         response.put("statusCode", 200);
