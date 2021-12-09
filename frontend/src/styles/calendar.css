@@ -64,3 +64,13 @@ td:last-child {
 .rdrDateDisplayWrapper{
   display: none;
 }
+
+.rdrInRange{
+  background-color: #ff935dad;
+}
+.rdrStartEdge{
+  background-color: #ff935dad;
+}
+.rdrEndEdge{
+  background-color: #ff935dad
+}
