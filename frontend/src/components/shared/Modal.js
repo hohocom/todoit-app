@@ -11,7 +11,7 @@ function Modal({ options, state, children }) {
         }}
       >
         <div
-          className="w-full h-full sm:h-auto sm:w-[400px] bg-white p-4 rounded-md max-h-[770px] overflow-scroll overflow-x-hidden custom-scroll"
+          className="w-full h-full sm:h-auto sm:w-[400px] bg-white p-4 rounded-sm max-h-[770px] overflow-scroll overflow-x-hidden custom-scroll"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between w-full">

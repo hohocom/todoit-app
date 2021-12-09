@@ -1301,6 +1301,13 @@ video {
 	--tw-border-opacity: 1;
 	border-color: rgba(251, 191, 36, var(--tw-border-opacity));
 }
+  .hover\:bg-\[\#ffac5ef3\]:hover {
+	background-color: #ffac5ef3;
+}
+  .hover\:text-white:hover {
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
   .hover\:text-yellow-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(245, 158, 11, var(--tw-text-opacity));
