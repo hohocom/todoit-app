@@ -1,19 +1,95 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import bgImg from '../assets/images/bg.jpg'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import CalendarCreateModal from '../components/calendar/CalendarCreateModal'
 import CalendarShowModal from '../components/calendar/CalendarShowModal'
+import AvatarGroup from '../components/shared/AvatarGroup'
+import { useRecoilState } from 'recoil'
+import { userState } from '../globalState/user'
+import { apiScaffold, refreshToken } from '../customs/apis'
+import { useLocation } from 'react-router'
+import { workspaceDetail, workspaceDetailState } from '../globalState/workspace'
+
 function WorkspaceLayout({ children }) {
+  const [user, setUser] = useRecoilState(userState)
+  const [workspaceDetail, setWorkspaceDetail] = useRecoilState(
+    workspaceDetailState,
+  )
+  const location = useLocation()
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(async () => {
+    // console.debug(user)
+    // 새로고침되었을 때 토큰 재발급
+    const { userId } = await refreshToken()
+    // 유저 정보 가져오기
+    await getUserInfoThenSetUserState(userId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const workspaceCode = location.pathname.split('workspaces/')[1]
+    // console.debug(workspaceCode)
+    user.workspaces.map((workspace) => {
+      console.log(workspace.code)
+      if (workspaceCode === workspace.code) {
+        setWorkspaceDetail({
+          ...workspaceDetail,
+          id: workspace.id,
+          name: workspace.name,
+          code: workspace.code,
+        })
+      }
+    })
+  }, [])
+
+  const getUserInfoThenSetUserState = async (userId) => {
+    const res = await apiScaffold({
+      method: 'get',
+      url: `/users/${userId}`,
+    })
+
+    console.debug(res)
+
+    setUser({
+      ...user,
+      id: res.user.id,
+      email: res.user.email,
+      nickname: res.user.nickname,
+      workspaces: res.user.workspaces,
+    })
+  }
+
+  const [createModalOpen, setCreateModalOpen] = useState(false)
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
       <aside className="min-w-[300px] h-full border-r border-gray-300">
         <figure className="w-full p-10">LOGO</figure>
       </aside>
-      <main className="flex-col w-full h-full">
+      <main className="relative flex-col w-full h-full">
+        <div
+          className="absolute top-[86px] left-[220px] rounded-md bg-gray-100 px-2 pt-0.5 cursor-pointer hover:bg-[#ffac5ef3] hover:text-white"
+          onClick={() => {
+            setCreateModalOpen(true)
+          }}
+        >
+          일정추가
+        </div>
         <header className="w-full h-[60px] border-b flex justify-between items-center p-4">
-          <h2 className="font-apple-bold">호호컴퍼니</h2>
-          <div>초대</div>
+          <h2 className="font-apple-bold">{workspaceDetail.name}</h2>
+
+          <AvatarGroup
+            items={[
+              {
+                thumbnailImage: bgImg,
+              },
+              {
+                thumbnailImage: bgImg,
+              },
+              {
+                thumbnailImage: bgImg,
+              },
+            ]}
+          />
         </header>
         <section className="w-full h-full   pb-[100px] ">{children}</section>
       </main>
@@ -104,7 +180,12 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
+      <CalendarCreateModal
+        createModalOpen={createModalOpen}
+        setCreateModalOpen={setCreateModalOpen}
+      />
       <CalendarShowModal />
+
       {/* <CalendarCreateModal /> */}
     </div>
   )

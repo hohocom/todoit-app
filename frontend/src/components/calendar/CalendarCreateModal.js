@@ -9,8 +9,7 @@ import ko from 'date-fns/locale/ko'
 import checkWhite from '../../assets/images/check-white.png'
 import Modal from '../shared/Modal'
 
-function CalendarCreateModal() {
-  const [createModalOpen, setCreateModalOpen] = useState(true)
+function CalendarCreateModal({ createModalOpen, setCreateModalOpen }) {
   const [dateState, setDateState] = useState([
     {
       startDate: '',
@@ -80,7 +79,7 @@ function CalendarCreateModal() {
         closeButtonType: 2, // 1: arrow, 2: X
       }}
     >
-      <div className="h-[720px]">
+      <div className="">
         <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
         <input
           type="text"
