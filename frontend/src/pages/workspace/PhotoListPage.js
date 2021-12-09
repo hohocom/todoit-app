@@ -11,7 +11,12 @@ function PhotoListPage() {
     const data = {
       text: 'hellow',
     }
-    websocket.current.sendMessage('/sendTo', JSON.stringify(data))
+    websocket.current.sendMessage(
+      '/sendTo',
+      JSON.stringify({
+        text: 'hellow',
+      }),
+    )
   }
 
   return (

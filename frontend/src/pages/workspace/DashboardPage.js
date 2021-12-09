@@ -1,39 +1,82 @@
 import WorkspaceLayout from '../../layouts/WorkspaceLayout'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { showCalendarState } from '../../globalState/calendar'
 import { createCalendarState } from '../../globalState/calendar'
+import SockJsClient from 'react-stomp'
+import { apiScaffold } from '../../customs/apis'
+import { workspaceDetailState } from '../../globalState/workspace'
+import { userState } from '../../globalState/user'
+
 function DashboardPage() {
+  const websocket = useRef()
+
   const [showCalendar, setShowCalendar] = useRecoilState(showCalendarState)
   const [createCalendar, setCreateCalendar] = useRecoilState(
     createCalendarState,
   )
+  const workspaceDetail = useRecoilValue(workspaceDetailState)
+
   const handleDateClick = (args) => {}
   const handleEventClick = (args) => {
     console.log(args)
     setShowCalendar(!showCalendar)
   }
+  const [data, setDate] = useState([])
+  useEffect(() => {
+    if (workspaceDetail.id) {
+      getWorks()
+    }
+  }, [workspaceDetail.id])
 
-  const data = [
-    {
-      title: 'event 1',
-      start: '2021-12-06',
-      color: 'pink',
-    },
-    {
-      title: 'event 1',
-      start: '2021-12-06',
-      end: '2021-12-09',
-      color: 'pink',
-    },
-    { title: 'event 1', start: '2021-12-06', color: 'pink' },
-    { title: 'event 2', start: '2021-12-07', color: 'pink' },
-  ]
+  const getWorks = async () => {
+    console.log('getWorks')
+    const res = await apiScaffold({
+      method: 'get',
+      url: `/works?workspaceId=${workspaceDetail.id}`,
+    })
+    console.log(res.works)
+    const _array = []
+    for (let i = 0; i < res.works.length; i++) {
+      _array.push({
+        title: res.works[i].title,
+        start: res.works[i].startDate,
+        end: res.works[i].endDate,
+        color: res.works[i].themeColor,
+      })
+    }
+    setDate(_array)
+    console.log(data)
+  }
+
+  // const data = [
+  //   {
+  //     title: 'event 1',
+  //     start: '2021-12-06',
+  //     color: 'pink',
+  //   },
+  //   {
+  //     title: 'event 1',
+  //     start: '2021-12-06',
+  //     end: '2021-12-09',
+  //     color: 'pink',
+  //   },
+  //   { title: 'event 1', start: '2021-12-06', color: 'pink' },
+  //   { title: 'event 2', start: '2021-12-07', color: 'pink' },
+  // ]
   return (
     <WorkspaceLayout>
+      <SockJsClient
+        url={`${process.env.REACT_APP_API_URL}/start`}
+        topics={['/topics/sendTo', '/topics/template', '/topics/api']}
+        onMessage={(msg) => {
+          console.log(msg)
+        }}
+        ref={websocket}
+      />
       <div className=" mypage-body">
         <div className=" body-wrapper box">
           <div className=" body-info-container">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import { addDays } from 'date-fns'
 import bgImg from '../../assets/images/bg.jpg'
 import plus from '../../assets/images/plus.png'
@@ -9,8 +9,12 @@ import ko from 'date-fns/locale/ko'
 import checkWhite from '../../assets/images/check-white.png'
 import Modal from '../shared/Modal'
 import { createCalendarState } from '../../globalState/calendar'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { apiScaffold } from '../../customs/apis'
+import { workspaceDetailState } from '../../globalState/workspace'
+import SockJsClient from 'react-stomp'
 function CalendarCreateModal() {
+  const websocket = useRef()
   const [createCalendar, setCreateCalendar] = useRecoilState(
     createCalendarState,
   )
@@ -21,6 +25,8 @@ function CalendarCreateModal() {
       key: 'selection',
     },
   ])
+  const workspaceDetail = useRecoilValue(workspaceDetailState)
+
   const dateString = (date) => {
     var year = date.getFullYear()
     var month = ('0' + (date.getMonth() + 1)).slice(-2)
@@ -62,19 +68,33 @@ function CalendarCreateModal() {
     setColorNumber(index)
     setScheduleForm({ ...scheduleForm, color: colors[index] })
   }
-  const submit = () => {
-    setScheduleForm({
-      ...scheduleForm,
-      startTime: dateString(dateState[0].startDate),
-      endTime: dateString(dateState[0].endDate),
+  //일정 전송
+  const submit = async () => {
+    const formData = new FormData()
+    formData.append('title', scheduleForm.title)
+    formData.append('content', scheduleForm.content)
+    formData.append('workspaceId', workspaceDetail.id)
+    formData.append('startDate', dateString(dateState[0].startDate))
+    formData.append('endDate', dateString(dateState[0].endDate))
+    formData.append('themeColor', scheduleForm.color)
+    const users = ['1', '2']
+    users.forEach((user) => {
+      formData.append('users', user)
     })
 
-    console.log(scheduleForm)
+    await apiScaffold({
+      method: 'post',
+      url: '/works',
+      data: formData,
+    })
+    const data = {
+      text: 'hellow',
+      tt: 'gggg',
+    }
+    websocket.current.sendMessage('/sendTo', JSON.stringify(data))
+    setCreateCalendar(false)
   }
-  useEffect(() => {
-    // 브라우저 API를 이용하여 문서 타이틀을 업데이트합니다.
-    console.log(scheduleForm)
-  }, [scheduleForm])
+
   return (
     <Modal
       state={{ open: createCalendar, setOpen: setCreateCalendar }}
@@ -83,6 +103,14 @@ function CalendarCreateModal() {
         closeButtonType: 2, // 1: arrow, 2: X
       }}
     >
+      <SockJsClient
+        url={`${process.env.REACT_APP_API_URL}/start`}
+        topics={['/topics/sendTo', '/topics/template', '/topics/api']}
+        onMessage={(msg) => {
+          console.log(msg)
+        }}
+        ref={websocket}
+      />
       <div className="">
         <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
         <input
@@ -137,7 +165,6 @@ function CalendarCreateModal() {
           className="flex items-center justify-center w-full"
           editableDateInputs={true}
           onChange={(item) => {
-            console.log(item.selection)
             setDateState([item.selection])
           }}
           moveRangeOnFirstSelection={false}

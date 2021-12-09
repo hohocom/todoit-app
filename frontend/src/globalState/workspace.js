@@ -8,5 +8,6 @@ export const workspaceDetailState = atom({
     code: '',
     users: [],
     works: [],
+    socketRef: null,
   },
 })
