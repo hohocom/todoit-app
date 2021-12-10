@@ -1,11 +1,11 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import WelcomeLayout from '../layouts/WelcomeLayout'
-import cloud1Img from '../assets/images/cloud2.svg'
-import cloud2Img from '../assets/images/cloud3.svg'
-import heartImg from '../assets/images/heart.png'
-import { particlesPlay } from '../customs/particles'
-import '../lib/particles.min.js'
+import cloud1Img from '../../assets/images/cloud2.svg'
+import cloud2Img from '../../assets/images/cloud3.svg'
+import heartImg from '../../assets/images/heart.png'
+import { particlesPlay } from '../../utils/particles'
+import '../../lib/particles.min.js'
 
 function WelcomePage() {
   useEffect(() => {

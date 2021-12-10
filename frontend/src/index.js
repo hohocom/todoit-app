@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
-import './styles/index.css'
-import './styles/calendar.css'
+import './assets/styles/index.css'
+import './assets/styles/calendar.css'
 import { BrowserRouter } from 'react-router-dom'
-import axios from 'axios'
 import { RecoilRoot } from 'recoil'
+import axios from 'axios'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 axios.defaults.withCredentials = true

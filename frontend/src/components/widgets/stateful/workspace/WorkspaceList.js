@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import { apiScaffold } from '../../customs/apis'
-import { userState } from '../../globalState/user'
+import { apiScaffold } from '../../../../utils/apis'
+import { userState } from '../../../../states/user'
 import WorkspaceUpdater from './WorkspaceUpdater'
 
 function WorkspaceList() {

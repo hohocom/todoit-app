@@ -4,12 +4,12 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { showCalendarState } from '../../globalState/calendar'
-import { createCalendarState } from '../../globalState/calendar'
+import { showCalendarState } from '../../../states/calendar'
+import { createCalendarState } from '../../../states/calendar'
 import SockJsClient from 'react-stomp'
-import { apiScaffold } from '../../customs/apis'
-import { workspaceDetailState } from '../../globalState/workspace'
-import { userState } from '../../globalState/user'
+import { apiScaffold } from '../../../utils/apis'
+import { workspaceDetailState } from '../../../states/workspace'
+import { userState } from '../../../states/user'
 
 function DashboardPage() {
   const websocket = useRef()

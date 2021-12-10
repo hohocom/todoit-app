@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { apiScaffold } from '../../customs/apis'
-import { userState } from '../../globalState/user'
+import { apiScaffold } from '../../../../utils/apis'
+import { userState } from '../../../../states/user'
 
 function WorkspaceUpdater({ workspaceName, workspaceId, setSelectNumber }) {
   const [name, setName] = useState(workspaceName)

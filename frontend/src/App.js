@@ -1,15 +1,14 @@
 import React from 'react'
 import { useRoutes } from 'react-router'
-import JoinPage from './pages/JoinPage'
-import LoginPage from './pages/LoginPage'
-import WelcomePage from './pages/WelcomePage'
-import DashboardPage from './pages/workspace/DashboardPage'
-import MemberPage from './pages/workspace/MemberPage'
-import AttendancePage from './pages/workspace/AttendancePage'
-import WorkspacesPage from './pages/workspace/WorkspacesPage'
-import PhotoListPage from './pages/workspace/PhotoListPage'
-import LoginKakaoRedirectPage from './pages/LoginKakaoRedirectPage'
-import LoginNaverRedirectPage from './pages/LoginNaverRedirectPage'
+import LoginPage from './components/templates/LoginPage'
+import WelcomePage from './components/templates/WelcomePage'
+import DashboardPage from './components/templates/workspace/DashboardPage'
+import MemberPage from './components/templates/workspace/MemberPage'
+import AttendancePage from './components/templates/workspace/AttendancePage'
+import WorkspacesPage from './components/templates/workspace/WorkspacesPage'
+import PhotoListPage from './components/templates/workspace/PhotoListPage'
+import LoginKakaoRedirectPage from './components/templates/LoginKakaoRedirectPage'
+import LoginNaverRedirectPage from './components/templates/LoginNaverRedirectPage'
 
 function App() {
   const route = useRoutes([
@@ -17,7 +16,6 @@ function App() {
     { path: '/login', element: <LoginPage /> },
     { path: '/login/oauth/kakao', element: <LoginKakaoRedirectPage /> },
     { path: '/login/oauth/naver', element: <LoginNaverRedirectPage /> },
-    { path: '/join', element: <JoinPage /> },
     { path: '/workspaces', element: <WorkspacesPage /> },
     { path: '/workspaces/:id', element: <DashboardPage /> },
     { path: '/workspaces/:id/members', element: <MemberPage /> },

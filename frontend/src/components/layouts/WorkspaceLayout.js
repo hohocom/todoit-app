@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 
-import bgImg from '../assets/images/bg.jpg'
+import bgImg from '../../assets/images/bg.jpg'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
-import CalendarCreateModal from '../components/calendar/CalendarCreateModal'
-import CalendarShowModal from '../components/calendar/CalendarShowModal'
-import AvatarGroup from '../components/shared/AvatarGroup'
+import CalendarCreateModal from '../widgets/stateful/calendar/CalendarCreateModal'
+import CalendarShowModal from '../widgets/stateful/calendar/CalendarShowModal'
+import AvatarGroup from '../widgets/stateless/AvatarGroup'
+import { workspaceDetail, workspaceDetailState } from '../../states/workspace'
+import { userState } from '../../states/user'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { userState } from '../globalState/user'
-import { apiScaffold, refreshToken } from '../customs/apis'
+import { apiScaffold, refreshToken } from '../../utils/apis'
 import { useLocation } from 'react-router'
-import { workspaceDetail, workspaceDetailState } from '../globalState/workspace'
 
 function WorkspaceLayout({ children }) {
   const [user, setUser] = useRecoilState(userState)
