@@ -9,7 +9,7 @@ import { worksShowModalState } from 'states/work'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 
-function CalendarShowModal() {
+function WorksShowModal() {
   const [worksShowModal, setWorksShowModal] = useRecoilState(worksShowModalState)
 
   return (
@@ -208,4 +208,4 @@ function CalendarShowModal() {
     </Modal>
   )
 }
-export default CalendarShowModal
+export default WorksShowModal

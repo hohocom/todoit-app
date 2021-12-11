@@ -1,32 +1,11 @@
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import WelcomeLayout from 'components/layouts/WelcomeLayout'
 import cloud1Img from 'assets/images/cloud2.svg'
 import cloud2Img from 'assets/images/cloud3.svg'
 import heartImg from 'assets/images/heart.png'
-import { particlesPlay } from 'utils/particles'
 import 'utils/particles.min.js'
 
 function WelcomePage() {
-  useEffect(() => {
-    particlesPlay()
-    window.addEventListener('scroll', scrollEvent)
-
-    return () => {
-      window.removeEventListener('scroll', scrollEvent)
-    }
-  }, [])
-
-  const scrollEvent = (e) => {
-    if (window.scrollY >= 100 && document.querySelector('header')) {
-      document.querySelector('header').classList.add(['border-b'])
-      document.querySelector('header').classList.add(['bg-white'])
-    } else {
-      document.querySelector('header').classList.remove(['border-b'])
-      document.querySelector('header').classList.remove(['bg-white'])
-    }
-  }
-
   return (
     <WelcomeLayout>
       <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden">

@@ -1,65 +1,20 @@
 import { useEffect } from 'react'
-
 import bgImg from 'assets/images/bg.jpg'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
-import CalendarCreateModal from 'components/widgets/stateful/calendar/CalendarCreateModal'
-import CalendarShowModal from 'components/widgets/stateful/calendar/CalendarShowModal'
+import WorkCreateModal from 'components/widgets/stateful/work/WorkCreateModal'
+import WorksShowModal from 'components/widgets/stateful/work/WorksShowModal'
 import AvatarGroup from 'components/widgets/stateless/AvatarGroup'
 import {  workspaceDetailState } from 'states/workspace'
-import { userState } from 'states/user'
 import { useRecoilState } from 'recoil'
-import { apiScaffold, refreshToken } from 'utils/apis'
-import { useLocation } from 'react-router'
+
+
 
 function WorkspaceLayout({ children }) {
-  const [user, setUser] = useRecoilState(userState)
   const [workspaceDetail, setWorkspaceDetail] = useRecoilState(
     workspaceDetailState,
-  )
-
-  const location = useLocation()
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    // console.debug(user)
-    // 새로고침되었을 때 토큰 재발급
-    const { userId } = await refreshToken()
-    // 유저 정보 가져오기
-    await getUserInfoThenSetUserState(userId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const workspaceCode = location.pathname.split('workspaces/')[1]
-    // console.debug(workspaceCode)
-    user.workspaces.map((workspace) => {
-      console.log(workspace.code)
-      if (workspaceCode === workspace.code) {
-        setWorkspaceDetail({
-          ...workspaceDetail,
-          id: workspace.id,
-          name: workspace.name,
-          code: workspace.code,
-        })
-      }
-    })
-  }, [])
-
-  const getUserInfoThenSetUserState = async (userId) => {
-    const res = await apiScaffold({
-      method: 'get',
-      url: `/users/${userId}`,
-    })
-
-    console.debug(res)
-
-    setUser({
-      ...user,
-      id: res.user.id,
-      email: res.user.email,
-      nickname: res.user.nickname,
-      workspaces: res.user.workspaces,
-    })
-  }
-
+    )
+    
   return (
     <div className="fixed top-0 left-0 flex w-full h-full font-apple-light">
       <aside className="min-w-[300px] h-full border-r border-gray-300">
@@ -172,8 +127,8 @@ function WorkspaceLayout({ children }) {
           </div>
         </div>
       </aside>
-      <CalendarCreateModal />
-      <CalendarShowModal />
+      <WorkCreateModal />
+      <WorksShowModal />
     </div>
   )
 }

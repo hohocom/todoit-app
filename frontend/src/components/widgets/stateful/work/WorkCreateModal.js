@@ -13,7 +13,9 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { apiScaffold } from 'utils/apis'
 import { workspaceDetailState } from 'states/workspace'
 import SockJsClient from 'react-stomp'
-function CalendarCreateModal() {
+
+
+function WorkCreateModal() {
   const websocket = useRef()
 
   const [workCreateModal, setWorkCreateModal] = useRecoilState(
@@ -187,4 +189,4 @@ function CalendarCreateModal() {
     </Modal>
   )
 }
-export default CalendarCreateModal
+export default WorkCreateModal
