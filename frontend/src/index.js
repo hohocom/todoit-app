@@ -8,6 +8,7 @@ import './assets/styles/calendar.css'
 import { BrowserRouter } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
 import axios from 'axios'
+import Authenticator from 'components/widgets/stateful/user/Authenticator'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL
 axios.defaults.withCredentials = true
@@ -15,7 +16,9 @@ axios.defaults.withCredentials = true
 ReactDOM.render(
   <RecoilRoot>
     <BrowserRouter>
-      <App />
+      <Authenticator>
+        <App />
+      </Authenticator>
     </BrowserRouter>
   </RecoilRoot>,
   document.getElementById('root'),

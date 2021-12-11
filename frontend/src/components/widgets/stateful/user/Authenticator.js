@@ -3,22 +3,23 @@ import { useLocation } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { userState } from 'states/user'
 import { apiScaffold, refreshToken } from 'utils/apis'
-import { useLocation } from 'react-router'
+import { workspaceDetailState } from 'states/workspace'
 
 function Authenticator(props){
     const [user, setUser] = useRecoilState(userState)
     const location = useLocation()
+    const [workspaceDetail, setWorkspaceDetail] = useRecoilState(workspaceDetailState)
   
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
-      // console.debug(user)
-      // 새로고침되었을 때 토큰 재발급
+
       const { userId } = await refreshToken()
-      // 유저 정보 가져오기
+
       await getUserInfoThenSetUserState(userId)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+
       const workspaceCode = location.pathname.split('workspaces/')[1]
-      // console.debug(workspaceCode)
+
       user.workspaces.map((workspace) => {
         console.log(workspace.code)
         if (workspaceCode === workspace.code) {

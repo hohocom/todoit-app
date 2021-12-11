@@ -10,33 +10,9 @@ import '../../../utils/particles.min.js'
 function WorkspacesPage() {
   const [user, setUser] = useRecoilState(userState)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(async () => {
-    // 파티클 효과
-    particlesPlay()
-    // 새로고침되었을 때 토큰 재발급
-    const { userId } = await refreshToken()
-    // 유저 정보 가져오기
-    await getUserInfoThenSetUserState(userId)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    console.debug('먼저 실행')
   }, [])
-
-  const getUserInfoThenSetUserState = async (userId) => {
-    const res = await apiScaffold({
-      method: 'get',
-      url: `/users/${userId}`,
-    })
-
-    console.debug(res)
-
-    setUser({
-      ...user,
-      id: res.user.id,
-      email: res.user.email,
-      nickname: res.user.nickname,
-      workspaces: res.user.workspaces
-    })
-  }
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-[#FFC35E] to-[#ffac5ef3] font-apple-regular text-[#424242]">
