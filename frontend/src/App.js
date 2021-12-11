@@ -1,14 +1,14 @@
 import React from 'react'
 import { useRoutes } from 'react-router'
-import LoginPage from './components/templates/LoginPage'
-import WelcomePage from './components/templates/WelcomePage'
-import DashboardPage from './components/templates/workspace/DashboardPage'
-import MemberPage from './components/templates/workspace/MemberPage'
-import AttendancePage from './components/templates/workspace/AttendancePage'
-import WorkspacesPage from './components/templates/workspace/WorkspacesPage'
-import PhotoListPage from './components/templates/workspace/PhotoListPage'
-import LoginKakaoRedirectPage from './components/templates/LoginKakaoRedirectPage'
-import LoginNaverRedirectPage from './components/templates/LoginNaverRedirectPage'
+import LoginPage from './components/pages/LoginPage'
+import WelcomePage from './components/pages/WelcomePage'
+import DashboardPage from './components/pages/workspace/DashboardPage'
+import MemberPage from './components/pages/workspace/MemberPage'
+import AttendancePage from './components/pages/workspace/AttendancePage'
+import WorkspacesPage from './components/pages/workspace/WorkspacesPage'
+import PhotoListPage from './components/pages/workspace/PhotoListPage'
+import LoginKakaoRedirectPage from './components/pages/LoginKakaoRedirectPage'
+import LoginNaverRedirectPage from './components/pages/LoginNaverRedirectPage'
 
 function App() {
   const route = useRoutes([
