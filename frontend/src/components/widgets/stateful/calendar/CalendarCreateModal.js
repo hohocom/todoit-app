@@ -1,22 +1,23 @@
 import { useRef, useState } from 'react'
 import { addDays } from 'date-fns'
-import bgImg from '../../../../assets/images/bg.jpg'
-import plus from '../../../../assets/images/plus.png'
-import checkWhite from '../../../../assets/images/check-white.png'
-import { createCalendarState } from '../../../../states/calendar'
-import Modal from '../../stateless/Modal'
+import bgImg from 'assets/images/bg.jpg'
+import plus from 'assets/images/plus.png'
+import checkWhite from 'assets/images/check-white.png'
+import { workCreateModalState } from 'states/work'
+import Modal from 'components/widgets/stateless/Modal'
 import { DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import ko from 'date-fns/locale/ko'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { apiScaffold } from '../../../../utils/apis'
-import { workspaceDetailState } from '../../../../states/workspace'
+import { apiScaffold } from 'utils/apis'
+import { workspaceDetailState } from 'states/workspace'
 import SockJsClient from 'react-stomp'
 function CalendarCreateModal() {
   const websocket = useRef()
-  const [createCalendar, setCreateCalendar] = useRecoilState(
-    createCalendarState,
+
+  const [workCreateModal, setWorkCreateModal] = useRecoilState(
+    workCreateModalState,
   )
   const [dateState, setDateState] = useState([
     {
@@ -92,12 +93,12 @@ function CalendarCreateModal() {
       tt: 'gggg',
     }
     websocket.current.sendMessage('/sendTo', JSON.stringify(data))
-    setCreateCalendar(false)
+    setWorkCreateModal(false)
   }
 
   return (
     <Modal
-      state={{ open: createCalendar, setOpen: setCreateCalendar }}
+      state={{ open: workCreateModal, setOpen: setWorkCreateModal }}
       options={{
         backgroundClose: true,
         closeButtonType: 2, // 1: arrow, 2: X

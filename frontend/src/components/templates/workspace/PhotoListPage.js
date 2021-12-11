@@ -1,4 +1,4 @@
-import WorkspaceLayout from '../../layouts/WorkspaceLayout'
+import WorkspaceLayout from 'components/layouts/WorkspaceLayout'
 import SockJsClient from 'react-stomp'
 import { useRef, useState } from 'react'
 

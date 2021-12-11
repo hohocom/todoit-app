@@ -5,7 +5,7 @@ import WorkspaceList from '../../widgets/stateful/workspace/WorkspaceList'
 import { apiScaffold, refreshToken } from '../../../utils/apis'
 import { particlesPlay } from '../../../utils/particles'
 import { userState } from '../../../states/user'
-import '../../../lib/particles.min.js'
+import '../../../utils/particles.min.js'
 
 function WorkspacesPage() {
   const [user, setUser] = useRecoilState(userState)

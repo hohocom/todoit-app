@@ -1,29 +1,29 @@
-import WorkspaceLayout from '../../layouts/WorkspaceLayout'
+import WorkspaceLayout from 'components/layouts/WorkspaceLayout'
 import React, { useEffect, useRef, useState } from 'react'
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import interactionPlugin from '@fullcalendar/interaction' // needed for dayClick
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { showCalendarState } from '../../../states/calendar'
-import { createCalendarState } from '../../../states/calendar'
+import { workCreateModalState } from 'states/work'
+import { worksShowModalState } from 'states/work'
 import SockJsClient from 'react-stomp'
-import { apiScaffold } from '../../../utils/apis'
-import { workspaceDetailState } from '../../../states/workspace'
-import { userState } from '../../../states/user'
+import { apiScaffold } from 'utils/apis'
+import { workspaceDetailState } from 'states/workspace'
+
 
 function DashboardPage() {
   const websocket = useRef()
 
-  const [showCalendar, setShowCalendar] = useRecoilState(showCalendarState)
-  const [createCalendar, setCreateCalendar] = useRecoilState(
-    createCalendarState,
+  const [worksShowModal, setWorksShowModal] = useRecoilState(worksShowModalState)
+  const [workCreateModal, setWorkCreateModal] = useRecoilState(
+    workCreateModalState,
   )
   const workspaceDetail = useRecoilValue(workspaceDetailState)
 
   const handleDateClick = (args) => {}
   const handleEventClick = (args) => {
     console.log(args)
-    setShowCalendar(!showCalendar)
+    setWorksShowModal(!worksShowModal)
   }
   const [data, setDate] = useState([])
   useEffect(() => {
@@ -86,7 +86,7 @@ function DashboardPage() {
                   myCustomButton: {
                     text: '일정추가',
                     click: function () {
-                      setCreateCalendar(!createCalendar)
+                      setWorkCreateModal(!workCreateModal)
                     },
                   },
                 }}

@@ -1,20 +1,20 @@
 import { useRecoilState } from 'recoil'
-import bgImg from '../../../../assets/images/bg.jpg'
-import bgImg2 from '../../../../assets/images/kakao_logo.png'
-import bgImg3 from '../../../../assets/images/naver_logo.png'
-import checkWhite from '../../../../assets/images/check-white.png'
-import Modal from '../../stateless/Modal'
-import AvatarGroup from '../../stateless/AvatarGroup'
-import { showCalendarState } from '../../../../states/calendar'
+import bgImg from 'assets/images/bg.jpg'
+import bgImg2 from 'assets/images/kakao_logo.png'
+import bgImg3 from 'assets/images/naver_logo.png'
+import checkWhite from 'assets/images/check-white.png'
+import Modal from 'components/widgets/stateless/Modal'
+import AvatarGroup from 'components/widgets/stateless/AvatarGroup'
+import { worksShowModalState } from 'states/work'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 
 function CalendarShowModal() {
-  const [showCalendar, setShowCalendar] = useRecoilState(showCalendarState)
+  const [worksShowModal, setWorksShowModal] = useRecoilState(worksShowModalState)
 
   return (
     <Modal
-      state={{ open: showCalendar, setOpen: setShowCalendar }}
+      state={{ open: worksShowModal, setOpen: setWorksShowModal }}
       options={{
         backgroundClose: true,
         closeButtonType: 2, // 1: arrow, 2: X

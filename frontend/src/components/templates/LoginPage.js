@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
-import kakaoImg from '../../assets/images/kakao_logo.png'
-import naverImg from '../../assets/images/naver_logo.png'
-import loginCoverImg from '../../assets/images/login-cover.png'
-import { particlesPlay } from '../../utils/particles'
-import '../../lib/particles.min.js'
+import kakaoImg from 'assets/images/kakao_logo.png'
+import naverImg from 'assets/images/naver_logo.png'
+import loginCoverImg from 'assets/images/login-cover.png'
+import { particlesPlay } from 'utils/particles'
+import 'utils/particles.min.js'
 
 function LoginPage() {
   useEffect(() => {
