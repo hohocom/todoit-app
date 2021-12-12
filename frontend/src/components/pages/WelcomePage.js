@@ -1,13 +1,26 @@
 import { Link } from 'react-router-dom'
-import WelcomeLayout from 'components/layouts/WelcomeLayout'
+import WelcomHeader from 'components/containers/layout/WelcomeHeader'
 import cloud1Img from 'assets/images/cloud2.svg'
 import cloud2Img from 'assets/images/cloud3.svg'
 import heartImg from 'assets/images/heart.png'
 import 'utils/particles.min.js'
+import { useEffect } from 'react/cjs/react.development'
+import { particlesPlay } from 'utils/particles'
+import { scrollEvent } from 'utils/scrollEvent'
 
 function WelcomePage() {
+  useEffect(() => {
+    particlesPlay()
+    window.addEventListener('scroll', scrollEvent)
+
+    return () => {
+      window.removeEventListener('scroll', scrollEvent)
+    }
+  }, [])
+
   return (
-    <WelcomeLayout>
+    <div className="flex-col items-start justify-center w-full h-full font-apple-regular text-[#424242]">
+      <WelcomHeader/>
       <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden">
         <div className="z-30 flex flex-col items-center">
           {/* <img src={calendarImg} alt="img" className="w-[300px]"/> */}
@@ -41,7 +54,7 @@ function WelcomePage() {
         ></div>
       </div>
       <div className="z-50 w-full h-screen bg-[#FFB45E]"></div>
-    </WelcomeLayout>
+    </div>
   )
 }
 

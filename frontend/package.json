@@ -53,7 +53,8 @@
     "eject": "react-scripts eject",
     "watch:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/index.css",
     "watch": "chokidar \"./src/**/*.js\" -c \"npm run watch:css\"",
-    "dev": "concurrently \"npm run watch\" \"npm run start\""
+    "storybook": "start-storybook -p 5000",
+    "build-storybook": "build-storybook"
   },
   "eslintConfig": {
     "extends": [
@@ -76,8 +77,10 @@
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^6.3.0",
     "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.19"
+    "tailwindcss": "^2.2.19",
+    "@storybook/addon-essentials": "6.2.0-rc.0",
+    "@storybook/addon-postcss": "2.0.0",
+    "@storybook/react": "6.2.0-rc.0"
   }
 }

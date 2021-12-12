@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
-import WorkspaceCreator from '../../widgets/stateful/workspace/WorkspaceCreator'
-import WorkspaceList from '../../widgets/stateful/workspace/WorkspaceList'
-import { apiScaffold, refreshToken } from '../../../utils/apis'
-import { particlesPlay } from '../../../utils/particles'
-import { userState } from '../../../states/user'
-import '../../../utils/particles.min.js'
+import { userState } from 'states/user'
+
+import WorkspaceCreator from 'components/containers/workspace/WorkspaceCreator'
+import WorkspaceList from 'components/containers/workspace/WorkspaceList'
+
+import 'utils/particles.min.js'
+
+
 
 function WorkspacesPage() {
   const [user, setUser] = useRecoilState(userState)

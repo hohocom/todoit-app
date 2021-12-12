@@ -1,18 +1,22 @@
 import { useRef, useState } from 'react'
 import { addDays } from 'date-fns'
-import bgImg from 'assets/images/bg.jpg'
-import plus from 'assets/images/plus.png'
-import checkWhite from 'assets/images/check-white.png'
 import { workCreateModalState } from 'states/work'
-import Modal from 'components/widgets/stateless/Modal'
 import { DateRange } from 'react-date-range'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css'
-import ko from 'date-fns/locale/ko'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { apiScaffold } from 'utils/apis'
 import { workspaceDetailState } from 'states/workspace'
+
+import bgImg from 'assets/images/bg.jpg'
+import plus from 'assets/images/plus.png'
+import checkWhite from 'assets/images/check-white.png'
+import Modal from 'components/storybook/Modal'
+
+import ko from 'date-fns/locale/ko'
 import SockJsClient from 'react-stomp'
+
+import 'react-date-range/dist/styles.css' // main style file
+import 'react-date-range/dist/theme/default.css'
+
 
 
 function WorkCreateModal() {

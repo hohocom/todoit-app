@@ -1,5 +1,6 @@
 import { atom } from 'recoil'
 
+
 export const workspaceDetailState = atom({
   key: 'workspaceDetailState',
   default: {
@@ -8,6 +9,5 @@ export const workspaceDetailState = atom({
     code: '',
     users: [],
     works: [],
-    socketRef: null,
   },
 })

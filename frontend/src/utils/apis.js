@@ -11,7 +11,7 @@ export const apiScaffold = async ({ method, url, data }, callback) => {
         const error = data.data.error
         console.debug(error)
 
-        if (error.type === 'EXPIRED_TOKEN' || error.type === 'NOT_FOUND_USER') {
+        if (error.type === 'EXPIRED_TOKEN') {
           alert('토큰이 만료되었습니다. 다시 로그인해주세요.')
           return (window.location.href = '/login')
         }
