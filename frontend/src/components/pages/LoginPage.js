@@ -4,10 +4,10 @@ import { useEffect } from 'react/cjs/react.development';
 import kakaoImg from 'assets/images/kakao_logo.png';
 import naverImg from 'assets/images/naver_logo.png';
 import loginCoverImg from 'assets/images/login-cover.png';
-import ParticlesContainer from 'components/containers/layout/ParticlesContainer';
-import ThemeContainer from 'components/containers/layout/ThemeContainer';
-import ThemeTitleBox from 'components/containers/layout/ThemeTitleBox';
-import ThemeMainBox from 'components/containers/layout/ThemeMainBox';
+import ParticlesContainer from 'components/layout/ParticlesContainer';
+import ThemeContainer from 'components/layout/ThemeContainer';
+import ThemeTitleBox from 'components/layout/ThemeTitleBox';
+import ThemeMainBox from 'components/layout/ThemeMainBox';
 
 function LoginPage() {
   useEffect(() => {

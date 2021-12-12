@@ -5,23 +5,25 @@ import { worksShowModalState } from 'states/work';
 import { workspaceDetailState } from 'states/workspace';
 import { apiScaffold } from 'utils/apis';
 
-import WorkspaceContainer from 'components/containers/layout/WorkspaceContainer';
-import WorkspaceLeftSide from 'components/containers/layout/WorkspaceLeftSide';
-import WorkspaceMain from 'components/containers/layout/WorkspaceMain';
-import WorkspaceHeader from 'components/containers/layout/WorkspaceHeader';
-import WorkspaceSection from 'components/containers/layout/WorkspaceSection';
-import WorkspaceRightSide from 'components/containers/layout/WorkspaceRightSide';
-import WorkCreateModal from 'components/containers/work/WorkCreateModal';
-import WorksShowModal from 'components/containers/work/WorksShowModal';
+import WorkspaceContainer from 'components/layout/WorkspaceContainer';
+import WorkspaceLeftSide from 'components/layout/WorkspaceLeftSide';
+import WorkspaceMain from 'components/layout/WorkspaceMain';
+import WorkspaceHeader from 'components/layout/WorkspaceHeader';
+import WorkspaceSection from 'components/layout/WorkspaceSection';
+import WorkspaceRightSide from 'components/layout/WorkspaceRightSide';
+import WorkCreateModal from 'components/domain/work/WorkCreateModal';
+import WorksShowModal from 'components/domain/work/WorksShowModal';
 
 import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
 import SockJsClient from 'react-stomp';
+import withSecure from 'components/domain/user/withSecure';
 
 
 
 function DashboardPage() {
+
   const websocket = useRef();
 
   const [worksShowModal, setWorksShowModal] = useRecoilState(
@@ -119,4 +121,4 @@ function DashboardPage() {
   );
 }
 
-export default DashboardPage;
+export default withSecure(DashboardPage);

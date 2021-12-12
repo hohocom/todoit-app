@@ -1,13 +1,15 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import { userState } from 'states/user';
 
-import WorkspaceCreator from 'components/containers/domain/workspace/WorkspaceCreator';
-import WorkspaceList from 'components/containers/domain/workspace/WorkspaceList';
-import ThemeContainer from 'components/containers/layout/ThemeContainer';
-import ThemeMainBox from 'components/containers/layout/ThemeMainBox';
-import ThemeTitleBox from 'components/containers/layout/ThemeTitleBox';
-import ParticlesContainer from 'components/containers/layout/ParticlesContainer';
+import WorkspaceCreator from 'components/domain/workspace/WorkspaceCreator';
+import WorkspaceList from 'components/domain/workspace/WorkspaceList';
+import ThemeContainer from 'components/layout/ThemeContainer';
+import ThemeMainBox from 'components/layout/ThemeMainBox';
+import ThemeTitleBox from 'components/layout/ThemeTitleBox';
+import ParticlesContainer from 'components/layout/ParticlesContainer';
+import withSecure from 'components/domain/user/withSecure';
 
 
 function WorkspacesPage() {
@@ -15,7 +17,7 @@ function WorkspacesPage() {
 
   useEffect(() => {
     console.debug('먼저 실행');
-    
+    console.debug(user)
   }, []);
 
   return (
@@ -49,4 +51,4 @@ function WorkspacesPage() {
   );
 }
 
-export default WorkspacesPage;
+export default withSecure(WorkspacesPage);

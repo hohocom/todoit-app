@@ -1,15 +1,16 @@
 import { useRef, useState } from 'react';
 
-import WorkspaceContainer from 'components/containers/layout/WorkspaceContainer';
-import WorkspaceLeftSide from 'components/containers/layout/WorkspaceLeftSide';
-import WorkspaceMain from 'components/containers/layout/WorkspaceMain';
-import WorkspaceHeader from 'components/containers/layout/WorkspaceHeader';
-import WorkspaceSection from 'components/containers/layout/WorkspaceSection';
-import WorkspaceRightSide from 'components/containers/layout/WorkspaceRightSide';
-import WorkCreateModal from 'components/containers/work/WorkCreateModal';
-import WorksShowModal from 'components/containers/work/WorksShowModal';
+import WorkspaceContainer from 'components/layout/WorkspaceContainer';
+import WorkspaceLeftSide from 'components/layout/WorkspaceLeftSide';
+import WorkspaceMain from 'components/layout/WorkspaceMain';
+import WorkspaceHeader from 'components/layout/WorkspaceHeader';
+import WorkspaceSection from 'components/layout/WorkspaceSection';
+import WorkspaceRightSide from 'components/layout/WorkspaceRightSide';
+import WorkCreateModal from 'components/domain/work/WorkCreateModal';
+import WorksShowModal from 'components/domain/work/WorksShowModal';
 
 import SockJsClient from 'react-stomp';
+import withSecure from 'components/domain/user/withSecure';
 
 
 function MembersPage() {
@@ -61,4 +62,4 @@ function MembersPage() {
   );
 }
 
-export default MembersPage;
+export default withSecure(MembersPage);

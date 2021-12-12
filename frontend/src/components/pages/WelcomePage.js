@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
-import WelcomHeader from 'components/containers/layout/WelcomeHeader';
-import cloud1Img from 'assets/images/cloud2.svg';
-import cloud2Img from 'assets/images/cloud3.svg';
+import WelcomeContainer from 'components/layout/WelcomeContainer';
+import WelcomeHeader from 'components/layout/WelcomeHeader';
+import WelcomeClouds from 'components/layout/WelcomeClouds';
+import WelcomeIntro from 'components/layout/WelcomeIntro';
+
 import heartImg from 'assets/images/heart.png';
 import { useEffect } from 'react/cjs/react.development';
 import { scrollEvent } from 'utils/scrollEvent';
-import ParticlesContainer from 'components/containers/layout/ParticlesContainer';
+import ParticlesContainer from 'components/layout/ParticlesContainer';
 
 function WelcomePage() {
   useEffect(() => {
@@ -17,9 +19,13 @@ function WelcomePage() {
   }, []);
 
   return (
-    <div className="flex-col items-start justify-center w-full h-full font-apple-regular text-[#424242]">
-      <WelcomHeader />
-      <div className="relative flex flex-col items-center justify-center w-full h-screen overflow-hidden">
+    <WelcomeContainer>
+      <WelcomeHeader>
+        <Link to="/" className="flex text-xl font-apple-bold">TODOIT</Link>
+        <Link to="/login">로그인</Link>
+      </WelcomeHeader>
+      
+      <WelcomeIntro>
         <div className="z-30 flex flex-col items-center">
           {/* <img src={calendarImg} alt="img" className="w-[300px]"/> */}
           <div className="text-xl text-black">
@@ -35,21 +41,12 @@ function WelcomePage() {
             <img src={heartImg} alt="img" className="ml-1 mb-1 w-[20px]" />
           </Link>
         </div>
-
-        <img
-          src={cloud1Img}
-          alt="img"
-          className="absolute left-0 z-10 w-full -bottom-2"
-        />
-        <img
-          src={cloud2Img}
-          alt="img"
-          className="fixed left-0 z-[-1] w-full -bottom-10"
-        />
+        <WelcomeClouds />
         <ParticlesContainer />
-      </div>
-      <div className="z-50 w-full h-screen bg-[#FFB45E]"></div>
-    </div>
+      </WelcomeIntro>
+
+      {/* <div className="z-50 w-full h-screen bg-[#FFB45E]"></div> */}
+    </WelcomeContainer>
   );
 }
 

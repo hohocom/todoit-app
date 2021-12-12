@@ -27,14 +27,3 @@ export const apiScaffold = async ({ method, url, data }, callback) => {
       throw new Error(errMessage)
     })
 }
-
-export const refreshToken = async () => {
-  const res = await apiScaffold({
-    method: 'get',
-    url: '/users/refresh-token',
-  })
-  console.debug(res)
-  // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
-  axios.defaults.headers.common['Authorization'] = `bearer ${res.act.token}`
-  return { userId: res.act.id }
-}

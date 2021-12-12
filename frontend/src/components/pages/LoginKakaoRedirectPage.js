@@ -1,23 +1,34 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { particlesPlay } from 'utils/particles'
-
-import axios from 'axios'
-
-import 'utils/particles.min.js'
+import { apiScaffold } from 'utils/apis'
+import axios from 'axios' 
+import { useRecoilState } from 'recoil'
+import { userState } from 'states/user'
+import ThemeContainer from 'components/layout/ThemeContainer'
+import ParticlesContainer from 'components/layout/ParticlesContainer'
 
 
 
 function LoginKakoRedirectPage() {
+
   const navigate = useNavigate()
   const { search } = useLocation()
+  const [user, setUser] = useRecoilState(userState)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(async () => {
-    particlesPlay()
     const kakaoAccessToken = await getKakaoAccessToken()
-    await getTotoitAccessToken(kakaoAccessToken)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const { id } = await getTotoitAccessToken(kakaoAccessToken)
+    const res = await getUserInfo(id)
+    setUser({
+      ...user,
+      id: res.user.id,
+      email: res.user.email,
+      nickname: res.user.nickname,
+      workspaces: res.user.workspaces,
+    })
+    navigate('/workspaces')
   }, [])
 
   const getKakaoAccessToken = async () => {
@@ -70,17 +81,23 @@ function LoginKakoRedirectPage() {
       })
 
     console.debug(res)
+    axios.defaults.headers.common['Authorization'] = `bearer ${res.act.token}`
+    return res.act
+  }
 
-    navigate('/workspaces')
+  const getUserInfo = async (userId) => {
+    const res = await apiScaffold({
+      method: 'get',
+      url: `/users/${userId}`,
+    })
+    console.debug(res)
+    return res
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-[#FFC35E] to-[#ffac5ef3] font-apple-regular text-[#424242]">
-      <div
-        id="particles-js"
-        className="absolute top-0 left-0 w-full h-screen"
-      ></div>
-    </div>
+    <ThemeContainer>
+      <ParticlesContainer/>
+    </ThemeContainer>
   )
 }
 
