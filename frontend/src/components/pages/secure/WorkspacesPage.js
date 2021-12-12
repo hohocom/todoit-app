@@ -1,33 +1,34 @@
-import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
-import { userState } from 'states/user'
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import { userState } from 'states/user';
 
-import WorkspaceCreator from 'components/containers/workspace/WorkspaceCreator'
-import WorkspaceList from 'components/containers/workspace/WorkspaceList'
-
-import 'utils/particles.min.js'
-
+import WorkspaceCreator from 'components/containers/domain/workspace/WorkspaceCreator';
+import WorkspaceList from 'components/containers/domain/workspace/WorkspaceList';
+import ThemeContainer from 'components/containers/layout/ThemeContainer';
+import ThemeMainBox from 'components/containers/layout/ThemeMainBox';
+import ThemeTitleBox from 'components/containers/layout/ThemeTitleBox';
+import ParticlesContainer from 'components/containers/layout/ParticlesContainer';
 
 
 function WorkspacesPage() {
-  const [user, setUser] = useRecoilState(userState)
+  const [user, setUser] = useRecoilState(userState);
 
   useEffect(() => {
-    console.debug('먼저 실행')
-  }, [])
+    console.debug('먼저 실행');
+    
+  }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-r from-[#FFC35E] to-[#ffac5ef3] font-apple-regular text-[#424242]">
-      <div className="relative z-10 flex flex-col items-center justify-center text-2xl text-white py-14 sm:text-4xl sm:py-5 font-apple-hard">
+    <ThemeContainer>
+      <ThemeTitleBox>
         <div className="font-shadow2">{user.nickname}님</div>
         <div className="font-shadow2">환영합니다!</div>
-      </div>
-      <div className="w-full sm:w-[400px] h-full sm:h-auto bg-white rounded-t-3xl rounded-b-none sm:rounded-xl flex flex-col justify-start items-center p-4 pt-5 z-10">
+      </ThemeTitleBox>
+      <ThemeMainBox>
         <div className="w-full mb-4">
           <h2>가입된 워크스페이스 ( {user.workspaces.length} )</h2>
           <WorkspaceList />
         </div>
-
         <div className="w-full">
           <h2>초대코드로 가입</h2>
           <input
@@ -35,22 +36,17 @@ function WorkspacesPage() {
             placeholder="초대코드를 입력해주세요."
           />
         </div>
-
         <div className="w-full mt-4">
           <h2>워크스페이스 생성</h2>
           <WorkspaceCreator />
         </div>
-
         <div className="w-full mt-6 text-right">
           <button className="hover:text-[#ffac5ef3] text-sm">로그아웃</button>
         </div>
-      </div>
-      <div
-        id="particles-js"
-        className="absolute top-0 left-0 w-full h-screen"
-      ></div>
-    </div>
-  )
+      </ThemeMainBox>
+      <ParticlesContainer />
+    </ThemeContainer>
+  );
 }
 
-export default WorkspacesPage
+export default WorkspacesPage;

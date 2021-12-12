@@ -9,7 +9,7 @@ import { workspaceDetailState } from 'states/workspace'
 import bgImg from 'assets/images/bg.jpg'
 import plus from 'assets/images/plus.png'
 import checkWhite from 'assets/images/check-white.png'
-import Modal from 'components/storybook/Modal'
+import Modal from 'components/shared/Modal'
 
 import ko from 'date-fns/locale/ko'
 import SockJsClient from 'react-stomp'

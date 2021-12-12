@@ -1,4 +1,4 @@
-import AvatarGroup from 'components/storybook/AvatarGroup';
+import AvatarGroup from 'components/shared/AvatarGroup';
 import bgImg from 'assets/images/bg.jpg';
 import { useRecoilState } from 'recoil'
 import {  workspaceDetailState } from 'states/workspace'

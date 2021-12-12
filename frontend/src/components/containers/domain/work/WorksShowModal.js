@@ -5,8 +5,8 @@ import bgImg from 'assets/images/bg.jpg'
 import bgImg2 from 'assets/images/kakao_logo.png'
 import bgImg3 from 'assets/images/naver_logo.png'
 import checkWhite from 'assets/images/check-white.png'
-import Modal from 'components/storybook/Modal'
-import AvatarGroup from 'components/storybook/AvatarGroup'
+import Modal from 'components/shared/Modal'
+import AvatarGroup from 'components/shared/AvatarGroup'
 
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
