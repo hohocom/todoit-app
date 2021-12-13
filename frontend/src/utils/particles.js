@@ -1,13 +1,13 @@
 export function particlesPlay() {
-  window.particlesJS('particles-js', {
+  window.particlesJS("particles-js", {
     particles: {
       number: { value: 50, density: { enable: true, value_area: 800 } },
-      color: { value: '#FF9E5D' },
+      color: { value: "#FF9E5D" },
       shape: {
-        type: 'circle',
-        stroke: { width: 0, color: '#000000' },
+        type: "circle",
+        stroke: { width: 0, color: "#000000" },
         polygon: { nb_sides: 5 },
-        image: { src: 'img/github.svg', width: 100, height: 100 },
+        image: { src: "img/github.svg", width: 100, height: 100 },
       },
       opacity: {
         value: 0.70550130678083,
@@ -22,17 +22,17 @@ export function particlesPlay() {
       line_linked: {
         enable: false,
         distance: 112.2388442605866,
-        color: '#ffffff',
+        color: "#ffffff",
         opacity: 0.4,
         width: 19.882309554732483,
       },
       move: {
         enable: true,
         speed: 3.206824121731046,
-        direction: 'top',
+        direction: "top",
         random: false,
         straight: false,
-        out_mode: 'out',
+        out_mode: "out",
         bounce: false,
         attract: {
           enable: false,
@@ -42,10 +42,10 @@ export function particlesPlay() {
       },
     },
     interactivity: {
-      detect_on: 'canvas',
+      detect_on: "canvas",
       events: {
-        onhover: { enable: true, mode: 'bubble' },
-        onclick: { enable: true, mode: 'repulse' },
+        onhover: { enable: true, mode: "bubble" },
+        onclick: { enable: true, mode: "repulse" },
         resize: true,
       },
       modes: {
@@ -63,5 +63,5 @@ export function particlesPlay() {
       },
     },
     retina_detect: false,
-  })
+  });
 }

@@ -1,9 +1,9 @@
 /* eslint-disable array-callback-return */
-import { useEffect } from 'react'
-import Avatar from './Avatar'
+import { useEffect } from "react";
+import Avatar from "./Avatar";
 
 function AvatarGroup({ items }) {
-  useEffect(() => {}, [])
+  useEffect(() => {}, []);
 
   return (
     <div className="flex items-end w-auto mr-5 hover">
@@ -17,7 +17,7 @@ function AvatarGroup({ items }) {
                 imagePath={user.thumbnailImage}
                 userName={user.name}
               />
-            )
+            );
           }
         })}
       {items.length >= 4 && (
@@ -26,6 +26,6 @@ function AvatarGroup({ items }) {
         </button>
       )}
     </div>
-  )
+  );
 }
-export default AvatarGroup
+export default AvatarGroup;

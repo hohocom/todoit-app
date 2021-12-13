@@ -1,4 +1,4 @@
-import bgImg from 'assets/images/bg.jpg';
+import bgImg from "assets/images/bg.jpg";
 
 function WorkspaceRightSide() {
   return (

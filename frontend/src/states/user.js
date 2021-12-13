@@ -1,21 +1,21 @@
-import { atom, selector } from 'recoil';
+import { atom, selector } from "recoil";
 
 export const userState = atom({
-  key: 'userState',
+  key: "userState",
   default: {
-    id: '',
-    email: '',
-    nickname: '',
-    originImage: '',
-    thumbnailImage: '',
+    id: "",
+    email: "",
+    nickname: "",
+    originImage: "",
+    thumbnailImage: "",
     workspaces: [],
   },
 });
 
 export const loginUserSeletor = selector({
-  key: 'loginUserSeletor',
+  key: "loginUserSeletor",
   get: ({ get }) => {
     get(userState);
-    console.log('실행됨');
+    console.log("실행됨");
   },
 });

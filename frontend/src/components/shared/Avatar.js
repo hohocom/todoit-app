@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Avatar({ styles, imagePath, userName }) {
   return (
@@ -16,7 +16,7 @@ function Avatar({ styles, imagePath, userName }) {
         {userName}
       </div>
     </div>
-  )
+  );
 }
 
-export default Avatar
+export default Avatar;

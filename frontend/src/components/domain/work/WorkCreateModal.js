@@ -1,106 +1,103 @@
-import { useRef, useState } from 'react'
-import { addDays } from 'date-fns'
-import { workCreateModalState } from 'states/work'
-import { DateRange } from 'react-date-range'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { apiScaffold } from 'utils/apis'
-import { workspaceDetailState } from 'states/workspace'
+import { useRef, useState } from "react";
+import { addDays } from "date-fns";
+import { workCreateModalState } from "states/work";
+import { DateRange } from "react-date-range";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { apiScaffold } from "utils/apis";
+import { workspaceDetailState } from "states/workspace";
 
-import bgImg from 'assets/images/bg.jpg'
-import plus from 'assets/images/plus.png'
-import checkWhite from 'assets/images/check-white.png'
-import Modal from 'components/shared/Modal'
+import bgImg from "assets/images/bg.jpg";
+import plus from "assets/images/plus.png";
+import checkWhite from "assets/images/check-white.png";
+import Modal from "components/shared/Modal";
 
-import ko from 'date-fns/locale/ko'
-import SockJsClient from 'react-stomp'
+import ko from "date-fns/locale/ko";
+import SockJsClient from "react-stomp";
 
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css'
-
-
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css";
 
 function WorkCreateModal() {
-  const websocket = useRef()
+  const websocket = useRef();
 
-  const [workCreateModal, setWorkCreateModal] = useRecoilState(
-    workCreateModalState,
-  )
+  const [workCreateModal, setWorkCreateModal] =
+    useRecoilState(workCreateModalState);
   const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
       endDate: addDays(new Date(), 0),
-      key: 'selection',
+      key: "selection",
     },
-  ])
-  const workspaceDetail = useRecoilValue(workspaceDetailState)
+  ]);
+  const workspaceDetail = useRecoilValue(workspaceDetailState);
 
   const dateString = (date) => {
-    var year = date.getFullYear()
-    var month = ('0' + (date.getMonth() + 1)).slice(-2)
-    var day = ('0' + date.getDate()).slice(-2)
-    var dateReturn = year + '-' + month + '-' + day
-    return dateReturn
-  }
+    var year = date.getFullYear();
+    var month = ("0" + (date.getMonth() + 1)).slice(-2);
+    var day = ("0" + date.getDate()).slice(-2);
+    var dateReturn = year + "-" + month + "-" + day;
+    return dateReturn;
+  };
 
   const colors = [
-    'bg-gray-200',
-    'bg-pink-200',
-    'bg-red-200',
-    'bg-yellow-200',
-    'bg-yellow-300',
-    'bg-green-200',
-    'bg-blue-200',
-    'bg-purple-200',
-  ]
-  const [colorNumber, setColorNumber] = useState(0)
+    "bg-gray-200",
+    "bg-pink-200",
+    "bg-red-200",
+    "bg-yellow-200",
+    "bg-yellow-300",
+    "bg-green-200",
+    "bg-blue-200",
+    "bg-purple-200",
+  ];
+  const [colorNumber, setColorNumber] = useState(0);
   const [scheduleForm, setScheduleForm] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
     color: colors[0],
-    joinMember: '',
-    startTime: '',
-    endTime: '',
-  })
+    joinMember: "",
+    startTime: "",
+    endTime: "",
+  });
   const scheduleFormChange = (e) => {
-    const value = e.target.value
-    const name = e.target.name
-    if (name === 'title') {
-      setScheduleForm({ ...scheduleForm, title: value })
-    } else if (name === 'content') {
-      setScheduleForm({ ...scheduleForm, content: value })
+    const value = e.target.value;
+    const name = e.target.name;
+    if (name === "title") {
+      setScheduleForm({ ...scheduleForm, title: value });
+    } else if (name === "content") {
+      setScheduleForm({ ...scheduleForm, content: value });
     }
-  }
+  };
 
   const changeColor = (index) => {
-    setColorNumber(index)
-    setScheduleForm({ ...scheduleForm, color: colors[index] })
-  }
+    setColorNumber(index);
+    setScheduleForm({ ...scheduleForm, color: colors[index] });
+  };
   //일정 전송
   const submit = async () => {
-    const formData = new FormData()
-    formData.append('title', scheduleForm.title)
-    formData.append('content', scheduleForm.content)
-    formData.append('workspaceId', workspaceDetail.id)
-    formData.append('startDate', dateString(dateState[0].startDate))
-    formData.append('endDate', dateString(dateState[0].endDate))
-    formData.append('themeColor', scheduleForm.color)
-    const users = ['1', '2']
+    const formData = new FormData();
+    formData.append("title", scheduleForm.title);
+    formData.append("content", scheduleForm.content);
+    formData.append("workspaceId", workspaceDetail.id);
+    formData.append("startDate", dateString(dateState[0].startDate));
+    formData.append("endDate", dateString(dateState[0].endDate));
+    formData.append("themeColor", scheduleForm.color);
+    const users = ["1", "2"];
     users.forEach((user) => {
-      formData.append('users', user)
-    })
+      formData.append("users", user);
+    });
 
     await apiScaffold({
-      method: 'post',
-      url: '/works',
+      method: "post",
+      url: "/works",
       data: formData,
-    })
+    });
     const data = {
-      text: 'hellow',
-      tt: 'gggg',
-    }
-    websocket.current.sendMessage('/sendTo', JSON.stringify(data))
-    setWorkCreateModal(false)
-  }
+      text: "hellow",
+      tt: "gggg",
+    };
+    websocket.current.sendMessage("/sendTo", JSON.stringify(data));
+    setWorkCreateModal(false);
+  };
 
   return (
     <Modal
@@ -112,9 +109,9 @@ function WorkCreateModal() {
     >
       <SockJsClient
         url={`${process.env.REACT_APP_API_URL}/start`}
-        topics={['/topics/sendTo', '/topics/template', '/topics/api']}
+        topics={["/topics/sendTo", "/topics/template", "/topics/api"]}
         onMessage={(msg) => {
-          console.log(msg)
+          console.log(msg);
         }}
         ref={websocket}
       />
@@ -153,7 +150,7 @@ function WorkCreateModal() {
                     </div>
                   )}
                 </div>
-              )
+              );
             })}
         </div>
         <p className="mt-2 ml-1 text-[15px] ">참석자</p>
@@ -172,7 +169,7 @@ function WorkCreateModal() {
           className="flex items-center justify-center w-full"
           editableDateInputs={true}
           onChange={(item) => {
-            setDateState([item.selection])
+            setDateState([item.selection]);
           }}
           moveRangeOnFirstSelection={false}
           ranges={dateState}
@@ -190,7 +187,7 @@ function WorkCreateModal() {
           </button>
         </div>
       </div>
-      </Modal>
-  )
+    </Modal>
+  );
 }
-export default WorkCreateModal
+export default WorkCreateModal;

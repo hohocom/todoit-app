@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import { useRecoilState } from 'recoil'
-import { apiScaffold } from 'utils/apis'
-import { userState } from 'states/user'
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { apiScaffold } from "utils/apis";
+import { userState } from "states/user";
 
 function WorkspaceUpdater({ workspaceName, workspaceId, setSelectNumber }) {
-  const [name, setName] = useState(workspaceName)
-  const [user, setUser] = useRecoilState(userState)
+  const [name, setName] = useState(workspaceName);
+  const [user, setUser] = useRecoilState(userState);
 
   const updateWorkspaceName = async () => {
-    const formData = new FormData()
-    formData.append('userId', user.id)
-    formData.append('workspaceName', name)
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("workspaceName", name);
 
     await apiScaffold({
-      method: 'put',
+      method: "put",
       url: `/workspaces/${workspaceId}`,
       data: formData,
-    })
+    });
 
     const newWorkspaces = user.workspaces.map((workspace) => {
-      if (workspace.id === workspaceId) return { ...workspace, name: name }
-      else return workspace
-    })
+      if (workspace.id === workspaceId) return { ...workspace, name: name };
+      else return workspace;
+    });
 
     setUser({
       ...user,
       workspaces: newWorkspaces,
-    })
-    setSelectNumber(0)
-  }
+    });
+    setSelectNumber(0);
+  };
 
   return (
     <div className="absolute top-0 left-0 flex justify-between w-full h-full bg-white">
@@ -53,7 +53,7 @@ function WorkspaceUpdater({ workspaceName, workspaceId, setSelectNumber }) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default WorkspaceUpdater
+export default WorkspaceUpdater;

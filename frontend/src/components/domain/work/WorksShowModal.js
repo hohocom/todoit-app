@@ -1,20 +1,19 @@
-import { useRecoilState } from 'recoil'
-import { worksShowModalState } from 'states/work'
+import { useRecoilState } from "recoil";
+import { worksShowModalState } from "states/work";
 
-import bgImg from 'assets/images/bg.jpg'
-import bgImg2 from 'assets/images/kakao_logo.png'
-import bgImg3 from 'assets/images/naver_logo.png'
-import checkWhite from 'assets/images/check-white.png'
-import Modal from 'components/shared/Modal'
-import AvatarGroup from 'components/shared/AvatarGroup'
+import bgImg from "assets/images/bg.jpg";
+import bgImg2 from "assets/images/kakao_logo.png";
+import bgImg3 from "assets/images/naver_logo.png";
+import checkWhite from "assets/images/check-white.png";
+import Modal from "components/shared/Modal";
+import AvatarGroup from "components/shared/AvatarGroup";
 
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css'
-
-
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css";
 
 function WorksShowModal() {
-  const [worksShowModal, setWorksShowModal] = useRecoilState(worksShowModalState)
+  const [worksShowModal, setWorksShowModal] =
+    useRecoilState(worksShowModalState);
 
   return (
     <Modal
@@ -33,23 +32,23 @@ function WorksShowModal() {
                 <AvatarGroup
                   items={[
                     {
-                      name: '고재범',
+                      name: "고재범",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '김미현',
+                      name: "김미현",
                       thumbnailImage: bgImg2,
                     },
                     {
-                      name: '이너른',
+                      name: "이너른",
                       thumbnailImage: bgImg3,
                     },
                     {
-                      name: '고유진',
+                      name: "고유진",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '남윤홍',
+                      name: "남윤홍",
                       thumbnailImage: bgImg,
                     },
                   ]}
@@ -93,23 +92,23 @@ function WorksShowModal() {
                 <AvatarGroup
                   items={[
                     {
-                      name: '고재범',
+                      name: "고재범",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '김미현',
+                      name: "김미현",
                       thumbnailImage: bgImg2,
                     },
                     {
-                      name: '이너른',
+                      name: "이너른",
                       thumbnailImage: bgImg3,
                     },
                     {
-                      name: '고유진',
+                      name: "고유진",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '남윤홍',
+                      name: "남윤홍",
                       thumbnailImage: bgImg,
                     },
                   ]}
@@ -153,23 +152,23 @@ function WorksShowModal() {
                 <AvatarGroup
                   items={[
                     {
-                      name: '고재범',
+                      name: "고재범",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '김미현',
+                      name: "김미현",
                       thumbnailImage: bgImg2,
                     },
                     {
-                      name: '이너른',
+                      name: "이너른",
                       thumbnailImage: bgImg3,
                     },
                     {
-                      name: '고유진',
+                      name: "고유진",
                       thumbnailImage: bgImg,
                     },
                     {
-                      name: '남윤홍',
+                      name: "남윤홍",
                       thumbnailImage: bgImg,
                     },
                   ]}
@@ -210,6 +209,6 @@ function WorksShowModal() {
         </div>
       </div>
     </Modal>
-  )
+  );
 }
-export default WorksShowModal
+export default WorksShowModal;

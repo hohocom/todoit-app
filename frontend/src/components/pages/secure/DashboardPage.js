@@ -1,37 +1,32 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { workCreateModalState } from 'states/work';
-import { worksShowModalState } from 'states/work';
-import { workspaceDetailState } from 'states/workspace';
-import { apiScaffold } from 'utils/apis';
+import React, { useEffect, useRef, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { workCreateModalState } from "states/work";
+import { worksShowModalState } from "states/work";
+import { workspaceDetailState } from "states/workspace";
+import { apiScaffold } from "utils/apis";
 
-import WorkspaceContainer from 'components/layout/WorkspaceContainer';
-import WorkspaceLeftSide from 'components/layout/WorkspaceLeftSide';
-import WorkspaceMain from 'components/layout/WorkspaceMain';
-import WorkspaceHeader from 'components/layout/WorkspaceHeader';
-import WorkspaceSection from 'components/layout/WorkspaceSection';
-import WorkspaceRightSide from 'components/layout/WorkspaceRightSide';
-import WorkCreateModal from 'components/domain/work/WorkCreateModal';
-import WorksShowModal from 'components/domain/work/WorksShowModal';
+import WorkspaceContainer from "components/layout/WorkspaceContainer";
+import WorkspaceLeftSide from "components/layout/WorkspaceLeftSide";
+import WorkspaceMain from "components/layout/WorkspaceMain";
+import WorkspaceHeader from "components/layout/WorkspaceHeader";
+import WorkspaceSection from "components/layout/WorkspaceSection";
+import WorkspaceRightSide from "components/layout/WorkspaceRightSide";
+import WorkCreateModal from "components/domain/work/WorkCreateModal";
+import WorksShowModal from "components/domain/work/WorksShowModal";
 
-import FullCalendar from '@fullcalendar/react'; // must go before plugins
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // needed for dayClick
-import SockJsClient from 'react-stomp';
-import withSecure from 'components/domain/user/withSecure';
-
-
+import FullCalendar from "@fullcalendar/react"; // must go before plugins
+import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
+import SockJsClient from "react-stomp";
+import withSecure from "components/domain/user/withSecure";
 
 function DashboardPage() {
-
   const websocket = useRef();
 
-  const [worksShowModal, setWorksShowModal] = useRecoilState(
-    worksShowModalState
-  );
-  const [workCreateModal, setWorkCreateModal] = useRecoilState(
-    workCreateModalState
-  );
+  const [worksShowModal, setWorksShowModal] =
+    useRecoilState(worksShowModalState);
+  const [workCreateModal, setWorkCreateModal] =
+    useRecoilState(workCreateModalState);
   const workspaceDetail = useRecoilValue(workspaceDetailState);
 
   const handleDateClick = (args) => {};
@@ -47,9 +42,9 @@ function DashboardPage() {
   }, [workspaceDetail.id]);
 
   const getWorks = async () => {
-    console.log('getWorks');
+    console.log("getWorks");
     const res = await apiScaffold({
-      method: 'get',
+      method: "get",
       url: `/works?workspaceId=${workspaceDetail.id}`,
     });
     console.log(res.works);
@@ -74,7 +69,7 @@ function DashboardPage() {
         <WorkspaceSection>
           <SockJsClient
             url={`${process.env.REACT_APP_API_URL}/start`}
-            topics={['/topics/sendTo', '/topics/template', '/topics/api']}
+            topics={["/topics/sendTo", "/topics/template", "/topics/api"]}
             onMessage={(msg) => {
               console.log(msg);
             }}
@@ -87,7 +82,7 @@ function DashboardPage() {
                   <FullCalendar
                     customButtons={{
                       myCustomButton: {
-                        text: '일정추가',
+                        text: "일정추가",
                         click: function () {
                           setWorkCreateModal(!workCreateModal);
                         },
@@ -95,9 +90,9 @@ function DashboardPage() {
                     }}
                     height="857px"
                     headerToolbar={{
-                      left: 'title',
-                      center: 'myCustomButton',
-                      right: 'prev,today,next',
+                      left: "title",
+                      center: "myCustomButton",
+                      right: "prev,today,next",
                       //  right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
                     }}
                     plugins={[dayGridPlugin, interactionPlugin]}

@@ -1,30 +1,32 @@
-import { Link } from 'react-router-dom';
-import WelcomeContainer from 'components/layout/WelcomeContainer';
-import WelcomeHeader from 'components/layout/WelcomeHeader';
-import WelcomeClouds from 'components/layout/WelcomeClouds';
-import WelcomeIntro from 'components/layout/WelcomeIntro';
+import { Link } from "react-router-dom";
+import WelcomeContainer from "components/layout/WelcomeContainer";
+import WelcomeHeader from "components/layout/WelcomeHeader";
+import WelcomeClouds from "components/layout/WelcomeClouds";
+import WelcomeIntro from "components/layout/WelcomeIntro";
 
-import heartImg from 'assets/images/heart.png';
-import { useEffect } from 'react/cjs/react.development';
-import { scrollEvent } from 'utils/scrollEvent';
-import ParticlesContainer from 'components/layout/ParticlesContainer';
+import heartImg from "assets/images/heart.png";
+import { useEffect } from "react/cjs/react.development";
+import { scrollEvent } from "utils/scrollEvent";
+import ParticlesContainer from "components/layout/ParticlesContainer";
 
 function WelcomePage() {
   useEffect(() => {
-    window.addEventListener('scroll', scrollEvent);
+    window.addEventListener("scroll", scrollEvent);
 
     return () => {
-      window.removeEventListener('scroll', scrollEvent);
+      window.removeEventListener("scroll", scrollEvent);
     };
   }, []);
 
   return (
     <WelcomeContainer>
       <WelcomeHeader>
-        <Link to="/" className="flex text-xl font-apple-bold">TODOIT</Link>
+        <Link to="/" className="flex text-xl font-apple-bold">
+          TODOIT
+        </Link>
         <Link to="/login">로그인</Link>
       </WelcomeHeader>
-      
+
       <WelcomeIntro>
         <div className="z-30 flex flex-col items-center">
           {/* <img src={calendarImg} alt="img" className="w-[300px]"/> */}

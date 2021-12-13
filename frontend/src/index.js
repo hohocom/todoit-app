@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
-import './assets/styles/index.css';
-import './assets/styles/calendar.css';
-import { BrowserRouter } from 'react-router-dom';
-import { RecoilRoot } from 'recoil';
-import axios from 'axios';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import reportWebVitals from "./reportWebVitals";
+import "./assets/styles/index.css";
+import "./assets/styles/calendar.css";
+import { BrowserRouter } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
@@ -18,7 +18,7 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </RecoilRoot>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

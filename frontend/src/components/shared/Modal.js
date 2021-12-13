@@ -6,7 +6,7 @@ function Modal({ options, state, children }) {
         className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black/50"
         onClick={() => {
           if (options.backgroundClose) {
-            state.setOpen(false)
+            state.setOpen(false);
           }
         }}
       >
@@ -36,7 +36,7 @@ function Modal({ options, state, children }) {
         </div>
       </div>
     )
-  )
+  );
 }
 
-export default Modal
+export default Modal;

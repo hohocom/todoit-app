@@ -1,13 +1,12 @@
-import { atom } from 'recoil'
-
+import { atom } from "recoil";
 
 export const workspaceDetailState = atom({
-  key: 'workspaceDetailState',
+  key: "workspaceDetailState",
   default: {
-    id: '',
-    name: '',
-    code: '',
+    id: "",
+    name: "",
+    code: "",
     users: [],
     works: [],
   },
-})
+});

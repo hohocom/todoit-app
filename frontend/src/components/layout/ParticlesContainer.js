@@ -1,6 +1,6 @@
-import { useEffect } from 'react/cjs/react.development';
-import { particlesPlay } from 'utils/particles';
-import 'utils/particles.min.js';
+import { useEffect } from "react/cjs/react.development";
+import { particlesPlay } from "utils/particles";
+import "utils/particles.min.js";
 
 function ParticlesContainer() {
   useEffect(() => {

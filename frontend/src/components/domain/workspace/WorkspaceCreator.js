@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import { useRecoilState } from 'recoil'
-import { apiScaffold } from 'utils/apis'
-import { userState } from 'states/user'
+import { useState } from "react";
+import { useRecoilState } from "recoil";
+import { apiScaffold } from "utils/apis";
+import { userState } from "states/user";
 
 function WorkspaceCreator() {
-  const [name, setName] = useState('')
-  const [user, setUser] = useRecoilState(userState)
+  const [name, setName] = useState("");
+  const [user, setUser] = useRecoilState(userState);
 
   const changeName = (e) => {
-    setName(e.target.value)
-  }
+    setName(e.target.value);
+  };
 
   const submitWorkspace = async () => {
-    const formData = new FormData()
-    formData.append('userId', user.id)
-    formData.append('name', name)
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("name", name);
 
     const res = await apiScaffold({
-      method: 'post',
-      url: '/workspaces',
+      method: "post",
+      url: "/workspaces",
       data: formData,
-    })
-    console.debug(res)
+    });
+    console.debug(res);
 
-    setName('')
+    setName("");
     setUser({
       ...user,
-      workspaces: res.workspaces
-    })
-  }
+      workspaces: res.workspaces,
+    });
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -45,7 +45,7 @@ function WorkspaceCreator() {
         생성
       </button>
     </div>
-  )
+  );
 }
 
-export default WorkspaceCreator
+export default WorkspaceCreator;

@@ -1,33 +1,33 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useRecoilState } from 'recoil'
-import { apiScaffold } from 'utils/apis'
-import { userState } from 'states/user'
-import WorkspaceUpdater from './WorkspaceUpdater'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { apiScaffold } from "utils/apis";
+import { userState } from "states/user";
+import WorkspaceUpdater from "./WorkspaceUpdater";
 
 function WorkspaceList() {
-  const [user, setUser] = useRecoilState(userState)
-  const [selectNumber, setSelectNumber] = useState(null)
+  const [user, setUser] = useRecoilState(userState);
+  const [selectNumber, setSelectNumber] = useState(null);
   const deleteWorkspace = async (workspaceId) => {
     const result = window.prompt(
-      "워크스페이스를 삭제하려면 'DELETE'를 입력해주세요",
-    )
-    const rightAnswer = 'DELETE'
-    if (result !== rightAnswer) return false
+      "워크스페이스를 삭제하려면 'DELETE'를 입력해주세요"
+    );
+    const rightAnswer = "DELETE";
+    if (result !== rightAnswer) return false;
 
     await apiScaffold({
-      method: 'delete',
+      method: "delete",
       url: `/workspaces/${workspaceId}?userId=${user.id}`,
-    })
+    });
 
     const newWorkspaces = user.workspaces.filter(
-      (workspace) => workspace.id !== workspaceId,
-    )
+      (workspace) => workspace.id !== workspaceId
+    );
     setUser({
       ...user,
       workspaces: newWorkspaces,
-    })
-  }
+    });
+  };
 
   return user.workspaces.length > 0 ? (
     user.workspaces.map((workspace, index) => {
@@ -64,13 +64,13 @@ function WorkspaceList() {
             />
           )}
         </div>
-      )
+      );
     })
   ) : (
     <div className="w-full p-3 pt-4 border rounded-md bg-gray-50">
       가입된 워크스페이스가 없습니다 😅
     </div>
-  )
+  );
 }
 
-export default WorkspaceList
+export default WorkspaceList;
