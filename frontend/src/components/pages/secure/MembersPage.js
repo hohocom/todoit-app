@@ -13,6 +13,7 @@ import SockJsClient from "react-stomp";
 import withSecure from "components/domain/user/withSecure";
 
 function MembersPage() {
+
   const websocket = useRef();
   const [texts, setTexts] = useState([]);
 

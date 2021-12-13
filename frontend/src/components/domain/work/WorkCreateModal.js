@@ -40,20 +40,20 @@ function WorkCreateModal() {
   };
 
   const colors = [
-    "bg-gray-200",
-    "bg-pink-200",
-    "bg-red-200",
-    "bg-yellow-200",
-    "bg-yellow-300",
-    "bg-green-200",
-    "bg-blue-200",
-    "bg-purple-200",
+    { view: "bg-gray-200", data: "#E6E6E6" },
+    { view: "bg-pink-200", data: "#F6CEEC" },
+    { view: "bg-red-200", data: "#F6CECE" },
+    { view: "bg-yellow-200", data: "#F5DA81" },
+    { view: "bg-yellow-300", data: "#F7BE81" },
+    { view: "bg-green-200", data: "#A9F5D0" },
+    { view: "bg-blue-200", data: "#CEE3F6" },
+    { view: "bg-purple-200", data: "#D8CEF6" },
   ];
   const [colorNumber, setColorNumber] = useState(0);
   const [scheduleForm, setScheduleForm] = useState({
     title: "",
     content: "",
-    color: colors[0],
+    color: colors[0].data,
     joinMember: "",
     startTime: "",
     endTime: "",
@@ -69,8 +69,9 @@ function WorkCreateModal() {
   };
 
   const changeColor = (index) => {
+    console.debug(workspaceDetail);
     setColorNumber(index);
-    setScheduleForm({ ...scheduleForm, color: colors[index] });
+    setScheduleForm({ ...scheduleForm, color: colors[index].data });
   };
   //일정 전송
   const submit = async () => {
@@ -131,7 +132,7 @@ function WorkCreateModal() {
           placeholder="내용"
           onChange={scheduleFormChange}
         />
-        <p className="mt-2 ml-1 text-[15px]">색상</p>
+        <p className="mt-2 ml-1 text-[15px]">테마 색상</p>
         <div className="flex ">
           {colors.length > 0 &&
             colors.map((color, index) => {
@@ -142,7 +143,7 @@ function WorkCreateModal() {
                   onClick={() => changeColor(index)}
                 >
                   <div
-                    className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color} cursor-pointer`}
+                    className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color.view} cursor-pointer`}
                   ></div>
                   {colorNumber === index && (
                     <div className="absolute top-0 z-10 flex items-center justify-center w-10 h-10 ml-1 rounded-full">

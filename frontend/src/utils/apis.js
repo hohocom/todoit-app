@@ -16,6 +16,11 @@ export const apiScaffold = async ({ method, url, data }, callback) => {
           return (window.location.href = "/login");
         }
 
+        if (error.type === "NOT_FOUND_USER") {
+          alert("잘못된 접근입니다.");
+          return (window.location.href = "/403");
+        }
+
         if (callback) callback(error.message);
         else alert(error.message);
 

@@ -6,7 +6,7 @@ function AvatarGroup({ items }) {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex items-end w-auto mr-5 hover">
+    <div className="flex items-end w-auto mr-5">
       {items.length >= 1 &&
         items.map((user, index) => {
           if (index <= 2) {

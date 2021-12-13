@@ -1,5 +1,5 @@
 function WorkspaceSection({ children }) {
-  return <section className="w-full h-full pb-[100px]">{children}</section>;
+  return <section className="flex w-full h-full overflow-hidden">{children}</section>;
 }
 
 export default WorkspaceSection;
