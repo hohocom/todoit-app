@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.todoit.api.mapper.WorkMapper">
+    <resultMap id="user" type="java.util.HashMap">
+        <id column="user_id" property="id"/>
+        <result column="nickname" property="nickname" />
+    </resultMap>
+    <resultMap id="work" type="java.util.HashMap">
+        <id column="work_id" property="workId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="start_date" property="start"/>
+        <result column="end_date" property="end"/>
+        <result column="theme_color" property="color"/>
+        <result column="is_finished" property="isFinished"/>
+        <collection resultMap="user" property="users"/>
+    </resultMap>
+
+    <select id="findWorkByWorkspaceIdAndGroupByWorkId" parameterType="java.lang.Long" resultMap="work">
+        select u.id as user_id, u.nickname, w.id as work_id, w.title, w.theme_color, w.content, w.start_date, w.end_date, w.is_finished
+        from work_groups wg
+                 left join users u on wg.user_id = u.id
+                 left join works w on wg.work_id = w.id
+        where workspace_id = #{workspaceId}
+    </select>
+</mapper>

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -77,7 +78,7 @@ public class UserController {
     private ResponseEntity<Map<String, Object>> responseTokens(UserTokenResponse userTokenResponse, Map<String, Object> response) {
         final Long time = 3600 * 24 * 14L;
         ResponseCookie responseCookie = ResponseCookie.from("rft", userTokenResponse.getRftInfo().get("token").toString())
-//                .httpOnly(true)
+                .httpOnly(true)
                 .path("/")
                 .maxAge(time)
                 .sameSite("Strict")
@@ -100,6 +101,20 @@ public class UserController {
         response.put("message", "회원 데이터를 정상적으로 전달하였습니다.");
         response.put("statusCode", 200);
         response.put("user", userInfoResponse);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Map<String, Object>> index(@RequestParam Long workspaceId) {
+        log.info("GET/users?workspaceId=");
+        System.out.println(workspaceId);
+
+        List<HashMap<String, Object>> users = userService.getUsersByWorkspaceId(workspaceId);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "회원 데이터 조회.");
+        response.put("statusCode", 200);
+        response.put("users", users);
         return ResponseEntity.ok().body(response);
     }
 }

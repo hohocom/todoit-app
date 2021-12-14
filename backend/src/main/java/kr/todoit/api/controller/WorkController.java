@@ -26,9 +26,22 @@ public class WorkController {
 
     private WorkService workService;
 
+    @GetMapping("")
+    public ResponseEntity<Map<String, Object>> index(@RequestParam Long workspaceId) {
+        System.out.println("요청 옴");
+//        TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        List<HashMap<String, Object>> works = workService.findWorksByWorkspaceId(workspaceId);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "작업일정 조회");
+        response.put("statusCode", 200);
+        response.put("works", works);
+        return ResponseEntity.ok().body(response);
+    }
+
     @MessageMapping("/hello")
     @SendTo("/topics/sendTo")
-    public List<HashMap<String, Object>> index(@RequestBody Long workspaceId) {
+    public List<HashMap<String, Object>> socketIndex(@RequestBody Long workspaceId) {
         System.out.println(workspaceId);
 //        TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
         return workService.findWorksByWorkspaceId(workspaceId);

@@ -61,21 +61,21 @@ function DashboardPage() {
       url: `/works?workspaceId=${workspaceDetail.id}`,
     });
     console.debug(res.works);
-    const works = [];
-    for (let i = 0; i < res.works.length; i++) {
-      works.push({
-        id: res.works[i].id,
-        title: res.works[i].title,
-        content: res.works[i].content,
-        start: res.works[i].startDate,
-        end: res.works[i].endDate,
-        color: res.works[i].themeColor,
-        isFinished: res.works[i].isFinished,
-      });
-    }
+    // const works = [];
+    // for (let i = 0; i < res.works.length; i++) {
+    //   works.push({
+    //     id: res.works[i].id,
+    //     title: res.works[i].title,
+    //     content: res.works[i].content,
+    //     start: res.works[i].startDate,
+    //     end: res.works[i].endDate,
+    //     color: res.works[i].themeColor,
+    //     isFinished: res.works[i].isFinished,
+    //   });
+    // }
     setWorkspaceDetail({
       ...workspaceDetail,
-      works: works,
+      works: res.works,
     });
   };
   function renderEventContent(eventInfo){

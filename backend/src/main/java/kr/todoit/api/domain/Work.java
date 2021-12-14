@@ -18,10 +18,6 @@ public class Work {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "workspace_id")
-    private Workspace workspace;
-
     @CreationTimestamp
     private Timestamp createdAt;
 
@@ -37,18 +33,16 @@ public class Work {
     private String themeColor;
 
     @Column(nullable = false)
-    private String startDate;
+    private Timestamp startDate;
 
-    private String endDate;
+    private Timestamp endDate;
 
     @Column(length = 1, columnDefinition = "int default 0")
     private Byte isFinished;
 
-
     @Builder
-    public Work(Long id, Workspace workspace, String title, String content, String themeColor, String startDate, String endDate, Byte isFinished) {
+    public Work(Long id, String title, String content, String themeColor, Timestamp startDate, Timestamp endDate, Byte isFinished) {
         this.id = id;
-        this.workspace = workspace;
         this.title = title;
         this.content = content;
         this.themeColor = themeColor;

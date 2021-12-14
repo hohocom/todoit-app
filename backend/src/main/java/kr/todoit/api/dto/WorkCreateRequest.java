@@ -26,22 +26,22 @@ public class WorkCreateRequest {
     private String content;
 
     @NotBlank(message = "작업 시작일은 필수값입니다.")
-    private String startDate;
+    private Timestamp startDate;
 
-    private String endDate;
+    private Timestamp endDate;
 
     private String themeColor;
 
     @NotNull(message = "작업 참여자는 필수값입니다.")
     private List<Long> users;
 
-    public Work toWork(Workspace workspace) {
+    public Work toWork() {
         return Work.builder()
                 .title(this.title)
                 .content(this.content)
                 .startDate(this.startDate)
                 .endDate(this.endDate)
-                .workspace(workspace)
+                .themeColor(this.themeColor)
                 .build();
     }
 }
