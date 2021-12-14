@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "states/user";
 import { workspaceDetailState } from "states/workspace";
 import { cheerUpMessageState } from "states/message";
+import { apiScaffold } from "utils/apis";
 
 function WorkspaceRightSide() {
   const user = useRecoilValue(userState);
@@ -23,25 +24,41 @@ function WorkspaceRightSide() {
   }, []);
 
   const setMessageByMatchTimes = () => {
-    const RESET_TIME = 1000 * 60 * 30;
-
+    const RESET_TIME = 1000 * 60;
+    matchMessage();
     return setInterval(() => {
-      const hours = new Date().getHours();
-      console.debug(hours);
-      if (hours >= 6 && 11 > hours) {
-        setCheerUpMessage("즐거운 아침이에요 :) 🐥");
-      } else if (hours >= 11 && 12 > hours) {
-        setCheerUpMessage("즐거운 아침이에요 :) 🐥");
-      }
+      matchMessage();
     }, RESET_TIME);
+  };
+
+  const matchMessage = () => {
+    // Notification.requestPermission().then(function (result) {
+    //   console.log(result);
+    // });
+    // setTimeout(notification.close.bind(notification), 10000);
+
+    // var notification = new Notification("투두잇", {
+    //   body: "곧 점심시간이에요! 조금만 더 화이팅!! 👊",
+    //   icon: bgImg,
+    // });
+    const hours = new Date().getHours();
+    if (hours >= 6 && 11 > hours) {
+      setCheerUpMessage("즐거운 아침이에요 :) 🐥");
+    } else if (hours >= 11 && 12 > hours) {
+      setCheerUpMessage("곧 점심시간이에요! 조금만 더 화이팅!! 👊");
+    } else if (hours >= 12 && 13 > hours) {
+      setCheerUpMessage("키보드에서 당장 손 때세요! 맛점하세요!! 🍔");
+    }
   };
 
   return (
     <aside className="min-w-[350px] h-full border-l">
       <div className="w-full h-full bg-[#F2F2F2]  flex flex-col justify-start  p-5">
         <div className="flex items-center justify-between w-full px-2 pt-2 pb-5">
-          <i className="text-3xl text-red-300 cursor-pointer far fa-bell"></i>
-          <i className="far fa-edit text-[#FF9E5D] text-3xl cursor-pointer"></i>
+          <div>
+            {/* <i className="text-3xl text-red-300 cursor-pointer far fa-bell"></i> */}
+          </div>
+          <i className="far fa-edit text-[#FF9E5D] text-2xl cursor-pointer"></i>
         </div>
         <div className="flex flex-col items-center justify-center w-full bg-white rounded-xl box-shadow1">
           <div
@@ -106,21 +123,21 @@ function WorkspaceRightSide() {
           </div>
         </div>
         <div className="mt-10 mb-6">
-          <div className="text-base font-apple-bold">TODAY</div>
           <div className="flex flex-col items-start mt-1 text-base">
             <p className="text-lg font-apple-bold">
               {user.nickname}
               <span className="font-apple-regular">님</span>
             </p>
-            <p>{cheerUpMessage}</p>
+            <p className="text-lg">{cheerUpMessage}</p>
           </div>
         </div>
         <div>
+          <div className="text-base font-apple-bold">TODAY</div>
           {workspaceDetail.works.map((work) => {
             return (
               <div
                 className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg box-shadow1"
-                key={work.id}
+                key={work.workId}
               >
                 <div className="flex flex-col">
                   <p className="font-apple-bold ">{work.title}</p>

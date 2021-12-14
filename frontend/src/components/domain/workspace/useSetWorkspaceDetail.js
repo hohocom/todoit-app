@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "states/user";
 import { workspaceDetailState } from "states/workspace";
+import { apiScaffold } from "utils/apis";
 
 function useSetWorkspaceDetail() {
   const location = useLocation();
@@ -18,8 +19,13 @@ function useSetWorkspaceDetail() {
     }
   }, [user]);
 
-  const getMathWorkspace = () => {
+  const getMathWorkspace = async () => {
     const workspaceCode = location.pathname.split("workspaces/")[1];
+    const res = await apiScaffold({
+      method: "GET",
+      url: "/users?workspaceId=1",
+    });
+    console.debug(res);
     user.workspaces.forEach((workspace) => {
       console.debug(workspace);
       if (workspace.code === workspaceCode) {
