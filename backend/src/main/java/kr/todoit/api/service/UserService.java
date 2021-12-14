@@ -1,6 +1,7 @@
 package kr.todoit.api.service;
 
 import kr.todoit.api.domain.User;
+import kr.todoit.api.domain.WorkspaceGroup;
 import kr.todoit.api.dto.UserInfoResponse;
 import kr.todoit.api.dto.UserLoginRequest;
 import kr.todoit.api.dto.UserTokenResponse;
@@ -9,13 +10,17 @@ import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.exception.ValidExceptionType;
 import kr.todoit.api.repository.UserRepository;
+import kr.todoit.api.repository.WorkspaceGroupRepository;
+import kr.todoit.api.repository.WorkspaceRepository;
 import kr.todoit.api.util.RandomNicknameCreator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Transactional
@@ -26,6 +31,7 @@ public class UserService {
     private OAuth2Service oAuth2Service;
     private UserRepository userRepository;
     private TokenService tokenService;
+    private WorkspaceGroupRepository workspaceGroupRepository;
 
     public UserTokenResponse loginByOauth(UserLoginRequest userLoginRequest) throws CustomException {
         String email = null;
@@ -117,5 +123,24 @@ public class UserService {
         if (user == null) {
             throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
         }
+    }
+
+    public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
+        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceId(workspaceId);
+
+        List<HashMap<String, Object>> users = new ArrayList<>();
+        for(WorkspaceGroup workspaceGroup : workspaceGroups){
+            HashMap<String, Object> user = new HashMap<>();
+            user.put("id", workspaceGroup.getUser().getId());
+            user.put("nickname", workspaceGroup.getUser().getNickname());
+            user.put("originImage", workspaceGroup.getUser().getOriginImagePath());
+            user.put("thumbnailImage", workspaceGroup.getUser().getThumbnailImagePath());
+            user.put("duty", workspaceGroup.getDuty());
+//            user.put("role", workspaceGroup.getWorkspaceGroupRoleCategory().getName());
+            users.add(user);
+        }
+        System.out.println("users");
+
+        return users;
     }
 }

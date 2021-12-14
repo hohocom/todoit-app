@@ -1,5 +1,6 @@
 package kr.todoit.api.domain;
 
+import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,6 +9,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "workspace_group_role_categories")
+@Getter
 public class WorkspaceGroupRoleCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
