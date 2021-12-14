@@ -5,8 +5,9 @@ export const workspaceUIState = atom({
   default: {
     leftSideOpen: true,
     rightSideOpen: true,
-  }
-})
+    message: "오늘도 화이팅하세요!",
+  },
+});
 
 export const workspaceDetailState = atom({
   key: "workspaceDetailState",

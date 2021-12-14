@@ -1,14 +1,40 @@
 import bgImg from "assets/images/bg.jpg";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "states/user";
 import { workspaceDetailState } from "states/workspace";
+import { cheerUpMessageState } from "states/message";
 
 function WorkspaceRightSide() {
   const user = useRecoilValue(userState);
   const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const [cheerUpMessage, setCheerUpMessage] =
+    useRecoilState(cheerUpMessageState);
 
   const [exp, setExp] = useState(10);
+
+  useEffect(() => {
+    const timer = setMessageByMatchTimes();
+
+    return () => {
+      console.debug("타이머 종료");
+      clearInterval(timer);
+    };
+  }, []);
+
+  const setMessageByMatchTimes = () => {
+    const RESET_TIME = 1000 * 60 * 30;
+
+    return setInterval(() => {
+      const hours = new Date().getHours();
+      console.debug(hours);
+      if (hours >= 6 && 11 > hours) {
+        setCheerUpMessage("즐거운 아침이에요 :) 🐥");
+      } else if (hours >= 11 && 12 > hours) {
+        setCheerUpMessage("즐거운 아침이에요 :) 🐥");
+      }
+    }, RESET_TIME);
+  };
 
   return (
     <aside className="min-w-[350px] h-full border-l">
@@ -81,9 +107,12 @@ function WorkspaceRightSide() {
         </div>
         <div className="mt-10 mb-6">
           <div className="text-base font-apple-bold">TODAY</div>
-          <div className="flex items-center mt-1 text-base">
-            <p className="text-lg font-apple-bold">재범</p>님 즐거운 아침이에요
-            :) 🍀
+          <div className="flex flex-col items-start mt-1 text-base">
+            <p className="text-lg font-apple-bold">
+              {user.nickname}
+              <span className="font-apple-regular">님</span>
+            </p>
+            <p>{cheerUpMessage}</p>
           </div>
         </div>
         <div>
