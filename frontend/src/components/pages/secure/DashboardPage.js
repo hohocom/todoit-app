@@ -30,8 +30,7 @@ function DashboardPage() {
 
   const [workspaceDetail, setWorkspaceDetail] =
     useRecoilState(workspaceDetailState);
-    const [workDetail, setWorkDetail] =
-    useRecoilState(workDetailState);
+  const [workDetail, setWorkDetail] = useRecoilState(workDetailState);
 
   const [worksShowModal, setWorksShowModal] =
     useRecoilState(worksShowModalState);
@@ -40,21 +39,21 @@ function DashboardPage() {
 
   const handleDateClick = (args) => {};
   const handleEventClick = (args) => {
-    workspaceDetail.works.forEach( work => {
-      if(work.id  === Number(args.event.id)){
-        setWorkDetail(work)
+    workspaceDetail.works.forEach((work) => {
+      if (work.id === Number(args.event.id)) {
+        setWorkDetail(work);
       }
-     
     });
     setWorksShowModal(!worksShowModal);
   };
 
   useEffect(() => {
-    console.log("먼저실행됨")
+    console.log("먼저실행됨");
     if (workspaceDetail.id) {
       getWorks();
     }
   }, [workspaceDetail.id]);
+  useEffect(() => {}, [workspaceDetail]);
 
   const getWorks = async () => {
     console.debug("getWorks");
@@ -62,39 +61,50 @@ function DashboardPage() {
       method: "get",
       url: `/works?workspaceId=${workspaceDetail.id}`,
     });
-    console.debug(res.works);
-    // const works = [];
+    // console.log(res.works);
+    // const works1 = [];
     // for (let i = 0; i < res.works.length; i++) {
-    //   works.push({
+    //   works1.push({
     //     id: res.works[i].id,
     //     title: res.works[i].title,
     //     content: res.works[i].content,
-    //     start: res.works[i].startDate,
-    //     end: res.works[i].endDate,
-    //     color: res.works[i].themeColor,
-    //     isFinished: res.works[i].isFinished,
+    //     start: res.works[i].start,
+    //     end: res.works[i].end,
+    //     color: res.works[i].color,
+    //     isFinished: 0,
     //   });
     // }
+    // console.debug(works1);
     setWorkspaceDetail({
       ...workspaceDetail,
       works: res.works,
     });
   };
-  function renderEventContent(eventInfo){
-    console.log(eventInfo.event)
-    console.log(eventInfo.event.url)
+  function renderEventContent(eventInfo) {
+    console.log(eventInfo.event);
+    let isChecked = false;
+    workspaceDetail.works.forEach((work) => {
+      if (work.id === eventInfo.event.id) {
+        isChecked = work.isChecked;
+      }
+    });
     return (
-      <div className="flex items-center"> 
-       {eventInfo.event.url === "0"?  <div className="relative flex items-center justify-center w-4 h-4 mr-1 bg-gray-200 rounded-full"> 
-        <img className="w-3 eventImage" src={checkWhite} /></div>: <div className="relative flex items-center justify-center w-4 h-4 mr-1 bg-yellow-200 rounded-full"> 
-        <img className="w-3 eventImage" src={checkWhite} /></div>
-        
-        }
-      
+      <div className="flex items-center">
+        {isChecked ? (
+          <div className="relative flex items-center justify-center w-4 h-4 ml-1 mr-1 bg-white rounded-full">
+            <i
+              className="fas fa-check"
+              style={{
+                color: `${eventInfo.event.backgroundColor}`,
+              }}
+            ></i>
+          </div>
+        ) : (
+          <div className="relative flex items-center justify-center w-4 h-4 ml-1 mr-1 bg-white rounded-full"></div>
+        )}
         <p className="mt-0.5">{eventInfo.event.title}</p>
-     
       </div>
-    )
+    );
   }
   return (
     <WorkspaceContainer>
@@ -132,8 +142,8 @@ function DashboardPage() {
               dateClick={handleDateClick} // 달력 클릭시 이벤트
               eventClick={handleEventClick} // 이벤트 클릭시 이벤트
               // dayMaxEvents={true} // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-               events={workspaceDetail.works}
-              eventContent ={renderEventContent}
+              events={workspaceDetail.works}
+              eventContent={renderEventContent}
               // eslint-disable-next-line react/jsx-no-duplicate-props
               // yy
             />

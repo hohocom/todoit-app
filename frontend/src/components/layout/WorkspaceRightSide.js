@@ -137,7 +137,7 @@ function WorkspaceRightSide() {
             return (
               <div
                 className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg box-shadow1"
-                key={work.workId}
+                key={work.id}
               >
                 <div className="flex flex-col">
                   <p className="font-apple-bold ">{work.title}</p>

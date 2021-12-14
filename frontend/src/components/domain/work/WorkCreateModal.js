@@ -1,4 +1,4 @@
-import { useRef, useState ,useEffect} from "react";
+import { useRef, useState, useEffect } from "react";
 import { addDays } from "date-fns";
 import { workCreateModalState } from "states/work";
 import { DateRange } from "react-date-range";
@@ -29,7 +29,7 @@ function WorkCreateModal() {
       key: "selection",
     },
   ]);
-  
+
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   useEffect(() => {
     setDateState([
@@ -38,8 +38,7 @@ function WorkCreateModal() {
         endDate: addDays(new Date(), 0),
         key: "selection",
       },
-    ])
-     
+    ]);
   }, [workCreateModal]);
   const dateString = (date) => {
     var year = date.getFullYear();
@@ -50,14 +49,14 @@ function WorkCreateModal() {
   };
 
   const colors = [
-    { view: "bg-gray-200", data: "#E6E6E6" },
-    { view: "bg-pink-200", data: "#F6CEEC" },
-    { view: "bg-red-200", data: "#F6CECE" },
-    { view: "bg-yellow-200", data: "#F5DA81" },
-    { view: "bg-yellow-300", data: "#F7BE81" },
-    { view: "bg-green-200", data: "#A9F5D0" },
-    { view: "bg-blue-200", data: "#CEE3F6" },
-    { view: "bg-purple-200", data: "#D8CEF6" },
+    { view: "bg-gray-200", data: "#E5E7EB" },
+    { view: "bg-pink-200", data: "#FBCFE8" },
+    { view: "bg-red-200", data: "#FECACA" },
+    { view: "bg-yellow-200", data: "#FDE68A" },
+    { view: "bg-yellow-300", data: "#FCD34D" },
+    { view: "bg-green-200", data: "#A7F3D0" },
+    { view: "bg-blue-200", data: "#BFDBFE" },
+    { view: "bg-purple-200", data: "#DDD6FE" },
   ];
   const [colorNumber, setColorNumber] = useState(0);
   const [scheduleForm, setScheduleForm] = useState({
