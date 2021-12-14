@@ -6,8 +6,8 @@
         <id column="user_id" property="id"/>
         <result column="nickname" property="nickname" />
     </resultMap>
-    <resultMap id="work" type="java.util.HashMap">
-        <id column="work_id" property="workId"/>
+    <resultMap id="work" type="kr.todoit.api.dto.WorkFindResponse">
+        <id column="work_id" property="id"/>
         <result column="title" property="title"/>
         <result column="content" property="content"/>
         <result column="start_date" property="start"/>

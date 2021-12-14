@@ -67,6 +67,7 @@ public class UserController {
     @GetMapping("/refresh-token-test/{id}")
     public ResponseEntity<Map<String, Object>> refreshTokenTest(@PathVariable Long id) {
         log.info("GET/users/refresh-token-test");
+
         UserTokenResponse userTokenResponse = userService.verifyTokenThenGetTokensTest(id);
         Map<String, Object> response = new HashMap<>();
         response.put("message", "토큰이 재발급되었습니다.");
@@ -86,22 +87,21 @@ public class UserController {
         return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, responseCookie.toString()).body(response);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Map<String, Object>> show(@PathVariable Long id, HttpServletRequest servletRequest) {
-        log.info("GET/users/:id");
-        System.out.println(id);
-        System.out.println(servletRequest.getAttribute("id").toString());
-        TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
-
-        UserInfoResponse userInfoResponse = userService.getUserInfo(id);
-        WorkspaceFindResponse workspaceFindResponse = workspaceService.findWorkspacesByUserId(id);
-        userInfoResponse.setWorkspaces(workspaceFindResponse.getWorkspaces());
+    @GetMapping("/logout")
+    public ResponseEntity<Map<String, Object>> logout(){
+        log.info("GET/users/logout");
+        log.info("로그아웃 요청 -> RFT 쿠키 제거");
+        ResponseCookie responseCookie = ResponseCookie.from("rft", null)
+                .httpOnly(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
 
         Map<String, Object> response = new HashMap<>();
-        response.put("message", "회원 데이터를 정상적으로 전달하였습니다.");
+        response.put("message","로그아웃이 정상적으로 처리되었습니다.");
         response.put("statusCode", 200);
-        response.put("user", userInfoResponse);
-        return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, responseCookie.toString()).body(response);
     }
 
     @GetMapping("")
@@ -116,5 +116,44 @@ public class UserController {
         response.put("statusCode", 200);
         response.put("users", users);
         return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> show(@PathVariable Long id, HttpServletRequest servletRequest) {
+        log.info("GET/users/:id");
+
+        TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        UserInfoResponse userInfoResponse = userService.getUserInfo(id);
+        WorkspaceFindResponse workspaceFindResponse = workspaceService.findWorkspacesByUserId(id);
+        userInfoResponse.setWorkspaces(workspaceFindResponse.getWorkspaces());
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "회원 상세 데이터 조회 완료.");
+        response.put("statusCode", 200);
+        response.put("user", userInfoResponse);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id, HttpServletRequest servletRequest) {
+        log.info("DELETE/users/:id");
+
+        TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        userService.deleteByUserId(id);
+
+        log.info("RFT 쿠키 제거");
+        ResponseCookie responseCookie = ResponseCookie.from("rft", null)
+                .httpOnly(true)
+                .path("/")
+                .maxAge(0)
+                .sameSite("Strict")
+                .build();
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message","회원 삭제 완료.");
+        response.put("statusCode", 200);
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, responseCookie.toString()).body(response);
     }
 }

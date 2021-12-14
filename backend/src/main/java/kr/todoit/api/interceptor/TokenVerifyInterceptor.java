@@ -52,6 +52,8 @@ public class TokenVerifyInterceptor implements HandlerInterceptor {
         }
 
         HashMap<String, Object> tokenInfo = tokenService.verifyToken(token);
+
+        log.info("Token Interceptor -> Controller");
         request.setAttribute("id", tokenInfo.get("id"));
         return true;
     }

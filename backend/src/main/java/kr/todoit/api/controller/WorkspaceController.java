@@ -25,11 +25,16 @@ public class WorkspaceController {
     private WorkspaceService workspaceService;
 
     @GetMapping("")
-    public ResponseEntity<Map<String, Object>> index(@Valid @RequestParam WorkspaceFindRequest workspaceFindRequest, BindingResult bindingResult, HttpServletRequest servletRequest) {
+    public ResponseEntity<Map<String, Object>> index(
+            @Valid @RequestParam
+            WorkspaceFindRequest workspaceFindRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
         log.info("GET/workspaces?userId=");
+
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
-
         TokenService.isMatched(workspaceFindRequest.getUserId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         WorkspaceFindResponse workspaceFindResponse = workspaceService.findWorkspacesByUserId(workspaceFindRequest.getUserId());
@@ -42,11 +47,15 @@ public class WorkspaceController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Map<String, Object>> create(@Valid WorkspaceCreateRequest workspaceCreateRequest, BindingResult bindingResult, HttpServletRequest servletRequest) {
-        log.info("CREATE/workspaces");
+    public ResponseEntity<Map<String, Object>> create(
+            @Valid WorkspaceCreateRequest workspaceCreateRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
+        log.info("POST/workspaces");
+
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
-
         TokenService.isMatched(workspaceCreateRequest.getUserId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         WorkspaceFindResponse workspaceFindResponse = workspaceService.createWorkspace(workspaceCreateRequest);
@@ -59,11 +68,15 @@ public class WorkspaceController {
     }
 
     @PutMapping("/{workspaceId}")
-    public ResponseEntity<Map<String, Object>> update(@Valid WorkspaceUpdateRequest workspaceUpdateRequest, BindingResult bindingResult, HttpServletRequest servletRequest) {
+    public ResponseEntity<Map<String, Object>> update(
+            @Valid WorkspaceUpdateRequest workspaceUpdateRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
         log.info("PUT/workspaces/:workspaceId");
+
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
-
         TokenService.isMatched(workspaceUpdateRequest.getUserId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         workspaceService.update(workspaceUpdateRequest);
@@ -75,11 +88,15 @@ public class WorkspaceController {
     }
 
     @DeleteMapping("/{workspaceId}")
-    public ResponseEntity<Map<String, Object>> delete(WorkspaceDeleteRequest workspaceDeleteRequest, BindingResult bindingResult, HttpServletRequest servletRequest) {
+    public ResponseEntity<Map<String, Object>> delete(
+            WorkspaceDeleteRequest workspaceDeleteRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
         log.info("DELETE/workspaces/:workspaceId");
+
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
-
         TokenService.isMatched(workspaceDeleteRequest.getUserId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         workspaceService.deleteById(workspaceDeleteRequest.getWorkspaceId());
@@ -87,6 +104,28 @@ public class WorkspaceController {
         Map<String, Object> response = new HashMap<>();
         response.put("message", "워크스페이스가 삭제되었습니다.");
         response.put("statusCode", 200);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @PostMapping("/invite")
+    public ResponseEntity<Map<String, Object>> joinWorkspace(
+            WorkspaceJoinRequest workspaceJoinRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
+        log.info("POST/workspaces/invite");
+        System.out.println(workspaceJoinRequest);
+
+        if (bindingResult.hasErrors())
+            throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
+        TokenService.isMatched(workspaceJoinRequest.getJoinUserId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        WorkspaceFindResponse workspaceFindResponse = workspaceService.joinWorkspace(workspaceJoinRequest);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "워크스페이스에 가입되었습니다.");
+        response.put("statusCode", 200);
+        response.put("workspaces", workspaceFindResponse);
         return ResponseEntity.ok().body(response);
     }
 }

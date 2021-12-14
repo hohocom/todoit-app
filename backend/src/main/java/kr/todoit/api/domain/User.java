@@ -26,8 +26,11 @@ public class User {
     @UpdateTimestamp
     private Timestamp updatedAt;
 
-    @Column(length = 50, nullable = false, unique = true)
+    @Column(length = 50, nullable = false)
     private String email;
+
+    @Column(length = 20, nullable = false)
+    private String provider;
 
     @Column(length = 20, nullable = false)
     private String nickname;
@@ -39,9 +42,10 @@ public class User {
     private String thumbnailImagePath;
 
     @Builder
-    public User(Long id, String email, String nickname, String originImagePath, String thumbnailImagePath) {
+    public User(Long id, String email, String provider, String nickname, String originImagePath, String thumbnailImagePath) {
         this.id = id;
         this.email = email;
+        this.provider = provider;
         this.nickname = nickname;
         this.originImagePath = originImagePath;
         this.thumbnailImagePath = thumbnailImagePath;

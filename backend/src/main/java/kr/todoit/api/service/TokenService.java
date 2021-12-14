@@ -54,7 +54,7 @@ public class TokenService {
     public static void isMatched(Long userId, Long tokenUserId) throws CustomException {
         if(userId != tokenUserId){
             log.info("일치하지 않은 유저");
-            throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
+            throw new CustomException(DefaultExceptionType.AUTHENTICATE_NOT_MATCH);
         }
     }
 

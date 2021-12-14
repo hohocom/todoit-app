@@ -6,9 +6,11 @@ import kr.todoit.api.domain.WorkspaceGroup;
 import kr.todoit.api.domain.WorkspaceGroupRoleCategory;
 import kr.todoit.api.dto.WorkspaceCreateRequest;
 import kr.todoit.api.dto.WorkspaceFindResponse;
+import kr.todoit.api.dto.WorkspaceJoinRequest;
 import kr.todoit.api.dto.WorkspaceUpdateRequest;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
+import kr.todoit.api.repository.UserRepository;
 import kr.todoit.api.repository.WorkspaceGroupRepository;
 import kr.todoit.api.repository.WorkspaceGroupRoleCategoryRepository;
 import kr.todoit.api.repository.WorkspaceRepository;
@@ -30,6 +32,7 @@ public class WorkspaceService {
     private WorkspaceGroupRepository workspaceGroupRepository;
     private WorkspaceGroupRoleCategoryRepository workspaceGroupRoleCategoryRepository;
     private UserService userService;
+    private UserRepository userRepository;
 
     public WorkspaceFindResponse findWorkspacesByUser(User user){
         List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findAllByUser(user);
@@ -57,11 +60,33 @@ public class WorkspaceService {
         return findWorkspacesByUser(user);
     }
 
+    public WorkspaceFindResponse joinWorkspace(WorkspaceJoinRequest workspaceJoinRequest) {
+        Workspace workspace = workspaceRepository.findOneByCode(workspaceJoinRequest.getWorkspaceCode());
+        if(workspace == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_WORKSPACE);
+
+        User user =  userRepository.findUserById(workspaceJoinRequest.getJoinUserId());
+        if(user == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
+
+        WorkspaceGroupRoleCategory workspaceGroupRoleCategory = workspaceGroupRoleCategoryRepository.findOneById(3L);
+        if(workspaceGroupRoleCategory == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
+
+        WorkspaceGroup workspaceGroup = workspaceGroupRepository.findOneByWorkspaceAndUser(workspace, user);
+        if(workspaceGroup != null) throw new CustomException(DefaultExceptionType.DUPLICATE_WORKSPACE);
+
+        workspaceGroup = WorkspaceGroup.builder()
+                .user(user)
+                .workspace(workspace)
+                .workspaceGroupRoleCategory(workspaceGroupRoleCategory)
+                .build();
+        workspaceGroupRepository.save(workspaceGroup);
+
+        return findWorkspacesByUser(user);
+    }
+
     public void update(WorkspaceUpdateRequest workspaceUpdateRequest) {
         Workspace workspace = workspaceRepository.findOneById(workspaceUpdateRequest.getWorkspaceId());
-        if(workspace == null){
-            throw new CustomException(DefaultExceptionType.NOT_FOUND_WORKSPACE);
-        }
+        if(workspace == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_WORKSPACE);
+
         workspace.setName(workspaceUpdateRequest.getWorkspaceName());
     }
 

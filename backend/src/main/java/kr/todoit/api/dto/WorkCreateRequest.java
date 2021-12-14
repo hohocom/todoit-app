@@ -6,10 +6,10 @@ import kr.todoit.api.domain.Workspace;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Getter
@@ -25,10 +25,10 @@ public class WorkCreateRequest {
     @NotBlank(message = "작업 내용은 필수값입니다.")
     private String content;
 
-    @NotBlank(message = "작업 시작일은 필수값입니다.")
-    private Timestamp startDate;
+    @NotNull(message = "작업 시작일은 필수값입니다.")
+    private String startDate;
 
-    private Timestamp endDate;
+    private String endDate;
 
     private String themeColor;
 
@@ -42,6 +42,7 @@ public class WorkCreateRequest {
                 .startDate(this.startDate)
                 .endDate(this.endDate)
                 .themeColor(this.themeColor)
+                .isFinished((byte)0)
                 .build();
     }
 }

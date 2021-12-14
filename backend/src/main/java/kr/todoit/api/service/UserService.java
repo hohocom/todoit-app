@@ -34,22 +34,25 @@ public class UserService {
     private WorkspaceGroupRepository workspaceGroupRepository;
 
     public UserTokenResponse loginByOauth(UserLoginRequest userLoginRequest) throws CustomException {
+        log.info("<USER SERVICE : loginByOauth>");
+
         String email = null;
-        if (userLoginRequest.getProviderType().equals("KAKAO")) {
+        String provider = userLoginRequest.getProviderType();
+        if (provider.equals("KAKAO")) {
             log.info("카카오 로그인");
             email = oAuth2Service.getKakaoEmailByAccessToken(userLoginRequest.getAccessToken());
             System.out.println(email);
-        } else if (userLoginRequest.getProviderType().equals("NAVER")) {
+        } else if (provider.equals("NAVER")) {
             log.info("네이버 로그인");
         } else {
             throw new CustomException(new ValidExceptionType(5000, 200, "부적합한 프로바이더 타입입니다."));
         }
 
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findByEmailAndProvider(email, provider);
 
         System.out.println(user);
         // 미회원가입 -> 회원가입
-        if (user == null) user = joinUser(email);
+        if (user == null) user = joinUser(email, provider);
 
         System.out.println(user);
         // 로그인 처리(토큰 발급)
@@ -64,6 +67,8 @@ public class UserService {
     }
 
     public UserTokenResponse verifyTokenThenGetTokens(String token) {
+        log.info("<USER SERVICE : verifyTokenThenGetTokens>");
+
         HashMap<String, Object> tokenInfo = tokenService.verifyToken(token);
         System.out.println(tokenInfo);
         User user = userRepository.findUserById(Long.valueOf(tokenInfo.get("id").toString()));
@@ -80,6 +85,8 @@ public class UserService {
     }
 
     public UserTokenResponse verifyTokenThenGetTokensTest(Long id) {
+        log.info("<USER SERVICE : verifyTokenThenGetTokensTest>");
+
         HashMap<String, Object> actInfo = tokenService.getAct(id);
         HashMap<String, Object> rftInfo = tokenService.getRft(id);
 
@@ -89,11 +96,13 @@ public class UserService {
                 .build();
     }
 
-    private User joinUser(String email) {
-        log.info("회원가입 진행");
+    private User joinUser(String email, String provider) {
+        log.info("<USER SERVICE : joinUser>");
+
         String nickname = RandomNicknameCreator.getRandomNickname();
         User user = User.builder()
                 .email(email)
+                .provider(provider)
                 .nickname(nickname)
                 .build();
         userRepository.save(user);
@@ -101,12 +110,16 @@ public class UserService {
     }
 
     public User findUserById(Long userId) {
+        log.info("<USER SERVICE : findUserById>");
+
         User user = userRepository.findUserById(userId);
         checkNullUser(user);
         return user;
     }
 
     public UserInfoResponse getUserInfo(Long id) {
+        log.info("<USER SERVICE : getUserInfo>");
+
         User user = userRepository.findUserById(id);
         checkNullUser(user);
 
@@ -120,14 +133,17 @@ public class UserService {
     }
 
     private void checkNullUser(User user) {
+        log.info("<USER SERVICE : checkNullUser>");
+
         if (user == null) {
             throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
         }
     }
 
     public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
-        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceId(workspaceId);
+        log.info("<USER SERVICE : getUsersByWorkspaceId>");
 
+        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceId(workspaceId);
         List<HashMap<String, Object>> users = new ArrayList<>();
         for(WorkspaceGroup workspaceGroup : workspaceGroups){
             HashMap<String, Object> user = new HashMap<>();
@@ -142,5 +158,14 @@ public class UserService {
         System.out.println("users");
 
         return users;
+    }
+
+    public void deleteByUserId(Long id) {
+        log.info("<USER SERVICE : deleteByUserId>");
+
+        User user = userRepository.findUserById(id);
+        checkNullUser(user);
+
+        userRepository.delete(user);
     }
 }

@@ -15,8 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.text.ParseException;
 import java.util.List;
 
 @Service
@@ -31,25 +30,13 @@ public class WorkService {
     private UserRepository userRepository;
     private WorkMapper workMapper;
 
-    public List<HashMap<String, Object>> findWorksByWorkspaceId(Long workspaceId) {
+    public List<WorkFindResponse> findWorksByWorkspaceId(Long workspaceId) {
         System.out.println(workspaceId);
-        List<HashMap<String, Object>> _works = workMapper.findWorkByWorkspaceIdAndGroupByWorkId(workspaceId);
-//        List<WorkGroup> workGroups = workGroupRepository.findByWorkspaceId(workspaceId);
-//        for (WorkGroup workGroup : workGroups) {
-//            HashMap<String, Object> _work = new HashMap<>();
-//            _work.put("id", workGroup.getWork().getId());
-//            _work.put("title", workGroup.getWork().getTitle());
-//            _work.put("content", workGroup.getWork().getContent());
-//            _work.put("startDate", workGroup.getWork().getStartDate());
-//            _work.put("endDate", workGroup.getWork().getEndDate());
-//            _work.put("themeColor", workGroup.getWork().getThemeColor());
-//            _work.put("isFinished", workGroup.getWork().getIsFinished());
-//            _works.add(_work);
-//        }
+        List<WorkFindResponse> _works = workMapper.findWorkByWorkspaceIdAndGroupByWorkId(workspaceId);
         return _works;
     }
 
-    public void create(WorkCreateRequest workCreateRequest) {
+    public void create(WorkCreateRequest workCreateRequest) throws ParseException {
         Workspace workspace = workspaceRepository.findOneById(workCreateRequest.getWorkspaceId());
         if (workspace == null) {
             throw new CustomException(DefaultExceptionType.NOT_FOUND_WORKSPACE);

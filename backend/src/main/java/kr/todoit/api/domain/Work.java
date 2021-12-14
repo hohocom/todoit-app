@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "works")
@@ -33,15 +34,15 @@ public class Work {
     private String themeColor;
 
     @Column(nullable = false)
-    private Timestamp startDate;
+    private String startDate;
 
-    private Timestamp endDate;
+    private String endDate;
 
     @Column(length = 1, columnDefinition = "int default 0")
     private Byte isFinished;
 
     @Builder
-    public Work(Long id, String title, String content, String themeColor, Timestamp startDate, Timestamp endDate, Byte isFinished) {
+    public Work(Long id, String title, String content, String themeColor, String startDate, String endDate, Byte isFinished) {
         this.id = id;
         this.title = title;
         this.content = content;
