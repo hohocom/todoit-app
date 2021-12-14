@@ -19,6 +19,7 @@
     "agent-base": "^6.0.2",
     "axios": "^0.24.0",
     "css-loader": "^6.5.1",
+    "date-fns": "^2.27.0",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
     "particles.js": "^2.0.0",

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState ,useEffect} from "react";
 import { addDays } from "date-fns";
 import { workCreateModalState } from "states/work";
 import { DateRange } from "react-date-range";
@@ -29,8 +29,18 @@ function WorkCreateModal() {
       key: "selection",
     },
   ]);
+  
   const workspaceDetail = useRecoilValue(workspaceDetailState);
-
+  useEffect(() => {
+    setDateState([
+      {
+        startDate: new Date(),
+        endDate: addDays(new Date(), 0),
+        key: "selection",
+      },
+    ])
+     
+  }, [workCreateModal]);
   const dateString = (date) => {
     var year = date.getFullYear();
     var month = ("0" + (date.getMonth() + 1)).slice(-2);

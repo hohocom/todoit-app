@@ -12,6 +12,7 @@ function useSetWorkspaceDetail() {
   const user = useRecoilValue(userState);
 
   useEffect(() => {
+    console.debug("set Detail")
     if (user.id && !workspaceDetail.id) {
       console.debug("워크스페이스 디테일");
       getMathWorkspace();

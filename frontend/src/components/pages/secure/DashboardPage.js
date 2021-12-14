@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { workCreateModalState } from "states/work";
 import { worksShowModalState } from "states/work";
 import { workspaceDetailState } from "states/workspace";
+import { workDetailState } from "states/work";
 import { apiScaffold } from "utils/apis";
 
 import WorkspaceContainer from "components/layout/WorkspaceContainer";
@@ -21,7 +22,7 @@ import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClic
 import SockJsClient from "react-stomp";
 import withSecure from "components/domain/user/withSecure";
 import useSetWorkspaceDetail from "components/domain/workspace/useSetWorkspaceDetail";
-
+import checkWhite from "assets/images/check-white.png";
 function DashboardPage() {
   useSetWorkspaceDetail();
 
@@ -29,6 +30,8 @@ function DashboardPage() {
 
   const [workspaceDetail, setWorkspaceDetail] =
     useRecoilState(workspaceDetailState);
+    const [workDetail, setWorkDetail] =
+    useRecoilState(workDetailState);
 
   const [worksShowModal, setWorksShowModal] =
     useRecoilState(worksShowModalState);
@@ -37,15 +40,19 @@ function DashboardPage() {
 
   const handleDateClick = (args) => {};
   const handleEventClick = (args) => {
-    console.log(args);
+    workspaceDetail.works.forEach( workspace => {
+      if(workspace.id  === Number(args.event.id))
+      setWorkDetail(workspace)
+    });
     setWorksShowModal(!worksShowModal);
   };
 
   useEffect(() => {
-    if (workspaceDetail.id && workspaceDetail.works.length === 0) {
+    console.log("먼저실행됨")
+    if (workspaceDetail.id) {
       getWorks();
     }
-  }, [workspaceDetail]);
+  }, [workspaceDetail.id]);
 
   const getWorks = async () => {
     console.debug("getWorks");
@@ -71,7 +78,22 @@ function DashboardPage() {
       works: works,
     });
   };
-
+  function renderEventContent(eventInfo){
+    console.log(eventInfo.event)
+    console.log(eventInfo.event.url)
+    return (
+      <div className="flex items-center"> 
+       {eventInfo.event.url === "0"?  <div className="relative flex items-center justify-center w-4 h-4 mr-1 bg-gray-200 rounded-full"> 
+        <img className="w-3 eventImage" src={checkWhite} /></div>: <div className="relative flex items-center justify-center w-4 h-4 mr-1 bg-yellow-200 rounded-full"> 
+        <img className="w-3 eventImage" src={checkWhite} /></div>
+        
+        }
+      
+        <p className="mt-0.5">{eventInfo.event.title}</p>
+     
+      </div>
+    )
+  }
   return (
     <WorkspaceContainer>
       <WorkspaceLeftSide workspaceCode={workspaceDetail.code} />
@@ -108,7 +130,10 @@ function DashboardPage() {
               dateClick={handleDateClick} // 달력 클릭시 이벤트
               eventClick={handleEventClick} // 이벤트 클릭시 이벤트
               // dayMaxEvents={true} // 이벤트가 오버되면 높이 제한 (+ 몇 개식으로 표현)
-              events={workspaceDetail.works}
+               events={workspaceDetail.works}
+              eventContent ={renderEventContent}
+              // eslint-disable-next-line react/jsx-no-duplicate-props
+              // yy
             />
           </div>
         </WorkspaceSection>
