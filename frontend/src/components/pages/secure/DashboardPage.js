@@ -40,9 +40,11 @@ function DashboardPage() {
 
   const handleDateClick = (args) => {};
   const handleEventClick = (args) => {
-    workspaceDetail.works.forEach( workspace => {
-      if(workspace.id  === Number(args.event.id))
-      setWorkDetail(workspace)
+    workspaceDetail.works.forEach( work => {
+      if(work.id  === Number(args.event.id)){
+        setWorkDetail(work)
+      }
+     
     });
     setWorksShowModal(!worksShowModal);
   };
