@@ -25,19 +25,8 @@ function WorkspaceHeader() {
 
       <div className="flex items-center justify-center">
         <AvatarGroup
-          items={[
-            {
-              thumbnailImage: bgImg,
-            },
-            {
-              thumbnailImage: bgImg,
-            },
-            {
-              thumbnailImage: bgImg,
-            },
-          ]}
+          items={workspaceDetail.users}
         />
-        <i className="ml-4 text-2xl cursor-pointer fas fa-portrait"></i>
       </div>
     </header>
   );

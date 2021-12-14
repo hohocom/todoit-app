@@ -6,15 +6,16 @@ function AvatarGroup({ items }) {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex items-end w-auto mr-5">
+    <div className="flex -space-x-2">
       {items.length >= 1 &&
         items.map((user, index) => {
+          console.log(user);
           if (index <= 2) {
             return (
               <Avatar
                 key={index}
-                styles={`-mr-5 z-${20 - index}`}
-                imagePath={user.thumbnailImage}
+                originImage={user.originImage}
+                thumbnailImage={user.thumbnailImage}
                 userName={user.name}
               />
             );

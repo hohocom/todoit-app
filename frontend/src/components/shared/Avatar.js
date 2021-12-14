@@ -1,19 +1,18 @@
-import { Link } from "react-router-dom";
+import nullProfileImg from "assets/images/null-profile.svg";
 
-function Avatar({ styles, imagePath, userName }) {
+function Avatar({ thumbnailImage, size = 40, hover = true }) {
   return (
-    <div className="relative">
-      <div
-        className={`flex items-center justify-center w-10 h-10 overflow-hidden
-      bg-gray-100 border-2 border-white rounded-full hover:border-yellow-400 transition-all
-        ${styles && styles}`}
-      >
-        <Link to="/">
-          <img src={imagePath} alt="avatar" className="w-10 h-10" />
-        </Link>
-      </div>
-
-    </div>
+    <img
+      src={thumbnailImage ? thumbnailImage : nullProfileImg}
+      alt="avatar"
+      className={"inline-block object-cover transition duration-150 ease-in-out bg-gray-300 rounded-full cursor-pointer".concat(
+        hover === true && " ring-2 ring-white hover:ring-yellow-400"
+      )}
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+      }}
+    />
   );
 }
 

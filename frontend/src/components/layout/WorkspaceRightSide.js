@@ -1,10 +1,9 @@
-import bgImg from "assets/images/bg.jpg";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "states/user";
 import { workspaceDetailState } from "states/workspace";
 import { cheerUpMessageState } from "states/message";
-import { apiScaffold } from "utils/apis";
+import Avatar from "components/shared/Avatar";
 
 function WorkspaceRightSide() {
   const user = useRecoilValue(userState);
@@ -65,10 +64,10 @@ function WorkspaceRightSide() {
             className="w-[120px] h-[120px] rounded-full -mt-7 flex items-center justify-center border-4 
           border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D]"
           >
-            <img
-              src={bgImg}
-              alt="img"
-              className="w-[100px] h-[100px] rounded-full"
+            <Avatar
+              thumbnailImage={user.thumbnailImage}
+              size={100}
+              hover={false}
             />
           </div>
           <div className="mt-4 text-xl text-black font-apple-hard">
@@ -137,7 +136,7 @@ function WorkspaceRightSide() {
             return (
               <div
                 className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg box-shadow1"
-                key={work.workId}
+                key={work.id}
               >
                 <div className="flex flex-col">
                   <p className="font-apple-bold ">{work.title}</p>

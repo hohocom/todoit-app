@@ -35,6 +35,7 @@ function useSetWorkspaceDetail() {
           id: workspace.id,
           code: workspace.code,
           name: workspace.name,
+          users: res.users,
         });
       }
     });
