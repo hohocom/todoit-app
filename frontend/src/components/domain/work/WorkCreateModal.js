@@ -16,6 +16,7 @@ import SockJsClient from "react-stomp";
 
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
+import { userState } from "states/user";
 
 function WorkCreateModal() {
   const websocket = useRef();
@@ -31,6 +32,8 @@ function WorkCreateModal() {
   ]);
 
   const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const user = useRecoilValue(userState);
+
   useEffect(() => {
     setDateState([
       {
@@ -59,40 +62,40 @@ function WorkCreateModal() {
     { view: "bg-purple-200", data: "#DDD6FE" },
   ];
   const [colorNumber, setColorNumber] = useState(0);
-  const [scheduleForm, setScheduleForm] = useState({
+  const [workCreateForm, setWorkCreateForm] = useState({
     title: "",
     content: "",
     color: colors[0].data,
-    joinMember: "",
+    users: [1],
     startTime: "",
     endTime: "",
   });
+
   const scheduleFormChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     if (name === "title") {
-      setScheduleForm({ ...scheduleForm, title: value });
+      setWorkCreateForm({ ...workCreateForm, title: value });
     } else if (name === "content") {
-      setScheduleForm({ ...scheduleForm, content: value });
+      setWorkCreateForm({ ...workCreateForm, content: value });
     }
   };
 
   const changeColor = (index) => {
     console.debug(workspaceDetail);
     setColorNumber(index);
-    setScheduleForm({ ...scheduleForm, color: colors[index].data });
+    setWorkCreateForm({ ...workCreateForm, color: colors[index].data });
   };
   //일정 전송
   const submit = async () => {
     const formData = new FormData();
-    formData.append("title", scheduleForm.title);
-    formData.append("content", scheduleForm.content);
+    formData.append("title", workCreateForm.title);
+    formData.append("content", workCreateForm.content);
     formData.append("workspaceId", workspaceDetail.id);
     formData.append("startDate", dateString(dateState[0].startDate));
     formData.append("endDate", dateString(dateState[0].endDate));
-    formData.append("themeColor", scheduleForm.color);
-    const users = ["1", "2"];
-    users.forEach((user) => {
+    formData.append("themeColor", workCreateForm.color);
+    workCreateForm.users.forEach((user) => {
       formData.append("users", user);
     });
 

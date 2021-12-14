@@ -15,6 +15,7 @@ function LoginKakoRedirectPage() {
 
   useEffect(async () => {
     const kakaoAccessToken = await getKakaoAccessToken();
+    console.debug(kakaoAccessToken)
     const { id } = await getTotoitAccessToken(kakaoAccessToken);
     const res = await getUserInfo(id);
     setUser({

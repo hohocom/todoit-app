@@ -1,33 +1,11 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { apiScaffold } from "utils/apis";
 import { userState } from "states/user";
-import WorkspaceUpdater from "./WorkspaceUpdater";
+import WorkspaceDeleteButton from "./WorkspaceDeleteButton";
+import WorkspaceUpdateButton from "./WorkspaceUpdateButton";
 
 function WorkspaceList() {
   const [user, setUser] = useRecoilState(userState);
-  const [selectNumber, setSelectNumber] = useState(null);
-  const deleteWorkspace = async (workspaceId) => {
-    const result = window.prompt(
-      "워크스페이스를 삭제하려면 'DELETE'를 입력해주세요"
-    );
-    const rightAnswer = "DELETE";
-    if (result !== rightAnswer) return false;
-
-    await apiScaffold({
-      method: "delete",
-      url: `/workspaces/${workspaceId}?userId=${user.id}`,
-    });
-
-    const newWorkspaces = user.workspaces.filter(
-      (workspace) => workspace.id !== workspaceId
-    );
-    setUser({
-      ...user,
-      workspaces: newWorkspaces,
-    });
-  };
 
   return user.workspaces.length > 0 ? (
     user.workspaces.map((workspace, index) => {
@@ -47,28 +25,23 @@ function WorkspaceList() {
             </div>
           </Link>
           <div className="p-3">
-            <i
-              className="mx-2 cursor-pointer far fa-edit hover:text-yellow-500"
-              onClick={() => setSelectNumber(workspace.id)}
-            ></i>
-            <i
-              className="mx-2 cursor-pointer far fa-trash-alt hover:text-red-500"
-              onClick={() => deleteWorkspace(workspace.id)}
-            ></i>
-          </div>
-          {selectNumber === workspace.id && (
-            <WorkspaceUpdater
-              workspaceName={workspace.name}
-              workspaceId={workspace.id}
-              setSelectNumber={setSelectNumber}
+            <WorkspaceUpdateButton
+              setUser={setUser}
+              user={user}
+              workspace={workspace}
             />
-          )}
+            <WorkspaceDeleteButton
+              setUser={setUser}
+              user={user}
+              workspace={workspace}
+            />
+          </div>
         </div>
       );
     })
   ) : (
-    <div className="w-full p-3 pt-4 border rounded-md bg-gray-50">
-      가입된 워크스페이스가 없습니다 😅
+    <div className="w-full p-2 pt-2.5 border rounded-md bg-gray-50">
+      워크스페이스가 없습니다. 새로 생성하거나 초대 코드로 가입해보세요!🎈
     </div>
   );
 }

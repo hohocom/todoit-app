@@ -1,9 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { userState } from "states/user";
 
-import WorkspaceCreator from "components/domain/workspace/WorkspaceCreator";
 import WorkspaceList from "components/domain/workspace/WorkspaceList";
 import ThemeContainer from "components/layout/ThemeContainer";
 import ThemeMainBox from "components/layout/ThemeMainBox";
@@ -11,13 +9,11 @@ import ThemeTitleBox from "components/layout/ThemeTitleBox";
 import ParticlesContainer from "components/layout/ParticlesContainer";
 import withSecure from "components/domain/user/withSecure";
 
-function WorkspacesPage() {
-  const [user, setUser] = useRecoilState(userState);
+import WorkspaceCreateButton from "components/domain/workspace/WorkspaceCreateButton";
+import WorkspaceJoinButton from "components/domain/workspace/WorkspaceJoinButton";
 
-  useEffect(() => {
-    console.debug("먼저 실행");
-    console.debug(user);
-  }, []);
+function WorkspacesPage() {
+  const user = useRecoilValue(userState);
 
   return (
     <ThemeContainer>
@@ -30,16 +26,9 @@ function WorkspacesPage() {
           <h2>가입된 워크스페이스 ( {user.workspaces.length} )</h2>
           <WorkspaceList />
         </div>
-        <div className="w-full">
-          <h2>초대코드로 가입</h2>
-          <input
-            className="w-full p-3 border border-[#FFC35E] rounded-[4px] outline-none bg-gray-50"
-            placeholder="초대코드를 입력해주세요."
-          />
-        </div>
-        <div className="w-full mt-4">
-          <h2>워크스페이스 생성</h2>
-          <WorkspaceCreator />
+        <div className="flex items-center justify-between w-full mt-4">
+          <WorkspaceJoinButton />
+          <WorkspaceCreateButton />
         </div>
         <div className="w-full mt-6 text-right">
           <button className="hover:text-[#ffac5ef3] text-sm">로그아웃</button>

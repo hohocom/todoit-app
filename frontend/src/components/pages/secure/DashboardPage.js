@@ -61,20 +61,7 @@ function DashboardPage() {
       method: "get",
       url: `/works?workspaceId=${workspaceDetail.id}`,
     });
-    // console.log(res.works);
-    // const works1 = [];
-    // for (let i = 0; i < res.works.length; i++) {
-    //   works1.push({
-    //     id: res.works[i].id,
-    //     title: res.works[i].title,
-    //     content: res.works[i].content,
-    //     start: res.works[i].start,
-    //     end: res.works[i].end,
-    //     color: res.works[i].color,
-    //     isFinished: 0,
-    //   });
-    // }
-    // console.debug(works1);
+    console.debug(res.works);
     setWorkspaceDetail({
       ...workspaceDetail,
       works: res.works,

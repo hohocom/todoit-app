@@ -37,7 +37,7 @@ function withSecure(Component) {
     const refreshToken = async () => {
       const res = await apiScaffold({
         method: 'get',
-        url: '/users/refresh-token-test/1',
+        url: '/users/refresh-token',
       });
       // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
       axios.defaults.headers.common[
