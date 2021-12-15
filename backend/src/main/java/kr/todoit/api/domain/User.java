@@ -20,12 +20,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @CreationTimestamp
-    private Timestamp createdAt;
-
-    @UpdateTimestamp
-    private Timestamp updatedAt;
-
     @Column(length = 50, nullable = false)
     private String email;
 
@@ -35,11 +29,21 @@ public class User {
     @Column(length = 20, nullable = false)
     private String nickname;
 
+    private Byte level;
+
+    private Byte exp;
+
     @Column(length = 200)
     private String originImagePath;
 
     @Column(length = 200)
     private String thumbnailImagePath;
+
+    @CreationTimestamp
+    private Timestamp createdAt;
+
+    @UpdateTimestamp
+    private Timestamp updatedAt;
 
     @Builder
     public User(Long id, String email, String provider, String nickname, String originImagePath, String thumbnailImagePath) {

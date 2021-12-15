@@ -36,19 +36,18 @@ public class WorkspaceGroup {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private WorkspaceGroupRoleCategory workspaceGroupRoleCategory;
+    @Column(name = "role", columnDefinition = "tinyint default 1")
+    private Byte role;
 
     @Column(length = 20)
     private String duty;
 
     @Builder
-    public WorkspaceGroup(Long id, Workspace workspace, User user, WorkspaceGroupRoleCategory workspaceGroupRoleCategory, String duty) {
+    public WorkspaceGroup(Long id, Workspace workspace, User user, Byte role, String duty) {
         this.id = id;
         this.workspace = workspace;
         this.user = user;
-        this.workspaceGroupRoleCategory = workspaceGroupRoleCategory;
+        this.role = role;
         this.duty = duty;
     }
 }

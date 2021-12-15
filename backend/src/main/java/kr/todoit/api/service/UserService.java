@@ -2,25 +2,23 @@ package kr.todoit.api.service;
 
 import kr.todoit.api.domain.User;
 import kr.todoit.api.domain.WorkspaceGroup;
-import kr.todoit.api.dto.UserInfoResponse;
-import kr.todoit.api.dto.UserLoginRequest;
-import kr.todoit.api.dto.UserTokenResponse;
-import kr.todoit.api.dto.WorkspaceFindResponse;
+import kr.todoit.api.dto.*;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.exception.ValidExceptionType;
 import kr.todoit.api.repository.UserRepository;
 import kr.todoit.api.repository.WorkspaceGroupRepository;
-import kr.todoit.api.repository.WorkspaceRepository;
 import kr.todoit.api.util.RandomNicknameCreator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Transactional
@@ -32,6 +30,19 @@ public class UserService {
     private UserRepository userRepository;
     private TokenService tokenService;
     private WorkspaceGroupRepository workspaceGroupRepository;
+    private ImageService imageService;
+
+    public Long workspaceSuperJoin() {
+        String random = UUID.randomUUID().toString();
+        String nickname = RandomNicknameCreator.getRandomNickname();
+        User user = User.builder()
+                .email(random)
+                .provider("SUPER")
+                .nickname(nickname)
+                .build();
+        userRepository.save(user);
+        return user.getId();
+    }
 
     public UserTokenResponse loginByOauth(UserLoginRequest userLoginRequest) throws CustomException {
         log.info("<USER SERVICE : loginByOauth>");
@@ -142,8 +153,17 @@ public class UserService {
 
     public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
         log.info("<USER SERVICE : getUsersByWorkspaceId>");
-
         List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceId(workspaceId);
+        return getUserByWorkspace(workspaceGroups);
+    }
+
+    public List<HashMap<String, Object>> getUsersByWorkspaceCode(String workspaceCode) {
+        log.info("<USER SERVICE : getUsersByWorkspaceCode>");
+        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceCode(workspaceCode);
+        return getUserByWorkspace(workspaceGroups);
+    }
+
+    private List<HashMap<String, Object>> getUserByWorkspace(List<WorkspaceGroup> workspaceGroups){
         List<HashMap<String, Object>> users = new ArrayList<>();
         for(WorkspaceGroup workspaceGroup : workspaceGroups){
             HashMap<String, Object> user = new HashMap<>();
@@ -152,7 +172,7 @@ public class UserService {
             user.put("originImage", workspaceGroup.getUser().getOriginImagePath());
             user.put("thumbnailImage", workspaceGroup.getUser().getThumbnailImagePath());
             user.put("duty", workspaceGroup.getDuty());
-//            user.put("role", workspaceGroup.getWorkspaceGroupRoleCategory().getName());
+            user.put("role", workspaceGroup.getRole());
             users.add(user);
         }
         System.out.println("users");
@@ -167,5 +187,48 @@ public class UserService {
         checkNullUser(user);
 
         userRepository.delete(user);
+    }
+
+    public HashMap<String, String> update(UserUpdateRequest userUpdateRequest) throws IOException {
+        log.info("<USER SERVICE : update>");
+
+        User user = userRepository.findUserById(userUpdateRequest.getId());
+        checkNullUser(user);
+
+        if(userUpdateRequest.checkNickname()){
+            log.info("유저 닉네임 데이터 있음 -> 닉네임 변경");
+            user.setNickname(userUpdateRequest.getNickname());
+        }
+        if(userUpdateRequest.checkProfileImg()){
+            if(user.getOriginImagePath() != null){
+                log.info("유저 프로필 파일 존재 -> 기존의 프로필, 프로필 프리뷰 삭제.");
+                imageService.delete(user.getOriginImagePath());
+                imageService.delete(user.getThumbnailImagePath());
+            }
+            log.info("새로운 프로필, 프로필 프리뷰 이미지 생성.");
+            HashMap<String, String> imagePaths = imageService.upload(userUpdateRequest.getProfileImg());
+            user.setOriginImagePath(imagePaths.get("origin"));
+            user.setThumbnailImagePath(imagePaths.get("preview"));
+        }
+
+        HashMap<String, String> updateUserInfo = new HashMap<>();
+        updateUserInfo.put("nickname", user.getNickname());
+        updateUserInfo.put("originImage", user.getOriginImagePath());
+        updateUserInfo.put("thumbnailImage", user.getThumbnailImagePath());
+        return updateUserInfo;
+    }
+
+    public void profileImgInit(Long userId){
+        log.info("<USER SERVICE : profileImgInit>");
+        User user = userRepository.findUserById(userId);
+        checkNullUser(user);
+
+        if(user.getOriginImagePath() != null){
+            log.info("유저 프로필 파일 존재 -> 기존의 프로필, 프로필 프리뷰 삭제.");
+            imageService.delete(user.getOriginImagePath());
+            imageService.delete(user.getThumbnailImagePath());
+            user.setOriginImagePath(null);
+            user.setThumbnailImagePath(null);
+        }
     }
 }

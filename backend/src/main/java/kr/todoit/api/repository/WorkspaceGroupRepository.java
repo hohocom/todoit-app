@@ -16,5 +16,8 @@ public interface WorkspaceGroupRepository extends JpaRepository<WorkspaceGroup, 
 
     List<WorkspaceGroup> findByWorkspaceId(Long workspaceId);
 
+    List<WorkspaceGroup> findByWorkspaceCode(String workspaceCode);
+
     WorkspaceGroup findOneByWorkspaceAndUser(Workspace workspace, User user);
+
 }

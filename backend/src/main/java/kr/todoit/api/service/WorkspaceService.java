@@ -3,7 +3,6 @@ package kr.todoit.api.service;
 import kr.todoit.api.domain.User;
 import kr.todoit.api.domain.Workspace;
 import kr.todoit.api.domain.WorkspaceGroup;
-import kr.todoit.api.domain.WorkspaceGroupRoleCategory;
 import kr.todoit.api.dto.WorkspaceCreateRequest;
 import kr.todoit.api.dto.WorkspaceFindResponse;
 import kr.todoit.api.dto.WorkspaceJoinRequest;
@@ -12,7 +11,6 @@ import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.repository.UserRepository;
 import kr.todoit.api.repository.WorkspaceGroupRepository;
-import kr.todoit.api.repository.WorkspaceGroupRoleCategoryRepository;
 import kr.todoit.api.repository.WorkspaceRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +28,6 @@ public class WorkspaceService {
 
     private WorkspaceRepository workspaceRepository;
     private WorkspaceGroupRepository workspaceGroupRepository;
-    private WorkspaceGroupRoleCategoryRepository workspaceGroupRoleCategoryRepository;
     private UserService userService;
     private UserRepository userRepository;
 
@@ -51,9 +48,7 @@ public class WorkspaceService {
         workspaceRepository.save(workspace);
 
         User user =  userService.findUserById(workspaceCreateRequest.getUserId());
-        WorkspaceGroupRoleCategory workspaceGroupRoleCategory = workspaceGroupRoleCategoryRepository.findOneById(1L);
-
-        WorkspaceGroup workspaceGroup = workspaceCreateRequest.toWorkspaceGroup(user, workspace, workspaceGroupRoleCategory);
+        WorkspaceGroup workspaceGroup = workspaceCreateRequest.toWorkspaceGroup(user, workspace);
         workspaceGroupRepository.save(workspaceGroup);
 
         // workspace 리스트 뿌리기
@@ -67,16 +62,13 @@ public class WorkspaceService {
         User user =  userRepository.findUserById(workspaceJoinRequest.getJoinUserId());
         if(user == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
 
-        WorkspaceGroupRoleCategory workspaceGroupRoleCategory = workspaceGroupRoleCategoryRepository.findOneById(3L);
-        if(workspaceGroupRoleCategory == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
-
         WorkspaceGroup workspaceGroup = workspaceGroupRepository.findOneByWorkspaceAndUser(workspace, user);
         if(workspaceGroup != null) throw new CustomException(DefaultExceptionType.DUPLICATE_WORKSPACE);
 
         workspaceGroup = WorkspaceGroup.builder()
                 .user(user)
                 .workspace(workspace)
-                .workspaceGroupRoleCategory(workspaceGroupRoleCategory)
+                .role((byte)3)
                 .build();
         workspaceGroupRepository.save(workspaceGroup);
 

@@ -3,7 +3,6 @@ package kr.todoit.api.dto;
 import kr.todoit.api.domain.User;
 import kr.todoit.api.domain.Workspace;
 import kr.todoit.api.domain.WorkspaceGroup;
-import kr.todoit.api.domain.WorkspaceGroupRoleCategory;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,11 +26,11 @@ public class WorkspaceCreateRequest {
                 .build();
     }
 
-    public WorkspaceGroup toWorkspaceGroup(User user, Workspace workspace, WorkspaceGroupRoleCategory workspaceGroupRoleCategory) {
+    public WorkspaceGroup toWorkspaceGroup(User user, Workspace workspace) {
         return WorkspaceGroup.builder()
                 .user(user)
                 .workspace(workspace)
-                .workspaceGroupRoleCategory(workspaceGroupRoleCategory)
+                .role((byte)1)
                 .build();
     }
 }

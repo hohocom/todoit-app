@@ -47,6 +47,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/users/login-by-oauth")
                 .excludePathPatterns("/users/refresh-token-test/{id}")
                 .excludePathPatterns("/users/refresh-token")
+                .excludePathPatterns("/users/workspace-super-join/{workspaceCode}")
                 .excludePathPatterns("/topic/**")
                 .excludePathPatterns("/test/**")
                 .excludePathPatterns("/start/**");
