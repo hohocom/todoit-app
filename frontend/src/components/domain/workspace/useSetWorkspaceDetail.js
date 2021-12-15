@@ -24,7 +24,7 @@ function useSetWorkspaceDetail() {
     const workspaceCode = location.pathname.split("workspaces/")[1];
     const res = await apiScaffold({
       method: "GET",
-      url: "/users?workspaceId=1",
+      url: `/users?workspaceCode=${workspaceCode}`,
     });
     console.debug(res);
     user.workspaces.forEach((workspace) => {

@@ -76,7 +76,7 @@ td:last-child {
   background-color: #ff935dad
 }
 
-.fc-myCustomButton-button{
+.fc-workCreateButton-button{
   width: 80px;
   border-radius: 10px;
   padding-top: 2px !important;
@@ -84,7 +84,7 @@ td:last-child {
   background-color: #f3f1f1  !important;
   margin-bottom: 2.5px !important;
 }
-.fc-myCustomButton-button:hover{
+.fc-workCreateButton-button:hover{
   background-color: #FF9E5D  !important;
   color: white  !important;
 }

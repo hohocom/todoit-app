@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
-import { workCreateModalState } from "states/work";
+import { workCreateModalState, workCreateModalUIState, worksShowModalUIState } from "states/work";
 import { worksShowModalState } from "states/work";
 import { workspaceDetailState } from "states/workspace";
 import { workDetailState } from "states/work";
@@ -33,9 +33,9 @@ function DashboardPage() {
   const [workDetail, setWorkDetail] = useRecoilState(workDetailState);
 
   const [worksShowModal, setWorksShowModal] =
-    useRecoilState(worksShowModalState);
+    useRecoilState(worksShowModalUIState);
   const [workCreateModal, setWorkCreateModal] =
-    useRecoilState(workCreateModalState);
+    useRecoilState(workCreateModalUIState);
 
   const handleDateClick = (args) => {};
   const handleEventClick = (args) => {
@@ -67,6 +67,7 @@ function DashboardPage() {
       works: res.works,
     });
   };
+
   function renderEventContent(eventInfo) {
     console.log(eventInfo.event);
     let isChecked = false;
@@ -93,6 +94,7 @@ function DashboardPage() {
       </div>
     );
   }
+
   return (
     <WorkspaceContainer>
       <WorkspaceLeftSide workspaceCode={workspaceDetail.code} />
@@ -110,19 +112,17 @@ function DashboardPage() {
           <div className="w-full h-full font-apple-light">
             <FullCalendar
               customButtons={{
-                myCustomButton: {
+                workCreateButton: {
                   text: "일정추가",
                   click: function () {
-                    setWorkCreateModal(!workCreateModal);
+                    setWorkCreateModal({ ...workCreateModal, open: true });
                   },
                 },
               }}
               height="100%"
               headerToolbar={{
-                left: "title,myCustomButton",
-                // center: "",
+                left: "title,workCreateButton",
                 right: "prev,today,next",
-                //  right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
               }}
               plugins={[dayGridPlugin, interactionPlugin]}
               initialView="dayGridMonth"

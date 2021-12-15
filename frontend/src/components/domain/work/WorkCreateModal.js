@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { addDays } from "date-fns";
-import { workCreateModalState } from "states/work";
+import { workCreateModalState, workCreateModalUIState } from "states/work";
 import { DateRange } from "react-date-range";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { apiScaffold } from "utils/apis";
@@ -8,8 +8,8 @@ import { workspaceDetailState } from "states/workspace";
 
 import bgImg from "assets/images/bg.jpg";
 import plus from "assets/images/plus.png";
-import checkWhite from "assets/images/check-white.png";
 import Modal from "components/shared/Modal";
+import ThemeColorPicker from "./ThemeColorPicker";
 
 import ko from "date-fns/locale/ko";
 import SockJsClient from "react-stomp";
@@ -17,12 +17,15 @@ import SockJsClient from "react-stomp";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import { userState } from "states/user";
+import Avatar from "components/shared/Avatar";
+import AvatarGroup from "components/shared/AvatarGroup";
 
 function WorkCreateModal() {
   const websocket = useRef();
 
   const [workCreateModal, setWorkCreateModal] =
-    useRecoilState(workCreateModalState);
+    useRecoilState(workCreateModalUIState);
+
   const [dateState, setDateState] = useState([
     {
       startDate: new Date(),
@@ -51,21 +54,10 @@ function WorkCreateModal() {
     return dateReturn;
   };
 
-  const colors = [
-    { view: "bg-gray-200", data: "#E5E7EB" },
-    { view: "bg-pink-200", data: "#FBCFE8" },
-    { view: "bg-red-200", data: "#FECACA" },
-    { view: "bg-yellow-200", data: "#FDE68A" },
-    { view: "bg-yellow-300", data: "#FCD34D" },
-    { view: "bg-green-200", data: "#A7F3D0" },
-    { view: "bg-blue-200", data: "#BFDBFE" },
-    { view: "bg-purple-200", data: "#DDD6FE" },
-  ];
-  const [colorNumber, setColorNumber] = useState(0);
   const [workCreateForm, setWorkCreateForm] = useState({
     title: "",
     content: "",
-    color: colors[0].data,
+    color: "#E5E7EB",
     users: [1],
     startTime: "",
     endTime: "",
@@ -81,11 +73,6 @@ function WorkCreateModal() {
     }
   };
 
-  const changeColor = (index) => {
-    console.debug(workspaceDetail);
-    setColorNumber(index);
-    setWorkCreateForm({ ...workCreateForm, color: colors[index].data });
-  };
   //일정 전송
   const submit = async () => {
     const formData = new FormData();
@@ -129,54 +116,37 @@ function WorkCreateModal() {
         ref={websocket}
       />
       <div className="">
-        <p className="mb-2 text-xl font-apple-bold">일정을 입력하세요</p>
+        <p className="mb-2 text-xl font-apple-bold">
+          일정을 작성해보세요. (●'◡'●)
+        </p>
         <input
           type="text"
           name="title"
-          className="w-full h-10 p-1 mb-2 border rounded-md"
+          className="w-full h-10 p-1 mb-2 border rounded-md 
+          focus:ring-offset-[#ff925d] focus:ring-[#fc9765]
+          focus:ring-1 focus:ring-offset-1 transition ease-in duration-200 outline-none"
           placeholder="일정"
           onChange={scheduleFormChange}
         />
         <textarea
           type="text"
           name="content"
-          className="w-full h-24 p-1 overflow-y-scroll border rounded-md custom-scroll"
+          className="w-full h-24 p-1 overflow-y-scroll border rounded-md custom-scroll
+          focus:ring-offset-[#ff925d] focus:ring-[#fc9765]
+          focus:ring-1 focus:ring-offset-1 transition ease-in duration-200 outline-none"
           placeholder="내용"
           onChange={scheduleFormChange}
         />
         <p className="mt-2 ml-1 text-[15px]">테마 색상</p>
-        <div className="flex ">
-          {colors.length > 0 &&
-            colors.map((color, index) => {
-              return (
-                <div
-                  className="relative"
-                  key={index}
-                  onClick={() => changeColor(index)}
-                >
-                  <div
-                    className={`flex items-center justify-center w-10 h-10 ml-1 rounded-full ${color.view} cursor-pointer`}
-                  ></div>
-                  {colorNumber === index && (
-                    <div className="absolute top-0 z-10 flex items-center justify-center w-10 h-10 ml-1 rounded-full">
-                      <img alt="" src={checkWhite} className="w-7 h-7" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+        <div className="flex">
+          <ThemeColorPicker
+            workCreateForm={workCreateForm}
+            setWorkCreateForm={setWorkCreateForm}
+          />
         </div>
         <p className="mt-2 ml-1 text-[15px] ">참석자</p>
         <div className="flex">
-          <img
-            src={plus}
-            alt="img"
-            className="top-0 flex items-center justify-center w-10 h-10 p-2 ml-1 bg-gray-200 rounded-full cursor-pointer"
-          />
-
-          <img src={bgImg} alt="img" className="w-10 h-10 ml-1 rounded-full" />
-          <img src={bgImg} alt="img" className="w-10 h-10 ml-1 rounded-full" />
-          <img src={bgImg} alt="img" className="w-10 h-10 ml-1 rounded-full" />
+          <AvatarGroup items={[]} />
         </div>
         <DateRange
           className="flex items-center justify-center w-full"

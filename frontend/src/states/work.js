@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
-export const worksShowModalState = atom({
+export const worksShowModalUIState = atom({
   key: "worksShowModalState",
   default: false,
 });
 
-export const workCreateModalState = atom({
+export const workCreateModalUIState = atom({
   key: "workCreateModalState",
   default: false,
 });

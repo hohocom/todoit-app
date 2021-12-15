@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { worksShowModalState } from "states/work";
+import { worksShowModalUIState } from "states/work";
 import { workDetailState } from "states/work";
 
 import bgImg from "assets/images/bg.jpg";
@@ -16,7 +16,7 @@ function WorksShowModal() {
   const [workDetail, setWorkDetail] =
   useRecoilState(workDetailState);
   const [worksShowModal, setWorksShowModal] =
-    useRecoilState(worksShowModalState);
+    useRecoilState(worksShowModalUIState);
   console.log(workDetail)
   return (
     <Modal
