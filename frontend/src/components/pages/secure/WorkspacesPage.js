@@ -11,6 +11,7 @@ import withSecure from "components/domain/user/withSecure";
 
 import WorkspaceCreateButton from "components/domain/workspace/WorkspaceCreateButton";
 import WorkspaceJoinButton from "components/domain/workspace/WorkspaceJoinButton";
+import LogoutButton from "components/domain/workspace/LogoutButton";
 
 function WorkspacesPage() {
   const user = useRecoilValue(userState);
@@ -31,7 +32,7 @@ function WorkspacesPage() {
           <WorkspaceCreateButton />
         </div>
         <div className="w-full mt-6 text-right">
-          <button className="hover:text-[#ffac5ef3] text-sm">로그아웃</button>
+          <LogoutButton />
         </div>
       </ThemeMainBox>
       <ParticlesContainer />
