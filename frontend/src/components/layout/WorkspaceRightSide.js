@@ -4,9 +4,11 @@ import { userState } from "states/user";
 import { workspaceDetailState } from "states/workspace";
 import { cheerUpMessageState } from "states/message";
 import Avatar from "components/shared/Avatar";
+import { useNavigate } from "react-router-dom";
 
 function WorkspaceRightSide() {
   const user = useRecoilValue(userState);
+  const navigate = useNavigate();
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   const [cheerUpMessage, setCheerUpMessage] =
     useRecoilState(cheerUpMessageState);
@@ -57,7 +59,10 @@ function WorkspaceRightSide() {
           <div>
             {/* <i className="text-3xl text-red-300 cursor-pointer far fa-bell"></i> */}
           </div>
-          <i className="far fa-edit text-[#FF9E5D] text-2xl cursor-pointer"></i>
+          <i
+            className="far fa-edit text-[#FF9E5D] text-2xl cursor-pointer"
+            onClick={() => navigate("/workspaces")}
+          ></i>
         </div>
         <div className="flex flex-col items-center justify-center w-full bg-white rounded-xl box-shadow1">
           <div

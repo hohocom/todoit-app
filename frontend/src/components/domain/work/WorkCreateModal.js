@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useRef, useState, useEffect } from "react";
 import { addDays } from "date-fns";
 import { workCreateModalState, workCreateModalUIState } from "states/work";
@@ -23,8 +24,21 @@ import AvatarGroup from "components/shared/AvatarGroup";
 function WorkCreateModal() {
   const websocket = useRef();
 
-  const [workCreateModal, setWorkCreateModal] =
-    useRecoilState(workCreateModalUIState);
+  const [workCreateModal, setWorkCreateModal] = useRecoilState(
+    workCreateModalUIState
+  );
+  const user = useRecoilValue(userState);
+  const workspaceDetail = useRecoilValue(workspaceDetailState);
+
+  const [workCreateForm, setWorkCreateForm] = useState({
+    title: "",
+    content: "",
+    color: "#E5E7EB",
+    users: [],
+    userIds: [],
+    startTime: "",
+    endTime: "",
+  });
 
   const [dateState, setDateState] = useState([
     {
@@ -34,8 +48,13 @@ function WorkCreateModal() {
     },
   ]);
 
-  const workspaceDetail = useRecoilValue(workspaceDetailState);
-  const user = useRecoilValue(userState);
+  const [userSeletorUI, setUserSeletorUI] = useState(false);
+
+  useEffect(() => {
+    if (user.id) {
+      setWorkCreateForm({ ...workCreateForm, userIds: [].concat(user.id) });
+    }
+  }, [user.id]);
 
   useEffect(() => {
     setDateState([
@@ -45,7 +64,8 @@ function WorkCreateModal() {
         key: "selection",
       },
     ]);
-  }, [workCreateModal]);
+  }, []);
+
   const dateString = (date) => {
     var year = date.getFullYear();
     var month = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -53,15 +73,6 @@ function WorkCreateModal() {
     var dateReturn = year + "-" + month + "-" + day;
     return dateReturn;
   };
-
-  const [workCreateForm, setWorkCreateForm] = useState({
-    title: "",
-    content: "",
-    color: "#E5E7EB",
-    users: [1],
-    startTime: "",
-    endTime: "",
-  });
 
   const scheduleFormChange = (e) => {
     const value = e.target.value;
@@ -146,7 +157,22 @@ function WorkCreateModal() {
         </div>
         <p className="mt-2 ml-1 text-[15px] ">참석자</p>
         <div className="flex">
-          <AvatarGroup items={[]} />
+          <div className="relative">
+            <div
+              onClick={() => setUserSeletorUI(!userSeletorUI)}
+              className="w-10 h-10 border rounded-full mr-1 bg-gray-100 flex justify-center items-center text-gray-500 cursor-pointer"
+            >
+              <i className="fas fa-plus"></i>
+            </div>
+            {userSeletorUI && (
+              <ul className="absolute bg-white  w-[120px] border z-50 rounded-md">
+                {workspaceDetail.users.map((user) => {
+                  return <li className="px-2 p-1 cursor-pointer hover:bg-[#fc9765]">{user.nickname}</li>;
+                })}
+              </ul>
+            )}
+          </div>
+          <AvatarGroup items={workCreateForm.userIds} />
         </div>
         <DateRange
           className="flex items-center justify-center w-full"

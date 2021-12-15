@@ -3,7 +3,7 @@ import { readImgFile } from "utils/image";
 import cameraImg from "assets/images/camera.png";
 import Modal from "./Modal";
 
-function ImagePreview() {
+function ImagePreview({ storeImage, initImage }) {
   const [state, setState] = useState({
     open: false,
     base64Img: "",
@@ -54,14 +54,30 @@ function ImagePreview() {
               className="hidden"
             />
           </label>
-          <div className="p-1">* 이미지는 양식에 맞추어 썸네일 크기로 자동 변경됩니다.</div>
+          <div className="p-1">
+            * 이미지는 양식에 맞추어 썸네일 크기로 자동 변경됩니다.
+          </div>
           {state.file ? (
-            <button className="w-full p-3 pt-3.5 bg-[#ffac5ef3] rounded-md mr-3 text-xl text-white font-apple-bold ring-2 ring-white hover:ring-red-200 mt-2">
+            <button
+              onClick={() => {
+                storeImage(state.file);
+                setOpen();
+              }}
+              className="w-full p-3 pt-3.5 bg-[#ffac5ef3] rounded-md mr-3 text-xl text-white font-apple-bold ring-2 ring-white hover:ring-red-200 mt-2"
+            >
               이미지 등록
             </button>
           ) : (
             <div className="flex justify-end w-full mt-2">
-              <button className="text-red-400">기본 이미지로 초기화</button>
+              <button
+                className="text-red-400"
+                onClick={() => {
+                  initImage();
+                  setOpen();
+                }}
+              >
+                기본 이미지로 초기화
+              </button>
             </div>
           )}
         </div>

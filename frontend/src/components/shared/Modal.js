@@ -1,9 +1,13 @@
-function Modal({ options, state, children }) {
+function Modal({
+  options = { backgroundClose: true, closeButtonType: 1 },
+  state,
+  children,
+}) {
   return (
     state.open && (
       <div
         id="modal-background"
-        className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black/50"
+        className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black/70"
         onClick={() => {
           if (options.backgroundClose) {
             state.setOpen(false);
