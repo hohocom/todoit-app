@@ -620,6 +620,9 @@ video {
 .z-30 {
 	z-index: 30;
 }
+.z-40 {
+	z-index: 40;
+}
 .mx-6 {
 	margin-left: 1.5rem;
 	margin-right: 1.5rem;
@@ -716,6 +719,9 @@ video {
 .mt-6 {
 	margin-top: 1.5rem;
 }
+.block {
+	display: block;
+}
 .inline-block {
 	display: inline-block;
 }
@@ -805,6 +811,9 @@ video {
 }
 .min-w-\[350px\] {
 	min-width: 350px;
+}
+.min-w-\[120px\] {
+	min-width: 120px;
 }
 .flex-grow {
 	flex-grow: 1;
