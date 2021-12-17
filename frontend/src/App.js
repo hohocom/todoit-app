@@ -7,9 +7,16 @@ import MembersPage from "./components/pages/secure/MembersPage";
 import LoginKakaoRedirectPage from "./components/pages/LoginKakaoRedirectPage";
 import LoginNaverRedirectPage from "./components/pages/LoginNaverRedirectPage";
 import Forbidden403Page from "./components/pages/Forbidden403Page";
+import EmojiToast from "components/shared/EmojiToast"
 import { useRoutes } from "react-router";
+import { useRecoilValue, useResetRecoilState } from "recoil";
+import { emojiToastState } from "states/toast";
 
 function App() {
+
+  const emojiToast = useRecoilValue(emojiToastState);
+  const emojiToastReset = useResetRecoilState(emojiToastState);
+
   const route = useRoutes([
     // Public Page
     { path: "/", element: <WelcomePage /> },
@@ -24,7 +31,15 @@ function App() {
     { path: "/403", element: <Forbidden403Page /> },
   ]);
 
-  return route;
+  return (
+    <>
+      {route}
+      <EmojiToast 
+        toast={emojiToast}
+        resetToast={emojiToastReset}
+      />
+    </>
+  );
 }
 
 export default App;

@@ -40,7 +40,7 @@ function ImagePreview({ storeImage, initImage }) {
                 <img src={state.base64Img} alt="img" className="rounded-md" />
               ) : (
                 <div className="flex items-center justify-center w-full">
-                  <img src={cameraImg} alt="img" className="w-[120px]" />
+                  <img src={cameraImg} alt="img" />
                   <p className="text-xl font-apple-bold">
                     사진을 변경해보세요!
                   </p>

@@ -6,7 +6,7 @@ function AvatarGroup({ items, space = "m" }) {
   useEffect(() => {}, []);
 
   return (
-    <div className="flex relative">
+    <div className="relative flex">
       <div
         className={`flex
           ${space === "s" && "-space-x-6"}
@@ -44,7 +44,7 @@ function AvatarGroup({ items, space = "m" }) {
       )}
       <div
         id="avatarGroupModalBackground"
-        className="fixed left-0 top-0 w-full h-full z-40"
+        className="fixed top-0 left-0 z-40 hidden w-full h-full"
         onClick={(e) => {
           const backgroundEl = e.target;
           backgroundEl.style.display = "none";
@@ -54,9 +54,21 @@ function AvatarGroup({ items, space = "m" }) {
       ></div>
       <div
         id="avatarGroupModal"
-        className="absolute -bottom-10 min-w-[120px] p-2 bg-white rounded-md z-50 border"
+        className="hidden absolute min-w-[150px] p-2 bg-white rounded-md z-50 border"
       >
-        hello world!
+        {
+          items.map((item) => {
+            console.debug(item);
+            return(
+              <div className="flex items-center justify-start w-full mb-2" key={item.id}>
+                <Avatar
+                  thumbnailImage={item.thumbnailImage}
+                />
+                <div className="mt-1 ml-1 text-xs">{item.nickname}</div>
+              </div>
+            )
+          })
+        }
       </div>
     </div>
   );
