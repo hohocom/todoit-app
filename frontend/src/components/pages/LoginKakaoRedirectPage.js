@@ -24,6 +24,8 @@ function LoginKakoRedirectPage() {
       email: res.user.email,
       nickname: res.user.nickname,
       workspaces: res.user.workspaces,
+      originImage: res.user.originImage,
+      thumbnailImage: res.user.thumbnailImage
     });
     navigate("/workspaces");
   }, []);

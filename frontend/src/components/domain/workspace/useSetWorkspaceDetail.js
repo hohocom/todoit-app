@@ -16,17 +16,17 @@ function useSetWorkspaceDetail() {
     console.debug("set Detail")
     if (user.id && !workspaceDetail.id) {
       console.debug("워크스페이스 디테일");
-      getMathWorkspace();
+      getMatchWorkspace();
     }
   }, [user]);
 
-  const getMathWorkspace = async () => {
+  const getMatchWorkspace = async () => {
     const workspaceCode = location.pathname.split("workspaces/")[1];
-    const res = await apiScaffold({
+    const { users } = await apiScaffold({
       method: "GET",
       url: `/users?workspaceCode=${workspaceCode}`,
     });
-    console.debug(res);
+    console.debug(users);
     user.workspaces.forEach((workspace) => {
       console.debug(workspace);
       if (workspace.code === workspaceCode) {
@@ -35,7 +35,7 @@ function useSetWorkspaceDetail() {
           id: workspace.id,
           code: workspace.code,
           name: workspace.name,
-          users: res.users,
+          users: users,
         });
       }
     });
