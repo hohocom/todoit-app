@@ -8,6 +8,10 @@ export function useNavChange() {
   const [workspaceUI, setWorksaceUI] = useRecoilState(workspaceUIState);
 
   useEffect(() => {
+    console.debug(
+      "%c[워크스페이스 매뉴 -> code에 맞게 재구성중..]",
+      "color:#45B39D"
+    );
     setWorksaceUI({
       ...workspaceUI,
       menus: [

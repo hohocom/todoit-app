@@ -16,7 +16,7 @@ function MemberPage() {
       <WorkspaceLeftSide />
       <WorkspaceMain>
         <WorkspaceHeader />
-        <WorkspaceSection></WorkspaceSection>
+        <WorkspaceSection>회원 관리 페이지</WorkspaceSection>
       </WorkspaceMain>
       <WorkspaceRightSide />
     </WorkspaceContainer>

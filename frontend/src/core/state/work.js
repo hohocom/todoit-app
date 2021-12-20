@@ -1,25 +1,20 @@
 import { atom } from "recoil";
 
-export const worksShowModalUIState = atom({
-  key: "worksShowModalState",
-  default: false,
-});
-
-export const workCreateModalUIState = atom({
-  key: "workCreateModalState",
-  default: false,
-});
-
-export const workDetailState = atom({
-  key: "workDetailState",
+export const workFormModalState = atom({
+  key: "workFormModalState",
   default: {
+    isOpen: false,
     id: "",
     title: "",
     content: "",
-    start: "",
-    end: "",
-    color: "",
-    isFinished: "",
-    users: []
-  }
-})
+    themeColor: "#E5E7EB",
+    workers: [],
+  },
+});
+
+export const workDetailModalState = atom({
+  key: "workDetailModalState",
+  default: {
+    isOpen: false,
+  },
+});

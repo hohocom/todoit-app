@@ -8,6 +8,28 @@ import { useLocation } from "react-router-dom";
 export function useWorkspace() {
   const [user, setUser] = useRecoilState(userState);
 
+  const join = async () => {
+    console.debug("%c[워크스페이스 가입중..]", "color:#5499C7");
+
+    const workspaceCode = window.prompt("초대코드를 입력해주세요. ✨");
+    if (!workspaceCode) return false;
+
+    const formData = new FormData();
+    formData.append("workspaceCode", workspaceCode);
+    formData.append("joinUserId", user.id);
+
+    const res = await customAxios({
+      method: "post",
+      url: "/workspaces/invite",
+      data: formData,
+    });
+
+    setUser({
+      ...user,
+      workspaces: res.workspaces,
+    });
+  };
+
   // 워크스페이스 생성
   const store = async () => {
     const workspaceName = window.prompt("워크스페이스 이름을 작성해주세요.");
@@ -22,11 +44,42 @@ export function useWorkspace() {
       url: "/workspaces",
       data: formData,
     });
-    console.debug(res);
+    console.debug("%c[워크스페이스 생성중..]", "color:#5499C7");
 
     setUser({
       ...user,
       workspaces: res.workspaces,
+    });
+  };
+
+  // 워크스페이스 수정
+  const edit = async (workspace) => {
+    const workspaceName = window.prompt(
+      "수정할 워크스페이스 이름을 입력해주세요.",
+      workspace.name
+    );
+    if (!workspaceName) return false;
+
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("workspaceName", workspaceName);
+
+    console.debug("%c[워크스페이스 수정중..]", "color:#5499C7");
+
+    await customAxios({
+      method: "put",
+      url: `/workspaces/${workspace.id}`,
+      data: formData,
+    });
+
+    const newWorkspaces = user.workspaces.map((w) => {
+      if (w.id === workspace.id) return { ...w, name: workspaceName };
+      else return w;
+    });
+
+    setUser({
+      ...user,
+      workspaces: newWorkspaces,
     });
   };
 
@@ -37,6 +90,8 @@ export function useWorkspace() {
     );
     const rightAnswer = "DELETE";
     if (result !== rightAnswer) return false;
+
+    console.debug("%c[워크스페이스 삭제중..]", "color:#5499C7");
 
     await customAxios({
       method: "delete",
@@ -54,7 +109,9 @@ export function useWorkspace() {
 
   return {
     store,
+    edit,
     destroy,
+    join,
   };
 }
 
@@ -67,7 +124,10 @@ export function useSetWorkspaceDetail() {
   useEffect(() => {
     // 유저 아이디가 존재하고 워크스페이스 디테일 아이디가 없을 때
     if (user.id && !workspaceDetail.id) {
-      console.debug("%c[워크스페이스 디테일 상태 변경]", "color:blue");
+      console.debug(
+        "%c[워크스페이스 컬랙션중 선택한 워크스페이스 설정중..]",
+        "color:blue"
+      );
       getMatchWorkspace();
     }
   }, [user]);
@@ -85,8 +145,6 @@ export function useSetWorkspaceDetail() {
       url: `/users?workspaceCode=${workspaceCode}`,
     });
 
-    console.debug("%c[워크스페이스 디테일 데이터 바인딩]", "color:orange");
-
     user.workspaces.forEach((workspace) => {
       if (workspace.code === workspaceCode) {
         setWorkspaceDetail({
@@ -99,4 +157,6 @@ export function useSetWorkspaceDetail() {
       }
     });
   };
+
+  return { workspaceDetail, setWorkspaceDetail };
 }
