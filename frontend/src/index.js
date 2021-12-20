@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import reportWebVitals from "./reportWebVitals";
+
+import AppRouter from "./AppRouter";
+import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-import axios from "axios";
-import DebugObserver from "components/DebugObserver";
 
-import "./assets/styles/index.css";
-import "./assets/styles/calendar.css";
+import DebugObserver from "components/DebugObserver";
+import * as serviceWorkerRegistration from "utils/serviceWorkerRegistration";
+import reportWebVitals from "utils/reportWebVitals";
+
+import "styles/index.css";
+import "styles/calendar.css";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
@@ -18,7 +20,7 @@ ReactDOM.render(
   <RecoilRoot>
     <DebugObserver />
     <BrowserRouter>
-      <App />
+      <AppRouter />
     </BrowserRouter>
   </RecoilRoot>,
   document.getElementById("root")
