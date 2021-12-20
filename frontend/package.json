@@ -53,7 +53,7 @@
     "build": "npm run watch:css && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "watch:css": "postcss src/assets/styles/tailwind.css -o src/assets/styles/index.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/index.css",
     "watch": "chokidar \"./src/**/*.js\" -c \"npm run watch:css\"",
     "storybook": "start-storybook -p 5000",
     "build-storybook": "build-storybook"
