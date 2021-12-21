@@ -15,15 +15,19 @@ public class UserInfoResponse {
     private String nickname;
     private String originImage;
     private String thumbnailImage;
+    private Short level;
+    private Short exp;
     private List<HashMap<String, Object>> workspaces;
 
     @Builder
-    public UserInfoResponse(Long id, String email, String nickname, String originImage, String thumbnailImage, List<HashMap<String, Object>> workspaces) {
+    public UserInfoResponse(Long id, String email, String nickname, String originImage, String thumbnailImage, Short level, Short exp, List<HashMap<String, Object>> workspaces) {
         this.id = id;
         this.email = email;
         this.nickname = nickname;
         this.originImage = originImage;
         this.thumbnailImage = thumbnailImage;
+        this.level = level;
+        this.exp = exp;
         this.workspaces = workspaces;
     }
 }

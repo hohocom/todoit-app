@@ -115,6 +115,8 @@ public class UserService {
                 .email(email)
                 .provider(provider)
                 .nickname(nickname)
+                .exp((short) 0)
+                .level((short) 1)
                 .build();
         userRepository.save(user);
         return user;
@@ -140,6 +142,8 @@ public class UserService {
                 .nickname(user.getNickname())
                 .originImage(user.getOriginImagePath())
                 .thumbnailImage(user.getThumbnailImagePath())
+                .level(user.getLevel())
+                .exp(user.getExp())
                 .build();
     }
 
@@ -153,24 +157,25 @@ public class UserService {
 
     public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
         log.info("<USER SERVICE : getUsersByWorkspaceId>");
-        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceId(workspaceId);
+        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceId(workspaceId);
         return getUserByWorkspace(workspaceGroups);
     }
 
     public List<HashMap<String, Object>> getUsersByWorkspaceCode(String workspaceCode) {
         log.info("<USER SERVICE : getUsersByWorkspaceCode>");
-        List<WorkspaceGroup> workspaceGroups =  workspaceGroupRepository.findByWorkspaceCode(workspaceCode);
+        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceCode(workspaceCode);
         return getUserByWorkspace(workspaceGroups);
     }
 
-    private List<HashMap<String, Object>> getUserByWorkspace(List<WorkspaceGroup> workspaceGroups){
+    private List<HashMap<String, Object>> getUserByWorkspace(List<WorkspaceGroup> workspaceGroups) {
         List<HashMap<String, Object>> users = new ArrayList<>();
-        for(WorkspaceGroup workspaceGroup : workspaceGroups){
+        for (WorkspaceGroup workspaceGroup : workspaceGroups) {
             HashMap<String, Object> user = new HashMap<>();
             user.put("id", workspaceGroup.getUser().getId());
             user.put("nickname", workspaceGroup.getUser().getNickname());
             user.put("originImage", workspaceGroup.getUser().getOriginImagePath());
             user.put("thumbnailImage", workspaceGroup.getUser().getThumbnailImagePath());
+            user.put("level", workspaceGroup.getUser().getLevel());
             user.put("duty", workspaceGroup.getDuty());
             user.put("role", workspaceGroup.getRole());
             users.add(user);
@@ -195,12 +200,12 @@ public class UserService {
         User user = userRepository.findUserById(userUpdateRequest.getId());
         checkNullUser(user);
 
-        if(userUpdateRequest.checkNickname()){
+        if (userUpdateRequest.checkNickname()) {
             log.info("유저 닉네임 데이터 있음 -> 닉네임 변경");
             user.setNickname(userUpdateRequest.getNickname());
         }
-        if(userUpdateRequest.checkProfileImg()){
-            if(user.getOriginImagePath() != null){
+        if (userUpdateRequest.checkProfileImg()) {
+            if (user.getOriginImagePath() != null) {
                 log.info("유저 프로필 파일 존재 -> 기존의 프로필, 프로필 프리뷰 삭제.");
                 imageService.delete(user.getOriginImagePath());
                 imageService.delete(user.getThumbnailImagePath());
@@ -218,17 +223,42 @@ public class UserService {
         return updateUserInfo;
     }
 
-    public void profileImgInit(Long userId){
+    public void profileImgInit(Long userId) {
         log.info("<USER SERVICE : profileImgInit>");
         User user = userRepository.findUserById(userId);
         checkNullUser(user);
 
-        if(user.getOriginImagePath() != null){
+        if (user.getOriginImagePath() != null) {
             log.info("유저 프로필 파일 존재 -> 기존의 프로필, 프로필 프리뷰 삭제.");
             imageService.delete(user.getOriginImagePath());
             imageService.delete(user.getThumbnailImagePath());
             user.setOriginImagePath(null);
             user.setThumbnailImagePath(null);
         }
+    }
+
+    public HashMap<String, Object> levelUpdate(UserLevelRequest userLevelRequest) {
+        User user = userRepository.findUserById(userLevelRequest.getId());
+        checkNullUser(user);
+
+        int userLevel = user.getLevel();
+        Short userExp = user.getExp();
+
+        int newExp = userExp + userLevelRequest.getExp();
+
+
+        while (newExp >= 100) {
+            System.out.println(newExp);
+            newExp -= 100;
+            userLevel += 1;
+        }
+        user.setExp((short) newExp);
+        user.setLevel((short) (userLevel));
+
+
+        HashMap<String, Object> userUpdateInfo = new HashMap<>();
+        userUpdateInfo.put("level", user.getLevel());
+        userUpdateInfo.put("exp", user.getExp());
+        return userUpdateInfo;
     }
 }

@@ -1,30 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { userState } from "core/state";
 import { useEffect } from "react";
 import axios from "axios";
-import customAxios from "../api";
+import { useUser } from ".";
 
 export function useKakaoApi() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [user, setUser] = useRecoilState(userState);
+  // const [user, setUser] = useRecoilState(userState);
+  const { getUserDetailById } = useUser();
 
   useEffect(async () => {
     const kakaoAccessToken = await getKakaoAccessToken();
     console.debug(kakaoAccessToken);
+
     const { id } = await getTotoitAccessToken(kakaoAccessToken);
-    const res = await getUserInfo(id);
-    setUser({
-      ...user,
-      id: res.user.id,
-      email: res.user.email,
-      nickname: res.user.nickname,
-      workspaces: res.user.workspaces,
-      originImage: res.user.originImage,
-      thumbnailImage: res.user.thumbnailImage,
-    });
+    await getUserDetailById(id);
     navigate("/workspaces");
   }, []);
 
@@ -80,14 +71,5 @@ export function useKakaoApi() {
     console.debug(res);
     axios.defaults.headers.common["Authorization"] = `bearer ${res.act.token}`;
     return res.act;
-  };
-
-  const getUserInfo = async (userId) => {
-    const res = await customAxios({
-      method: "get",
-      url: `/users/${userId}`,
-    });
-    console.debug(res);
-    return res;
   };
 }

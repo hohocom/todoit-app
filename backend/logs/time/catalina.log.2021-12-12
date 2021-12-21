@@ -1,0 +1,133 @@
+2021-12-12 22:54:30,448 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 11668 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-12 22:54:30,448 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-12 22:54:30,452 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-12 22:54:31,046 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-12 22:54:31,117 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 64 ms. Found 6 JPA repository interfaces.
+2021-12-12 22:54:31,562 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-12 22:54:31,569 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-12 22:54:31,570 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-12 22:54:31,570 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-12 22:54:31,663 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-12 22:54:31,663 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1174 ms
+2021-12-12 22:54:31,768 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-12 22:54:31,816 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-12 22:54:31,931 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-12 22:54:32,003 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-12 22:54:32,335 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2021-12-12 22:54:32,350 INFO  [main:org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-12 22:54:33,777 INFO  [main:org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-12 22:54:33,782 INFO  [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-12 22:54:34,208 WARN  [main:org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-12 22:54:34,416 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+2021-12-12 22:54:34,429 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-12 22:54:34,430 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Starting...
+2021-12-12 22:54:34,430 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@227fc322]]
+2021-12-12 22:54:34,430 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Started.
+2021-12-12 22:54:34,436 INFO  [main:kr.todoit.TodoitApplication] - Started TodoitApplication in 4.297 seconds (JVM running for 5.073)
+2021-12-12 22:54:43,848 INFO  [http-nio-8080-exec-1:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-12 22:54:43,848 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2021-12-12 22:54:43,849 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2021-12-12 22:54:43,894 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:54:44,037 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:54:44,038 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:54:44,038 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:54:44,038 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:54:44,038 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:54:45,437 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:54:45,443 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:54:45,443 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:54:45,443 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:54:45,443 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:54:45,443 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:54:46,788 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:54:46,792 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:54:46,792 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:54:46,792 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:54:46,793 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:54:46,793 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:54:47,809 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:54:47,813 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:54:47,813 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:54:47,813 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:54:47,813 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:54:47,813 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:55:12,830 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:55:12,834 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:55:12,834 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:55:12,834 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:55:12,834 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:55:12,834 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:55:13,682 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:55:13,686 ERROR [http-nio-8080-exec-6:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:55:13,686 ERROR [http-nio-8080-exec-6:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:55:13,686 ERROR [http-nio-8080-exec-6:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:55:13,686 ERROR [http-nio-8080-exec-6:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:55:13,686 ERROR [http-nio-8080-exec-6:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:55:26,265 INFO  [http-nio-8080-exec-7:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 22:55:26,268 ERROR [http-nio-8080-exec-7:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 22:55:26,268 ERROR [http-nio-8080-exec-7:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 22:55:26,268 ERROR [http-nio-8080-exec-7:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 22:55:26,268 ERROR [http-nio-8080-exec-7:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 22:55:26,268 ERROR [http-nio-8080-exec-7:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 22:55:34,201 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-12-12 23:06:05,929 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 23:06:05,934 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:06:05,934 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 23:06:05,935 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 23:06:05,935 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 23:06:05,935 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 23:14:34,108 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 23:14:34,112 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:14:34,112 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 23:14:34,112 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 23:14:34,113 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 23:14:34,113 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 23:22:23,108 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 23:22:23,112 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:22:23,112 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 23:22:23,112 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 23:22:23,112 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 23:22:23,112 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 23:22:25,090 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 23:22:25,093 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:22:25,093 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 23:22:25,093 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 23:22:25,093 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 23:22:25,093 ERROR [http-nio-8080-exec-4:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 23:22:28,560 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-12 23:22:28,563 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:22:28,563 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-12 23:22:28,563 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-12 23:22:28,563 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-12 23:22:28,563 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-12 23:25:34,211 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2021-12-12 23:52:08,196 INFO  [http-nio-8080-exec-7:kr.todoit.api.controller.UserController] - POST/users
+2021-12-12 23:52:08,198 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-12 23:52:08,198 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-12 23:52:08,198 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.OAuth2Service] - Ttl_Yb5fYVaN2WBW4oKC6I1DQWSHoanT8TaIugopyV4AAAF9ryEw1A
+2021-12-12 23:52:08,449 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-12 23:52:08,453 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.UserService] - 회원가입 진행
+2021-12-12 23:52:08,480 INFO  [http-nio-8080-exec-7:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-12 23:52:11,931 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-12 23:52:11,932 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-12 23:52:11,932 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - POST
+2021-12-12 23:52:11,932 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:52:11,932 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - PERMISSION_NOT_DEFINE
+2021-12-12 23:52:11,932 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 올바르지 않은 토큰입니다.
+2021-12-12 23:52:11,932 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 1008
+2021-12-12 23:52:11,932 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 403
+2021-12-12 23:53:22,370 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - POST/users
+2021-12-12 23:53:22,371 INFO  [http-nio-8080-exec-10:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-12 23:53:22,371 INFO  [http-nio-8080-exec-10:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-12 23:53:22,372 INFO  [http-nio-8080-exec-10:kr.todoit.api.service.OAuth2Service] - q_QzxacqadOGGBiNELjE4vuCh0uSj0E32WpGXQo9dRoAAAF9ryJS3A
+2021-12-12 23:53:22,436 INFO  [http-nio-8080-exec-10:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-12 23:53:22,441 INFO  [http-nio-8080-exec-10:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-12 23:55:34,215 INFO  [MessageBroker-10:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[2 current WS(2)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(1)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 51], outboundChannel[pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 5], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 3, completed tasks = 31]
+2021-12-12 23:55:50,209 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-12 23:55:50,209 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-12 23:55:50,209 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - POST
+2021-12-12 23:55:50,209 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-12 23:55:50,209 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - PERMISSION_NOT_DEFINE
+2021-12-12 23:55:50,209 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 올바르지 않은 토큰입니다.
+2021-12-12 23:55:50,209 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 1008
+2021-12-12 23:55:50,209 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 403

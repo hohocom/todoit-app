@@ -33,7 +33,7 @@ public class WorkController {
 
     @GetMapping("")
     public ResponseEntity<Map<Object, Object>> index(@RequestParam Long workspaceId) {
-        log.info("GET/works?workspaceId=#");
+        log.info("[일정 목록 요청중..]");
 
         List<WorkFindResponse> works = workService.findWorksByWorkspaceId(workspaceId);
         Map<Object, Object> response = new HashMap<>();
@@ -46,14 +46,14 @@ public class WorkController {
     @MessageMapping("/getWorks")
     @SendTo("/topics/sendTo")
     public List<WorkFindResponse> socketIndex(@RequestBody Long workspaceId) {
-        log.info("/getWorks");
+        log.info("[소캣으로 일정 목록 요청중..]");
 
         return workService.findWorksByWorkspaceId(workspaceId);
     }
 
     @PostMapping("")
     public ResponseEntity<Map<String, Object>> create(@Valid WorkCreateRequest workCreateRequest, BindingResult bindingResult, HttpServletRequest servletRequest) throws ParseException {
-        log.info("POST/works");
+        log.info("[일정 생성 요청중..]");
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));

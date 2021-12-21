@@ -31,7 +31,7 @@ public class WorkspaceController {
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
-        log.info("GET/workspaces?userId=");
+        log.info("[워크스페이스 목록 요청중..]");
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
@@ -52,7 +52,7 @@ public class WorkspaceController {
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
-        log.info("POST/workspaces");
+        log.info("[워크스페이스 생성 요청중..]");
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
@@ -73,7 +73,7 @@ public class WorkspaceController {
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
-        log.info("PUT/workspaces/:workspaceId");
+        log.info("[워크스페이스 수정 요청중..]");
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
@@ -93,7 +93,7 @@ public class WorkspaceController {
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
-        log.info("DELETE/workspaces/:workspaceId");
+        log.info("[워크스페이스 삭제 요청중..]");
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
@@ -113,7 +113,7 @@ public class WorkspaceController {
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
-        log.info("POST/workspaces/invite");
+        log.info("[워크스페이스 초대 요청중..]");
         System.out.println(workspaceJoinRequest);
 
         if (bindingResult.hasErrors())
