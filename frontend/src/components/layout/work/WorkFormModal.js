@@ -4,7 +4,12 @@ import ko from "date-fns/locale/ko";
 import { useWork } from "core/hook";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
-import { ThemeColorPicker, WorkFormContent, WorkFormTitle } from ".";
+import {
+  ThemeColorPicker,
+  WorkerSelector,
+  WorkFormContent,
+  WorkFormTitle,
+} from ".";
 
 function WorkFormModal() {
   const {
@@ -45,9 +50,7 @@ function WorkFormModal() {
           />
         </div>
         <p className="mt-2 ml-1 text-[15px] ">참석자</p>
-        <div className="flex">
-          <div className="relative">{/* 추후 개발 */}</div>
-        </div>
+        <WorkerSelector />
         <DateRange
           className="flex items-center justify-center w-full"
           editableDateInputs={true}

@@ -66,8 +66,8 @@ function WorkspaceRightSide() {
           <div className="relative w-[120px] h-[120px] flex justify-center items-center -mt-7">
             <div
               className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 
-              animate-spin transition-all duration-500
-          border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D]"
+              hover-spin transition-all duration-500
+          border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D] z-10"
             ></div>
             <div className="absolute flex items-center justify-center w-full h-full">
               <Avatar

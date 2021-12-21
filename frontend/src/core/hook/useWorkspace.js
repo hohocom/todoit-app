@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 
 export function useWorkspace() {
   const [user, setUser] = useRecoilState(userState);
+  const workspaceDetail = useRecoilValue(workspaceDetailState);
 
   const join = async () => {
     console.debug("%c[워크스페이스 가입중..]", "color:#5499C7");
@@ -108,6 +109,7 @@ export function useWorkspace() {
   };
 
   return {
+    workspaceDetail,
     store,
     edit,
     destroy,
