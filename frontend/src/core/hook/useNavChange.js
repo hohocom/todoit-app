@@ -41,6 +41,8 @@ export function useNavChange() {
   const getMenuIndex = () => {
     const workspaceMenuIndexString =
       window.localStorage.getItem("workspaceMenuIndex");
+    if (!workspaceMenuIndexString) return 1;
+
     const { id } = JSON.parse(workspaceMenuIndexString);
     return id;
   };

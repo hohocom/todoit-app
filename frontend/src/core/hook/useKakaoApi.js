@@ -15,6 +15,7 @@ export function useKakaoApi() {
     const kakaoAccessToken = await getKakaoAccessToken();
     console.debug(kakaoAccessToken);
     const { id } = await getTotoitAccessToken(kakaoAccessToken);
+    console.log(id)
     const res = await getUserInfo(id);
     setUser({
       ...user,
@@ -63,6 +64,7 @@ export function useKakaoApi() {
     const formData = new FormData();
     formData.append("providerType", "KAKAO");
     formData.append("accessToken", kakaoAccessToken);
+    console.log(kakaoAccessToken)
     const res = await axios({
       method: "post",
       url: "/users/login-by-oauth",
