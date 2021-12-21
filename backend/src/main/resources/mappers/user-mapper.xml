@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.todoit.api.mapper.UserMapper">
+
+    <resultMap id="user" type="java.util.HashMap">
+        <id column="work_id" property="id"/>
+        <result column="id" property="id"/>
+        <result column="nickname" property="nickname"/>
+        <result column="level" property="level"/>
+        <result column="origin_image_path" property="originImagePath"/>
+        <result column="thumbnail_image_path" property="thumbnailImagePath"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
+    <select id="findUserByOptions" parameterType="kr.todoit.api.dto.UserFindRequest" resultMap="user">
+        select
+               u.id, u.nickname, u.level, u.created_at,
+                if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
+                if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
+        from workspace_groups wg
+                 left join users u on wg.user_id = u.id
+                 left join workspaces w on wg.workspace_id = w.id
+        <if test="workspaceId != null">where w.id = #{workspaceId}</if>
+        <if test="workspaceId == null and workspaceCode">where w.code = #{workspaceCode}</if>
+        <if test="orderType == null">order by u.nickname asc</if>
+        <if test="orderType == 'desc'">order by u.nickname desc</if>
+        <if test="pageNumber != null">limit 10 offset #{pageNumber}</if>
+
+    </select>
+</mapper>

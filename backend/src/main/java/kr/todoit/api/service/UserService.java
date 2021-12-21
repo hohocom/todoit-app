@@ -6,6 +6,7 @@ import kr.todoit.api.dto.*;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.exception.ValidExceptionType;
+import kr.todoit.api.mapper.UserMapper;
 import kr.todoit.api.repository.UserRepository;
 import kr.todoit.api.repository.WorkspaceGroupRepository;
 import kr.todoit.api.util.RandomNicknameCreator;
@@ -28,6 +29,7 @@ public class UserService {
 
     private OAuth2Service oAuth2Service;
     private UserRepository userRepository;
+    private UserMapper userMapper;
     private TokenService tokenService;
     private WorkspaceGroupRepository workspaceGroupRepository;
     private ImageService imageService;
@@ -39,6 +41,8 @@ public class UserService {
                 .email(random)
                 .provider("SUPER")
                 .nickname(nickname)
+                .exp((short) 0)
+                .level((short) 1)
                 .build();
         userRepository.save(user);
         return user.getId();
@@ -95,18 +99,6 @@ public class UserService {
                 .build();
     }
 
-    public UserTokenResponse verifyTokenThenGetTokensTest(Long id) {
-        log.info("<USER SERVICE : verifyTokenThenGetTokensTest>");
-
-        HashMap<String, Object> actInfo = tokenService.getAct(id);
-        HashMap<String, Object> rftInfo = tokenService.getRft(id);
-
-        return UserTokenResponse.builder()
-                .actInfo(actInfo)
-                .rftInfo(rftInfo)
-                .build();
-    }
-
     private User joinUser(String email, String provider) {
         log.info("<USER SERVICE : joinUser>");
 
@@ -155,35 +147,40 @@ public class UserService {
         }
     }
 
-    public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
-        log.info("<USER SERVICE : getUsersByWorkspaceId>");
-        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceId(workspaceId);
-        return getUserByWorkspace(workspaceGroups);
+    public List<HashMap<String, Object>> getUsersByOptions(UserFindRequest userFindRequest) {
+        return userMapper.findUserByOptions(userFindRequest);
     }
 
-    public List<HashMap<String, Object>> getUsersByWorkspaceCode(String workspaceCode) {
-        log.info("<USER SERVICE : getUsersByWorkspaceCode>");
-        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceCode(workspaceCode);
-        return getUserByWorkspace(workspaceGroups);
-    }
-
-    private List<HashMap<String, Object>> getUserByWorkspace(List<WorkspaceGroup> workspaceGroups) {
-        List<HashMap<String, Object>> users = new ArrayList<>();
-        for (WorkspaceGroup workspaceGroup : workspaceGroups) {
-            HashMap<String, Object> user = new HashMap<>();
-            user.put("id", workspaceGroup.getUser().getId());
-            user.put("nickname", workspaceGroup.getUser().getNickname());
-            user.put("originImage", workspaceGroup.getUser().getOriginImagePath());
-            user.put("thumbnailImage", workspaceGroup.getUser().getThumbnailImagePath());
-            user.put("level", workspaceGroup.getUser().getLevel());
-            user.put("duty", workspaceGroup.getDuty());
-            user.put("role", workspaceGroup.getRole());
-            users.add(user);
-        }
-        System.out.println("users");
-
-        return users;
-    }
+//    public List<HashMap<String, Object>> getUsersByWorkspaceId(Long workspaceId) {
+//        log.info("<USER SERVICE : getUsersByWorkspaceId>");
+//        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceIdOrderByUserNicknameAsc(workspaceId);
+//        return getUserByWorkspace(workspaceGroups);
+//    }
+//
+//    public List<HashMap<String, Object>> getUsersByWorkspaceCode(String workspaceCode) {
+//        log.info("<USER SERVICE : getUsersByWorkspaceCode>");
+//        List<WorkspaceGroup> workspaceGroups = workspaceGroupRepository.findByWorkspaceCodeOrderByUserNicknameAsc(workspaceCode);
+//        return getUserByWorkspace(workspaceGroups);
+//    }
+//
+//    private List<HashMap<String, Object>> getUserByWorkspace(List<WorkspaceGroup> workspaceGroups) {
+//        List<HashMap<String, Object>> users = new ArrayList<>();
+//        for (WorkspaceGroup workspaceGroup : workspaceGroups) {
+//            HashMap<String, Object> user = new HashMap<>();
+//            user.put("id", workspaceGroup.getUser().getId());
+//            user.put("nickname", workspaceGroup.getUser().getNickname());
+//            user.put("originImage", workspaceGroup.getUser().getOriginImagePath());
+//            user.put("thumbnailImage", workspaceGroup.getUser().getThumbnailImagePath());
+//            user.put("level", workspaceGroup.getUser().getLevel());
+//            user.put("duty", workspaceGroup.getDuty());
+//            user.put("role", workspaceGroup.getRole());
+//            user.put("createdAt", workspaceGroup.getUser().getCreatedAt());
+//            users.add(user);
+//        }
+//        System.out.println("users");
+//
+//        return users;
+//    }
 
     public void deleteByUserId(Long id) {
         log.info("<USER SERVICE : deleteByUserId>");
@@ -261,4 +258,6 @@ public class UserService {
         userUpdateInfo.put("exp", user.getExp());
         return userUpdateInfo;
     }
+
+
 }

@@ -62,7 +62,8 @@ public class UserController {
 
     @GetMapping("/refresh-token")
     public ResponseEntity<Map<String, Object>> refreshToken(@CookieValue(name = "rft", required = false) String refreshToken) {
-        log.info("[유저 토큰 재발급 요청중.. -> RFT 쿠키 제거]");
+        log.info("[유저 토큰 재발급 요청중..]");
+        System.out.println(refreshToken);
 
         if (refreshToken == null) {
             log.info("쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )");
@@ -77,6 +78,7 @@ public class UserController {
     }
 
     private ResponseEntity<Map<String, Object>> responseTokens(UserTokenResponse userTokenResponse, Map<String, Object> response) {
+
         final Long time = 3600 * 24 * 14L;
         ResponseCookie responseCookie = ResponseCookie.from("rft", userTokenResponse.getRftInfo().get("token").toString())
                 .httpOnly(true)
@@ -106,21 +108,13 @@ public class UserController {
 
 
     @GetMapping("")
-    public ResponseEntity<Map<String, Object>> findByWorkspaceOptions(
-            @RequestParam(defaultValue = "", required = false) Long workspaceId,
-            @RequestParam(defaultValue = "", required = false) String workspaceCode
-    ) {
+    public ResponseEntity<Map<String, Object>> findByWorkspaceOptions(UserFindRequest userFindRequest) {
         log.info("[회원 워크스페이스에 존재하는 맴버 정보 요청중..]");
-
-        System.out.println(workspaceCode);
-        System.out.println(workspaceId);
+        System.out.println(userFindRequest);
 
         List<HashMap<String, Object>> users = null;
-        if (workspaceId != null) {
-            users = userService.getUsersByWorkspaceId(workspaceId);
-        } else if (!workspaceCode.equals("")) {
-            users = userService.getUsersByWorkspaceCode(workspaceCode);
-        }
+
+        users = userService.getUsersByOptions(userFindRequest);
 
         Map<String, Object> response = new HashMap<>();
         response.put("message", "회원 데이터 조회.");
