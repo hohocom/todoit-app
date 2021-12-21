@@ -90,3 +90,12 @@
   left: 50%;
   transform: translateX(-50%);
 }
+
+@keyframes hover-spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+.hover-spin:hover {
+  animation: hover-spin 1s linear infinite;
+}

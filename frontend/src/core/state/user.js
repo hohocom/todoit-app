@@ -8,6 +8,8 @@ export const userState = atom({
     nickname: "",
     originImage: "",
     thumbnailImage: "",
+    level: 1,
+    exp: 0,
     workspaces: [],
   },
 });

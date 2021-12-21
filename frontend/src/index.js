@@ -12,6 +12,7 @@ import reportWebVitals from "utils/reportWebVitals";
 
 import "styles/index.css";
 import "styles/calendar.css";
+import "styles/firework.css";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;

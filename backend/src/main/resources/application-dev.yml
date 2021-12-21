@@ -14,4 +14,4 @@ spring:
 custom:
   secret: 'hellotodoit'
   path:
-    upload-images: 'C:/Users/User/Desktop/workspace/uploads'
+    upload-images: 'C:/Users/gojaebeom/Desktop/workspace/uploads'

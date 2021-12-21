@@ -1,0 +1,993 @@
+2021-12-11 00:47:35,795 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-11 00:47:35,795 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 11712 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-11 00:47:35,797 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-11 00:47:36,244 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 00:47:36,295 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 44 ms. Found 6 JPA repository interfaces.
+2021-12-11 00:47:36,630 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-11 00:47:36,636 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-11 00:47:36,636 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-11 00:47:36,636 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 00:47:36,715 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-11 00:47:36,716 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 895 ms
+2021-12-11 00:47:36,816 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 00:47:36,844 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 00:47:36,936 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 00:47:36,998 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-11 00:47:42,134 ERROR [main:com.zaxxer.hikari.pool.HikariPool] - HikariPool-1 - Exception during pool initialization.
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:178)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:175)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 49 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:156)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 52 common frames omitted
+2021-12-11 00:47:42,137 WARN  [main:org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator] - HHH000342: Could not obtain connection to query metadata
+com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:178)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:175)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:89)
+	at com.mysql.cj.NativeSession.connect(NativeSession.java:120)
+	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:948)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:818)
+	... 49 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.waitForConnect(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(PlainSocketImpl.java:107)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:412)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:255)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:237)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.base/java.net.Socket.connect(Socket.java:608)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:156)
+	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:63)
+	... 52 common frames omitted
+2021-12-11 00:47:42,141 ERROR [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+2021-12-11 00:47:42,144 WARN  [main:org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext] - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+2021-12-11 00:47:42,146 INFO  [main:org.apache.catalina.core.StandardService] - Stopping service [Tomcat]
+2021-12-11 00:47:42,155 INFO  [main:org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener] - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 00:47:42,170 ERROR [main:org.springframework.boot.SpringApplication] - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.engine.jdbc.env.spi.JdbcEnvironment]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:275)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:178)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:175)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 16 common frames omitted
+Caused by: org.hibernate.HibernateException: Access to DialectResolutionInfo cannot be null when 'hibernate.dialect' not set
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.determineDialect(DialectFactoryImpl.java:100)
+	at org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl.buildDialect(DialectFactoryImpl.java:54)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:138)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	... 33 common frames omitted
+2021-12-11 00:55:28,786 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-11 00:55:28,786 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 11136 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-11 00:55:28,789 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-11 00:55:29,236 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 00:55:29,285 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 44 ms. Found 6 JPA repository interfaces.
+2021-12-11 00:55:29,610 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-11 00:55:29,617 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-11 00:55:29,617 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-11 00:55:29,617 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 00:55:29,698 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-11 00:55:29,698 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 878 ms
+2021-12-11 00:55:29,775 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 00:55:29,811 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 00:55:29,899 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 00:55:29,958 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-11 00:55:30,161 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2021-12-11 00:55:30,174 INFO  [main:org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 00:55:30,583 INFO  [main:org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 00:55:30,589 INFO  [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 00:55:31,007 WARN  [main:org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 00:55:31,207 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+2021-12-11 00:55:31,220 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 00:55:31,221 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Starting...
+2021-12-11 00:55:31,221 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@37fd496a]]
+2021-12-11 00:55:31,221 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Started.
+2021-12-11 00:55:31,228 INFO  [main:kr.todoit.TodoitApplication] - Started TodoitApplication in 2.73 seconds (JVM running for 3.29)
+2021-12-11 00:55:52,248 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopping...
+2021-12-11 00:55:52,249 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@37fd496a]]
+2021-12-11 00:55:52,249 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopped.
+2021-12-11 00:55:52,269 INFO  [SpringApplicationShutdownHook:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 00:55:52,270 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2021-12-11 00:55:52,277 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2021-12-11 00:55:54,531 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 2756 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-11 00:55:54,531 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-11 00:55:54,533 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-11 00:55:54,953 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 00:55:55,001 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 43 ms. Found 6 JPA repository interfaces.
+2021-12-11 00:55:55,302 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-11 00:55:55,308 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-11 00:55:55,309 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-11 00:55:55,309 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 00:55:55,375 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-11 00:55:55,375 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 817 ms
+2021-12-11 00:55:55,452 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 00:55:55,477 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 00:55:55,555 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 00:55:55,615 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-11 00:55:55,804 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2021-12-11 00:55:55,816 INFO  [main:org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 00:55:56,218 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table work_comments drop foreign key FKot38lixux1doe3o3pup0ro1w3" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table work_comments drop foreign key FKot38lixux1doe3o3pup0ro1w3" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.work_comments' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,220 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table work_comments drop foreign key FK63kofh0cbdwoinfhdhpovhyci" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table work_comments drop foreign key FK63kofh0cbdwoinfhdhpovhyci" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.work_comments' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,221 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table work_groups drop foreign key FKdrhwl81i1ccyc3kllt277in4b" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table work_groups drop foreign key FKdrhwl81i1ccyc3kllt277in4b" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.work_groups' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,222 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table work_groups drop foreign key FKbudiqify079guejlv8hm09yy3" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table work_groups drop foreign key FKbudiqify079guejlv8hm09yy3" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.work_groups' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,222 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table works drop foreign key FK4q2qd8h07qhd0vttqqke2kni0" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table works drop foreign key FK4q2qd8h07qhd0vttqqke2kni0" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.works' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,223 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table workspace_groups drop foreign key FKdcmu8prrgwxqi8215ewo9vllf" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table workspace_groups drop foreign key FKdcmu8prrgwxqi8215ewo9vllf" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.workspace_groups' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,224 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table workspace_groups drop foreign key FKsonkuxtj2tcw418js7sd4kdsy" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table workspace_groups drop foreign key FKsonkuxtj2tcw418js7sd4kdsy" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.workspace_groups' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,225 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table workspace_groups drop foreign key FKsuuovqs1di5yeumulrue4o036" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table workspace_groups drop foreign key FKsuuovqs1di5yeumulrue4o036" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.workspace_groups' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:56,227 WARN  [main:org.hibernate.tool.schema.internal.ExceptionHandlerLoggedImpl] - GenerationTarget encountered exception accepting command : Error executing DDL "alter table workspace_notifications drop foreign key FKjfu6xlx0f0f0e233lomga7o6y" via JDBC Statement
+org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table workspace_notifications drop foreign key FKjfu6xlx0f0f0e233lomga7o6y" via JDBC Statement
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:67)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlString(SchemaDropperImpl.java:375)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applySqlStrings(SchemaDropperImpl.java:359)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.applyConstraintDropping(SchemaDropperImpl.java:331)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.dropFromMetadata(SchemaDropperImpl.java:230)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.performDrop(SchemaDropperImpl.java:154)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:126)
+	at org.hibernate.tool.schema.internal.SchemaDropperImpl.doDrop(SchemaDropperImpl.java:112)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.performDatabaseAction(SchemaManagementToolCoordinator.java:153)
+	at org.hibernate.tool.schema.spi.SchemaManagementToolCoordinator.process(SchemaManagementToolCoordinator.java:81)
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:327)
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290)
+	at kr.todoit.TodoitApplication.main(TodoitApplication.java:10)
+Caused by: java.sql.SQLSyntaxErrorException: Table 'todoit.workspace_notifications' doesn't exist
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:768)
+	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:653)
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
+	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:54)
+	... 35 common frames omitted
+2021-12-11 00:55:57,406 INFO  [main:org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 00:55:57,412 INFO  [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 00:55:57,785 WARN  [main:org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 00:55:57,964 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+2021-12-11 00:55:57,974 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 00:55:57,975 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Starting...
+2021-12-11 00:55:57,976 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@79982bcc]]
+2021-12-11 00:55:57,976 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Started.
+2021-12-11 00:55:57,983 INFO  [main:kr.todoit.TodoitApplication] - Started TodoitApplication in 3.701 seconds (JVM running for 4.234)
+2021-12-11 00:56:57,788 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-12-11 01:18:43,680 INFO  [http-nio-8080-exec-1:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 01:18:43,681 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2021-12-11 01:18:43,682 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2021-12-11 01:18:43,763 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - POST/users
+2021-12-11 01:18:43,770 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-11 01:18:43,770 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-11 01:18:43,770 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - Y6P7Q7Gq8VO1asWp34i3MtWmgWeWHhXqkJCaZQo9cxcAAAF9pSNPpQ
+2021-12-11 01:18:43,930 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-11 01:18:44,023 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 회원가입 진행
+2021-12-11 01:18:44,051 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-11 01:18:44,145 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 01:18:44,157 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:18:44,157 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:18:44,157 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - OPTIONS
+2021-12-11 01:18:44,157 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - if request options method is options, return true
+2021-12-11 01:18:44,163 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:18:44,163 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:18:44,163 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 01:18:44,164 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 01:18:48,542 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:18:48,542 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:18:48,542 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - OPTIONS
+2021-12-11 01:18:48,542 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - if request options method is options, return true
+2021-12-11 01:18:48,547 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:18:48,547 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:18:48,547 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - POST
+2021-12-11 01:18:48,552 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.WorkspaceController] - CREATE/workspaces
+2021-12-11 01:19:06,507 INFO  [http-nio-8080-exec-8:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 01:19:06,547 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:19:06,547 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:19:06,547 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 01:19:06,548 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 01:19:06,570 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:19:06,570 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:19:06,570 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - OPTIONS
+2021-12-11 01:19:06,570 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - if request options method is options, return true
+2021-12-11 01:19:06,574 WARN  [http-nio-8080-exec-3:org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver] - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-12-11 01:19:06,577 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:19:06,577 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:19:06,577 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 01:26:04,704 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - POST/users
+2021-12-11 01:26:04,705 INFO  [http-nio-8080-exec-9:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-11 01:26:04,706 INFO  [http-nio-8080-exec-9:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-11 01:26:04,706 INFO  [http-nio-8080-exec-9:kr.todoit.api.service.OAuth2Service] - szHrxsDbZnM5XsO5anKD2F6OeJpEM8umWjvz2Qo9c00AAAF9pSoKmA
+2021-12-11 01:26:04,767 INFO  [http-nio-8080-exec-9:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-11 01:26:04,769 INFO  [http-nio-8080-exec-9:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-11 01:26:04,795 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 01:26:04,801 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:26:04,801 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:26:04,801 INFO  [http-nio-8080-exec-2:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 01:26:04,802 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 01:26:57,798 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 12], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 1], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 2, completed tasks = 114]
+2021-12-11 01:28:40,080 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 01:28:40,089 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 01:28:40,089 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 01:28:40,089 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 01:28:40,090 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 01:29:42,539 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopping...
+2021-12-11 01:29:42,539 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@79982bcc]]
+2021-12-11 01:29:42,539 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopped.
+2021-12-11 01:29:42,580 INFO  [SpringApplicationShutdownHook:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 01:29:42,581 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2021-12-11 01:29:42,586 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2021-12-11 11:15:31,227 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-11 11:15:31,227 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 11580 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-11 11:15:31,230 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-11 11:15:31,752 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 11:15:31,812 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 52 ms. Found 6 JPA repository interfaces.
+2021-12-11 11:15:32,177 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-11 11:15:32,184 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-11 11:15:32,185 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-11 11:15:32,185 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 11:15:32,272 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-11 11:15:32,272 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 1011 ms
+2021-12-11 11:15:32,377 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 11:15:32,423 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 11:15:32,539 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 11:15:32,614 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-11 11:15:32,910 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2021-12-11 11:15:32,924 INFO  [main:org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 11:15:34,220 INFO  [main:org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 11:15:34,225 INFO  [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 11:15:34,656 WARN  [main:org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 11:15:34,928 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+2021-12-11 11:15:34,942 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 11:15:34,943 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Starting...
+2021-12-11 11:15:34,943 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6b6939e1]]
+2021-12-11 11:15:34,943 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Started.
+2021-12-11 11:15:34,951 INFO  [main:kr.todoit.TodoitApplication] - Started TodoitApplication in 4.037 seconds (JVM running for 5.178)
+2021-12-11 11:16:34,648 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+2021-12-11 11:46:34,650 INFO  [MessageBroker-1:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 2, active threads = 1, queued tasks = 0, completed tasks = 1]
+2021-12-11 12:07:16,060 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopping...
+2021-12-11 12:07:16,060 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@6b6939e1]]
+2021-12-11 12:07:16,060 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopped.
+2021-12-11 12:07:16,077 INFO  [SpringApplicationShutdownHook:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 12:07:16,078 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2021-12-11 12:07:16,083 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.
+2021-12-11 19:37:17,903 INFO  [background-preinit:org.hibernate.validator.internal.util.Version] - HV000001: Hibernate Validator 6.2.0.Final
+2021-12-11 19:37:17,903 INFO  [main:kr.todoit.TodoitApplication] - Starting TodoitApplication using Java 11.0.13 on DESKTOP-CJ0OPBL with PID 9600 (C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend\target\classes started by gojaebeom in C:\Users\gojaebeom\Desktop\workspace\todoit.kr\backend)
+2021-12-11 19:37:17,905 INFO  [main:kr.todoit.TodoitApplication] - The following profiles are active: dev
+2021-12-11 19:37:18,404 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 19:37:18,452 INFO  [main:org.springframework.data.repository.config.RepositoryConfigurationDelegate] - Finished Spring Data repository scanning in 43 ms. Found 6 JPA repository interfaces.
+2021-12-11 19:37:18,781 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat initialized with port(s): 8080 (http)
+2021-12-11 19:37:18,789 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Initializing ProtocolHandler ["http-nio-8080"]
+2021-12-11 19:37:18,790 INFO  [main:org.apache.catalina.core.StandardService] - Starting service [Tomcat]
+2021-12-11 19:37:18,790 INFO  [main:org.apache.catalina.core.StandardEngine] - Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 19:37:18,889 INFO  [main:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring embedded WebApplicationContext
+2021-12-11 19:37:18,889 INFO  [main:org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] - Root WebApplicationContext: initialization completed in 959 ms
+2021-12-11 19:37:18,984 INFO  [main:org.hibernate.jpa.internal.util.LogHelper] - HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 19:37:19,016 INFO  [main:org.hibernate.Version] - HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 19:37:19,110 INFO  [main:org.hibernate.annotations.common.Version] - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 19:37:19,175 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Starting...
+2021-12-11 19:37:19,396 INFO  [main:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Start completed.
+2021-12-11 19:37:19,408 INFO  [main:org.hibernate.dialect.Dialect] - HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 19:37:20,794 INFO  [main:org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator] - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 19:37:20,801 INFO  [main:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 19:37:21,230 WARN  [main:org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration] - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 19:37:21,477 INFO  [main:org.apache.coyote.http11.Http11NioProtocol] - Starting ProtocolHandler ["http-nio-8080"]
+2021-12-11 19:37:21,489 INFO  [main:org.springframework.boot.web.embedded.tomcat.TomcatWebServer] - Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 19:37:21,491 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Starting...
+2021-12-11 19:37:21,491 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@bae5e58]]
+2021-12-11 19:37:21,491 INFO  [main:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Started.
+2021-12-11 19:37:21,496 INFO  [main:kr.todoit.TodoitApplication] - Started TodoitApplication in 3.863 seconds (JVM running for 4.553)
+2021-12-11 19:37:28,484 INFO  [http-nio-8080-exec-1:org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 19:37:28,485 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Initializing Servlet 'dispatcherServlet'
+2021-12-11 19:37:28,486 INFO  [http-nio-8080-exec-1:org.springframework.web.servlet.DispatcherServlet] - Completed initialization in 1 ms
+2021-12-11 19:37:28,568 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - POST/users
+2021-12-11 19:37:28,576 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-11 19:37:28,576 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-11 19:37:28,576 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - Rku10ttW39BGTSSJAOo32gWHYcZoFLemO2sX6wopyNgAAAF9qRE2jw
+2021-12-11 19:37:28,783 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-11 19:37:28,872 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 회원가입 진행
+2021-12-11 19:37:28,894 INFO  [http-nio-8080-exec-1:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-11 19:37:28,995 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 19:37:29,008 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:29,009 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:29,009 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - OPTIONS
+2021-12-11 19:37:29,009 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - if request options method is options, return true
+2021-12-11 19:37:29,021 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:29,022 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:29,022 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:37:29,023 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:37:33,462 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:33,462 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:33,462 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - OPTIONS
+2021-12-11 19:37:33,462 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - if request options method is options, return true
+2021-12-11 19:37:33,467 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:33,467 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:33,467 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - POST
+2021-12-11 19:37:33,473 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.WorkspaceController] - CREATE/workspaces
+2021-12-11 19:37:37,792 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 19:37:37,803 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:37,803 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:37,803 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:37:37,804 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:37:39,351 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 19:37:39,361 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:37:39,361 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:37:39,361 INFO  [http-nio-8080-exec-6:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:37:39,362 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:38:21,219 INFO  [MessageBroker-7:org.springframework.web.socket.config.WebSocketMessageBrokerStats] - WebSocketSession[2 current WS(2)-HttpStream(0)-HttpPoll(0), 7 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(7)-CONNECTED(7)-DISCONNECT(4)], stompBrokerRelay[null], inboundChannel[pool size = 24, active threads = 0, queued tasks = 0, completed tasks = 147], outboundChannel[pool size = 16, active threads = 0, queued tasks = 0, completed tasks = 16], sockJsScheduler[pool size = 12, active threads = 1, queued tasks = 3, completed tasks = 11]
+2021-12-11 19:38:46,810 INFO  [http-nio-8080-exec-8:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 19:38:46,824 INFO  [http-nio-8080-exec-9:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:38:46,824 INFO  [http-nio-8080-exec-9:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:38:46,824 INFO  [http-nio-8080-exec-9:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:38:46,825 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:38:48,032 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/refresh-token-test
+2021-12-11 19:38:48,043 INFO  [http-nio-8080-exec-1:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:38:48,043 INFO  [http-nio-8080-exec-1:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:38:48,043 INFO  [http-nio-8080-exec-1:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:38:48,044 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:40:08,053 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:40:08,066 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:40:08,066 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:40:08,066 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:40:08,067 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:42:14,272 INFO  [http-nio-8080-exec-8:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:42:14,272 INFO  [http-nio-8080-exec-8:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:42:14,276 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:42:14,276 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:42:14,276 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:42:14,277 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:42:14,277 ERROR [http-nio-8080-exec-8:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:42:24,460 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:42:24,460 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:42:24,460 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:42:24,460 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:42:24,460 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:42:24,461 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:42:24,461 ERROR [http-nio-8080-exec-9:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:42:53,999 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:42:53,999 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:42:53,999 ERROR [http-nio-8080-exec-10:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:42:53,999 ERROR [http-nio-8080-exec-10:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:42:53,999 ERROR [http-nio-8080-exec-10:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:42:53,999 ERROR [http-nio-8080-exec-10:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:42:53,999 ERROR [http-nio-8080-exec-10:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:43:00,974 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:43:00,975 INFO  [http-nio-8080-exec-1:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:43:00,975 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:43:00,975 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:43:00,975 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:43:00,975 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:43:00,975 ERROR [http-nio-8080-exec-1:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:43:05,324 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:43:05,324 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:43:05,325 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:43:05,325 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:43:05,325 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:43:05,325 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:43:05,325 ERROR [http-nio-8080-exec-2:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:43:21,017 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:43:21,017 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:43:21,018 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:43:21,018 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:43:21,018 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:43:21,018 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:43:21,018 ERROR [http-nio-8080-exec-3:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:44:50,004 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:44:50,004 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - 쿠키 확인 -> 저장된 토큰 없음( 로그인 하지 않은 유저 )
+2021-12-11 19:44:50,004 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - ---Error Handler---
+2021-12-11 19:44:50,004 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - NOT_FOUND_USER
+2021-12-11 19:44:50,004 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 해당하는 사용자가 존재하지 않습니다.
+2021-12-11 19:44:50,004 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 1001
+2021-12-11 19:44:50,004 ERROR [http-nio-8080-exec-5:kr.todoit.api.controller.ExceptionController] - 200
+2021-12-11 19:44:54,292 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.UserController] - POST/users
+2021-12-11 19:44:54,293 INFO  [http-nio-8080-exec-6:kr.todoit.api.service.UserService] - 카카오 로그인
+2021-12-11 19:44:54,293 INFO  [http-nio-8080-exec-6:kr.todoit.api.service.OAuth2Service] - [ 카카오톡 인증 토큰 ]
+2021-12-11 19:44:54,293 INFO  [http-nio-8080-exec-6:kr.todoit.api.service.OAuth2Service] - qmFTKzLJ94YURoeKvUWAQGKJgRDdojkdU-6FaAo9dNsAAAF9qRgENg
+2021-12-11 19:44:54,361 INFO  [http-nio-8080-exec-6:kr.todoit.api.service.OAuth2Service] - 카카오 이메일 받기 완료.
+2021-12-11 19:44:54,363 INFO  [http-nio-8080-exec-6:kr.todoit.api.service.UserService] - 자동로그인 진행 -> 토큰 발급
+2021-12-11 19:44:54,381 INFO  [http-nio-8080-exec-7:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:44:54,394 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:44:54,394 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:44:54,394 INFO  [http-nio-8080-exec-8:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:44:54,395 INFO  [http-nio-8080-exec-8:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:44:56,954 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:44:56,966 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:44:56,966 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:44:56,966 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:44:56,967 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:50:38,423 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:50:38,431 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:50:38,438 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:50:38,438 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:50:38,439 INFO  [http-nio-8080-exec-4:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:50:38,440 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:50:38,447 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:50:38,447 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:50:38,447 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:50:38,448 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:51:15,542 INFO  [http-nio-8080-exec-6:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:51:15,563 INFO  [http-nio-8080-exec-7:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:51:15,563 INFO  [http-nio-8080-exec-7:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:51:15,563 INFO  [http-nio-8080-exec-7:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:51:15,564 INFO  [http-nio-8080-exec-7:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:51:46,634 INFO  [http-nio-8080-exec-9:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:51:46,662 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:51:46,662 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:51:46,662 INFO  [http-nio-8080-exec-10:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:51:46,663 INFO  [http-nio-8080-exec-10:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:52:52,982 INFO  [http-nio-8080-exec-2:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:52:53,005 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:52:53,005 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:52:53,005 INFO  [http-nio-8080-exec-3:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:52:53,006 INFO  [http-nio-8080-exec-3:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:53:01,269 INFO  [http-nio-8080-exec-4:kr.todoit.api.controller.UserController] - GET/users/refresh-token
+2021-12-11 19:53:01,288 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - [ 토큰 유효성 검사 인터셉터 ]
+2021-12-11 19:53:01,289 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - Request Method : 
+2021-12-11 19:53:01,289 INFO  [http-nio-8080-exec-5:kr.todoit.api.interceptor.TokenVerifyInterceptor] - GET
+2021-12-11 19:53:01,289 INFO  [http-nio-8080-exec-5:kr.todoit.api.controller.UserController] - GET/users/:id
+2021-12-11 19:57:27,469 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopping...
+2021-12-11 19:57:27,469 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@bae5e58]]
+2021-12-11 19:57:27,469 INFO  [SpringApplicationShutdownHook:org.springframework.messaging.simp.broker.SimpleBrokerMessageHandler] - Stopped.
+2021-12-11 19:57:27,489 INFO  [SpringApplicationShutdownHook:org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean] - Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 19:57:27,491 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown initiated...
+2021-12-11 19:57:27,496 INFO  [SpringApplicationShutdownHook:com.zaxxer.hikari.HikariDataSource] - HikariPool-1 - Shutdown completed.

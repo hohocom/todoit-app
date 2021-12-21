@@ -1,22 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Avatar } from "components/common";
-import {
-  cheerUpMessageState,
-  userState,
-  workspaceDetailState,
-} from "core/state";
-import { useEffect, useState } from "react";
+import { useUser } from "core/hook";
+import { cheerUpMessageState, workspaceDetailState } from "core/state";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 function WorkspaceRightSide() {
-  const user = useRecoilValue(userState);
+  const { user, updateUserLevel } = useUser();
   const navigate = useNavigate();
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   const [cheerUpMessage, setCheerUpMessage] =
     useRecoilState(cheerUpMessageState);
-
-  const [exp, setExp] = useState(10);
 
   useEffect(() => {
     const timer = setMessageByMatchTimes();
@@ -68,15 +63,19 @@ function WorkspaceRightSide() {
           ></i>
         </div>
         <div className="flex flex-col items-center justify-center w-full bg-white rounded-xl box-shadow1">
-          <div
-            className="w-[120px] h-[120px] rounded-full -mt-7 flex items-center justify-center border-4 
-          border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D]"
-          >
-            <Avatar
-              thumbnailImage={user.thumbnailImage}
-              size={100}
-              hover={false}
-            />
+          <div className="relative w-[120px] h-[120px] flex justify-center items-center -mt-7">
+            <div
+              className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 
+              hover-spin transition-all duration-500
+          border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D] z-10"
+            ></div>
+            <div className="absolute flex items-center justify-center w-full h-full">
+              <Avatar
+                thumbnailImage={user.thumbnailImage}
+                size={100}
+                hover={false}
+              />
+            </div>
           </div>
           <div className="mt-4 text-xl text-black font-apple-hard">
             {user.nickname}
@@ -88,28 +87,30 @@ function WorkspaceRightSide() {
           <div className="flex flex-col items-center justify-start w-full">
             <div className="flex items-center justify-between w-8/12 mt-2 -mb-1 text-gray-600 font-apple-hard">
               <div>
-                <span className="text-2xl">24</span>
+                <span className="text-2xl">{user.level}</span>
                 <span className="text-base">&nbsp;LVL</span>
               </div>
 
               <div className="mt-1 ml-2 text-base text-black font-apple-bold">
-                {exp}%
+                {user.exp}%
               </div>
             </div>
             <div className="flex items-center justify-center w-8/12">
               <div
                 id="lv-progress"
-                className="h-[20px] border border-[#FF9E5D] rounded-3xl w-full overflow-hidden"
+                className="h-[20px] border border-[#FF9E5D] rounded-md w-full overflow-hidden"
               >
                 <div
                   className="h-full bg-[#FF9E5D] transition-all ease-in-out duration-500 delay-150"
                   style={{
-                    width: `${exp}%`,
+                    width: `${user.exp}%`,
                   }}
                 ></div>
               </div>
             </div>
-            <button onClick={() => setExp(exp + 40)}>
+            <button
+              onClick={() => updateUserLevel(Math.floor(100 / user.level))}
+            >
               경험치 올라가는 버튼
             </button>
           </div>

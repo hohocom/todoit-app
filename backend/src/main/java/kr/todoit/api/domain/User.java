@@ -29,9 +29,9 @@ public class User {
     @Column(length = 20, nullable = false)
     private String nickname;
 
-    private Byte level;
+    private Short level;
 
-    private Byte exp;
+    private Short exp;
 
     @Column(length = 200)
     private String originImagePath;
@@ -46,11 +46,13 @@ public class User {
     private Timestamp updatedAt;
 
     @Builder
-    public User(Long id, String email, String provider, String nickname, String originImagePath, String thumbnailImagePath) {
+    public User(Long id, String email, String provider, String nickname, Short level, Short exp, String originImagePath, String thumbnailImagePath) {
         this.id = id;
         this.email = email;
         this.provider = provider;
         this.nickname = nickname;
+        this.level = level;
+        this.exp = exp;
         this.originImagePath = originImagePath;
         this.thumbnailImagePath = thumbnailImagePath;
     }

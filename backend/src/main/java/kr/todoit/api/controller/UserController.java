@@ -33,7 +33,8 @@ public class UserController {
 
     @GetMapping("/workspace-super-join/{workspaceCode}")
     public ResponseEntity<Map<String, Object>> superLogin(@PathVariable String workspaceCode) {
-        ;
+        log.info("[유저 슈퍼조인 요청중..]");
+
         WorkspaceJoinRequest workspaceJoinRequest = new WorkspaceJoinRequest();
         workspaceJoinRequest.setJoinUserId(userService.workspaceSuperJoin());
         workspaceJoinRequest.setWorkspaceCode(workspaceCode);
@@ -46,7 +47,8 @@ public class UserController {
 
     @PostMapping("/login-by-oauth")
     public ResponseEntity<Map<String, Object>> loginByOauth(@Valid UserLoginRequest userLoginRequest, BindingResult bindingResult) {
-        log.info("POST/users");
+        log.info("[유저 로그인 요청중..]");
+
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
 
@@ -60,7 +62,7 @@ public class UserController {
 
     @GetMapping("/refresh-token")
     public ResponseEntity<Map<String, Object>> refreshToken(@CookieValue(name = "rft", required = false) String refreshToken) {
-        log.info("GET/users/refresh-token");
+        log.info("[유저 토큰 재발급 요청중..]");
         System.out.println(refreshToken);
 
         if (refreshToken == null) {
@@ -75,19 +77,8 @@ public class UserController {
         return responseTokens(userTokenResponse, response);
     }
 
-    @GetMapping("/refresh-token-test/{id}")
-    public ResponseEntity<Map<String, Object>> refreshTokenTest(@PathVariable Long id) {
-        log.info("GET/users/refresh-token-test");
-
-        UserTokenResponse userTokenResponse = userService.verifyTokenThenGetTokensTest(id);
-        Map<String, Object> response = new HashMap<>();
-        response.put("message", "토큰이 재발급되었습니다.");
-        response.put("statusCode", 200);
-        response.put("act", userTokenResponse.getActInfo());
-        return responseTokens(userTokenResponse, response);
-    }
-
     private ResponseEntity<Map<String, Object>> responseTokens(UserTokenResponse userTokenResponse, Map<String, Object> response) {
+
         final Long time = 3600 * 24 * 14L;
         ResponseCookie responseCookie = ResponseCookie.from("rft", userTokenResponse.getRftInfo().get("token").toString())
                 .httpOnly(true)
@@ -100,8 +91,8 @@ public class UserController {
 
     @GetMapping("/logout")
     public ResponseEntity<Map<String, Object>> logout() {
-        log.info("GET/users/logout");
-        log.info("로그아웃 요청 -> RFT 쿠키 제거");
+        log.info("[유저 로그아웃 요청중.. -> RFT 쿠키 제거]");
+
         ResponseCookie responseCookie = ResponseCookie.from("rft", null)
                 .httpOnly(true)
                 .path("/")
@@ -117,20 +108,13 @@ public class UserController {
 
 
     @GetMapping("")
-    public ResponseEntity<Map<String, Object>> findByWorkspaceOptions(
-            @RequestParam(defaultValue = "", required = false) Long workspaceId,
-            @RequestParam(defaultValue = "", required = false) String workspaceCode
-    ) {
-        log.info("GET/users?workspaceCode&workspaceId");
-        System.out.println(workspaceCode);
-        System.out.println(workspaceId);
+    public ResponseEntity<Map<String, Object>> findByWorkspaceOptions(UserFindRequest userFindRequest) {
+        log.info("[회원 워크스페이스에 존재하는 맴버 정보 요청중..]");
+        System.out.println(userFindRequest);
 
         List<HashMap<String, Object>> users = null;
-        if (workspaceId != null) {
-            users = userService.getUsersByWorkspaceId(workspaceId);
-        } else if (!workspaceCode.equals("")) {
-            users = userService.getUsersByWorkspaceCode(workspaceCode);
-        }
+
+        users = userService.getUsersByOptions(userFindRequest);
 
         Map<String, Object> response = new HashMap<>();
         response.put("message", "회원 데이터 조회.");
@@ -141,7 +125,7 @@ public class UserController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Map<String, Object>> show(@PathVariable Long id, HttpServletRequest servletRequest) {
-        log.info("GET/users/:id");
+        log.info("[회원 상세정보 요청중..]");
 
         TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
 
@@ -161,7 +145,8 @@ public class UserController {
             UserUpdateRequest userUpdateRequest,
             BindingResult bindingResult,
             HttpServletRequest servletRequest) throws IOException {
-        log.info("PUT/users/:id");
+        log.info("[회원 정보 수정 요청중..]");
+
         System.out.println(userUpdateRequest);
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
@@ -177,7 +162,7 @@ public class UserController {
 
     @PutMapping("/{id}/profile-image-init")
     public ResponseEntity<Map<String, Object>> profileImgInit(@PathVariable Long id,HttpServletRequest servletRequest) throws IOException {
-        log.info("PUT/users/:id");
+        log.info("[회원 프로필 이미지 초기화 요청중..]");
 
         TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
 
@@ -188,9 +173,29 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
 
+    @PutMapping("/{id}/level-update")
+    public ResponseEntity<Map<String, Object>> levelUpdate(
+            UserLevelRequest userLevelRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) throws IOException {
+        log.info("[회원 레벨 핸들링 요청중..]");
+
+        if (bindingResult.hasErrors())
+            throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
+        TokenService.isMatched(userLevelRequest.getId(), Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        HashMap<String, Object> userUpdateInfo = userService.levelUpdate(userLevelRequest);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "회원 레벨 핸들링 완료.");
+        response.put("statusCode", 200);
+        response.put("user", userUpdateInfo);
+        return ResponseEntity.ok().body(response);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id, HttpServletRequest servletRequest) {
-        log.info("DELETE/users/:id");
+        log.info("[회원 탈퇴 요청중..]");
 
         TokenService.isMatched(id, Long.parseLong(servletRequest.getAttribute("id").toString()));
 
