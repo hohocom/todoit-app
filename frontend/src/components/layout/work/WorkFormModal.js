@@ -30,7 +30,7 @@ function WorkFormModal() {
         closeButtonType: 1, // 1: arrow, 2: X
       }}
     >
-      <div className="w-full mt-2">
+      <div className="w-full mt-2 max-h-[800px] overflow-y-scroll custom-scroll px-2">
         <p className="mb-2 text-xl font-apple-bold">
           일정을 작성해보세요. (●'◡'●)
         </p>
@@ -42,14 +42,14 @@ function WorkFormModal() {
           content={workFormModal.content}
           inputChange={workFormInputChange}
         />
-        <p className="mt-2 ml-1 text-[15px]">테마 색상</p>
+        <p className="mt-2 mb-1 text-sm">테마 색상</p>
         <div className="flex">
           <ThemeColorPicker
             workFormModal={workFormModal}
             setWorkFormModal={setWorkFormModal}
           />
         </div>
-        <p className="mt-2 ml-1 text-[15px] ">참석자</p>
+        <p className="mt-2 mb-1 text-sm">참석자</p>
         <WorkerSelector />
         <DateRange
           className="flex items-center justify-center w-full"
