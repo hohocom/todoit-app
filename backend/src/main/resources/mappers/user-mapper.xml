@@ -8,6 +8,7 @@
         <result column="id" property="id"/>
         <result column="nickname" property="nickname"/>
         <result column="level" property="level"/>
+        <result column="role" property="role"/>
         <result column="origin_image_path" property="originImagePath"/>
         <result column="thumbnail_image_path" property="thumbnailImagePath"/>
         <result column="created_at" property="createdAt"/>
@@ -15,12 +16,12 @@
 
     <select id="findUserByOptions" parameterType="kr.todoit.api.dto.UserFindRequest" resultMap="user">
         select
-               u.id, u.nickname, u.level, u.created_at,
-                if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
-                if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
+        u.id, u.nickname, u.level, u.created_at, wg.role,
+        if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
+        if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
         from workspace_groups wg
-                 left join users u on wg.user_id = u.id
-                 left join workspaces w on wg.workspace_id = w.id
+        left join users u on wg.user_id = u.id
+        left join workspaces w on wg.workspace_id = w.id
         <if test="workspaceId != null">where w.id = #{workspaceId}</if>
         <if test="workspaceId == null and workspaceCode">where w.code = #{workspaceCode}</if>
         <if test="orderType == null">order by u.nickname asc</if>
