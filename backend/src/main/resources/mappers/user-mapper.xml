@@ -16,15 +16,9 @@
 
     <select id="findUserByOptions" parameterType="kr.todoit.api.dto.UserFindRequest" resultMap="user">
         select
-<<<<<<< HEAD
-        u.id, u.nickname, u.level, u.created_at, wg.role,
-        if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
-        if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
-=======
                u.id, u.nickname, u.level, u.created_at, wg.role,
                 if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
                 if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
->>>>>>> 62721102042f0ad305be32ebc55f3da7a1d502f0
         from workspace_groups wg
         left join users u on wg.user_id = u.id
         left join workspaces w on wg.workspace_id = w.id
