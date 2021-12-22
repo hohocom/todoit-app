@@ -14,6 +14,10 @@ import "styles/index.css";
 import "styles/calendar.css";
 import "styles/firework.css";
 
+Notification.requestPermission().then(function (result) {
+  console.log(result);
+});
+
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
 

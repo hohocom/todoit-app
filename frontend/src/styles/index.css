@@ -868,6 +868,9 @@ video {
 .max-w-\[300px\] {
 	max-width: 300px;
 }
+.max-w-\[350px\] {
+	max-width: 350px;
+}
 .flex-grow {
 	flex-grow: 1;
 }
@@ -885,15 +888,6 @@ video {
 }
 .animate-bounce {
 	animation: bounce 1s infinite;
-}
-@keyframes spin {
-
-	to {
-		transform: rotate(360deg);
-	}
-}
-.animate-spin {
-	animation: spin 1s linear infinite;
 }
 .cursor-pointer {
 	cursor: pointer;
