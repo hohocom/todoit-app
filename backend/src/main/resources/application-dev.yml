@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/todoit
     username: root
-    password: admin
+    password: woqja5164!
   jpa:
     show-sql: true
     hibernate:

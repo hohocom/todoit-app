@@ -25,9 +25,24 @@ export function useWork() {
 
   useEffect(() => {
     if (user.id) {
+      const workers = workspaceDetail.users.map((u) => {
+        if (u.id === user.id) {
+          return {
+            id: u.id,
+            nickname: u.nickname,
+            isChecked: true,
+          };
+        } else {
+          return {
+            id: u.id,
+            nickname: u.nickname,
+            isChecked: false,
+          };
+        }
+      });
       setWorkFormModal({
         ...workFormModal,
-        workers: [].concat(user.id),
+        workers: workers,
       });
     }
   }, [user.id]);
@@ -50,11 +65,14 @@ export function useWork() {
     formData.append("content", workFormModal.content);
     formData.append("workspaceId", workspaceDetail.id);
     formData.append("themeColor", workFormModal.themeColor);
-    workFormModal.workers.forEach((user) => {
-      formData.append("users", user);
-    });
     formData.append("startDate", dateObjectParser(workDate[0].startDate));
     formData.append("endDate", dateObjectParser(workDate[0].endDate));
+
+    workFormModal.workers.forEach((worker) => {
+      if (worker.isChecked === true) {
+        formData.append("users", worker.id);
+      }
+    });
 
     await customAxios({
       method: "post",
@@ -72,6 +90,21 @@ export function useWork() {
     });
   };
 
+  const workerToggle = (e, workerId) => {
+    const newWorkers = workFormModal.workers.map((worker) => {
+      if (worker.id === workerId && workerId !== user.id)
+        return {
+          ...worker,
+          isChecked: e.target.checked,
+        };
+      else return worker;
+    });
+    setWorkFormModal({
+      ...workFormModal,
+      workers: newWorkers,
+    });
+  };
+
   return {
     workFormModal,
     setWorkFormModal,
@@ -80,5 +113,6 @@ export function useWork() {
     store,
     workDate,
     setWorkDate,
+    workerToggle,
   };
 }

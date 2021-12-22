@@ -114,21 +114,6 @@ function WorkspaceRightSide() {
               경험치 올라가는 버튼
             </button>
           </div>
-
-          <div className="flex my-6 ">
-            <div className="flex flex-col items-center border-r border-[#FF9E5D] px-5 pb-3">
-              <div className="font-apple-bold text-xl text-[#FF9E5D] pb-3">
-                작성한 일정
-              </div>
-              <div className="text-3xl text-gray-600 font-apple-hard">30</div>
-            </div>
-            <div className="flex flex-col items-center px-5">
-              <div className="font-apple-bold text-xl text-[#FF9E5D] pb-3">
-                완료한 일정
-              </div>
-              <div className="text-3xl text-gray-600 font-apple-hard">27</div>
-            </div>
-          </div>
         </div>
         <div className="mt-10 mb-6">
           <div className="flex flex-col items-start mt-1 text-base">

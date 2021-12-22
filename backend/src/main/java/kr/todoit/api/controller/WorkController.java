@@ -57,8 +57,7 @@ public class WorkController {
 
         if (bindingResult.hasErrors())
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
-        TokenService.isMatched(workCreateRequest.getUsers().get(0), Long.parseLong(servletRequest.getAttribute("id").toString()));
-
+//        TokenService.isMatched(workCreateRequest.getUsers().get(0), Long.parseLong(servletRequest.getAttribute("id").toString()));
 
         workService.create(workCreateRequest);
 
