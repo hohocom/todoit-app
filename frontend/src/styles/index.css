@@ -1469,13 +1469,8 @@ video {
 .hover-spin:hover {
   animation: hover-spin 1s linear infinite;
 }
-<<<<<<< HEAD
 .hover\:bg-\[\#ffd3a994\]:hover {
 	background-color: #ffd3a994;
-=======
-.hover\:bg-\[\#ffac5ef3\]:hover {
-	background-color: #ffac5ef3;
->>>>>>> 62721102042f0ad305be32ebc55f3da7a1d502f0
 }
 .hover\:bg-gray-100:hover {
 	--tw-bg-opacity: 1;
