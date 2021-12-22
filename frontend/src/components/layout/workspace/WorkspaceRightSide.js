@@ -53,18 +53,23 @@ function WorkspaceRightSide() {
   return (
     <aside className="min-w-[350px] h-full border-l">
       <div className="flex flex-col justify-start w-full h-full p-5 bg-white">
-        <div className="flex items-center justify-between w-full px-2 pt-2 pb-5">
+        <div className="flex items-center justify-between w-full mb-10">
           <div className="font-apple-bold">My Profile</div>
           <i
             className="far fa-edit text-[#FF9E5D] text-2xl cursor-pointer"
             onClick={() => navigate("/workspaces")}
           ></i>
         </div>
-        <div className="flex flex-col items-center justify-center w-full bg-white">
+        <div className="flex flex-col items-center justify-center w-full">
           <div className="relative w-[120px] h-[120px] flex justify-center items-center">
+            <div className="absolute top-0 w-2 h-2 bg-yellow-300 rounded-full -right-8"></div>
+            <div className="absolute w-3 h-3 bg-green-300 rounded-full top-12 -right-16"></div>
+            <div className="absolute bottom-0 w-4 h-4 bg-blue-400 rounded-full -right-8"></div>
+            <div className="absolute top-0 w-4 h-4 bg-red-300 rounded-full -left-8"></div>
+            <div className="absolute w-2 h-2 bg-red-400 rounded-full top-12 -left-16"></div>
+            <div className="absolute bottom-0 w-3 h-3 bg-purple-400 rounded-full -left-8"></div>
             <div
-              className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 
-              hover-spin transition-all duration-500
+              className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 hover-spin
           border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D] z-10"
             ></div>
             <div className="absolute flex items-center justify-center w-full h-full">
@@ -83,7 +88,7 @@ function WorkspaceRightSide() {
           </div>
 
           <div className="flex flex-col items-center justify-start w-full">
-            <div className="flex items-center justify-between w-full mt-2 -mb-1 text-gray-600 font-apple-hard">
+            <div className="flex items-center justify-between w-10/12 mt-2 -mb-1 text-gray-600 font-apple-hard">
               <div>
                 <span className="text-2xl">{user.level}</span>
                 <span className="text-base">&nbsp;LVL</span>
@@ -92,10 +97,10 @@ function WorkspaceRightSide() {
                 {user.exp}%
               </div>
             </div>
-            <div className="flex items-center justify-center w-full">
+            <div className="flex items-center justify-center w-10/12">
               <div
                 id="lv-progress"
-                className="h-[30px] w-full overflow-hidden bg-yellow-300 rounded-[4px]"
+                className="h-4 w-full overflow-hidden bg-yellow-300 rounded-[4px]"
               >
                 <div
                   className="h-full bg-[#FF9E5D] transition-all ease-in-out duration-500 delay-150"
