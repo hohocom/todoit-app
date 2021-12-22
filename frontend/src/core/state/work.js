@@ -16,5 +16,11 @@ export const workDetailModalState = atom({
   key: "workDetailModalState",
   default: {
     isOpen: false,
+    workId: "",
+    title: "",
+    content: "",
+    themeColor: "#E5E7EB",
+    isFinished: 0,
+    workers: [],
   },
 });

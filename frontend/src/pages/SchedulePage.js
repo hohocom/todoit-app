@@ -7,7 +7,7 @@ import {
   WorkspaceHeader,
   WorkspaceSection,
 } from "components/layout/workspace";
-import { WorkFormModal } from "components/layout/work";
+import { WorkDetailModal, WorkFormModal } from "components/layout/work";
 import {
   useFullCalendar,
   useSecure,
@@ -62,6 +62,7 @@ function SchedulePage() {
         <WorkspaceRightSide />
       </WorkspaceContainer>
       <WorkFormModal />
+      <WorkDetailModal />
     </React.Fragment>
   );
 }

@@ -3,6 +3,7 @@ import { emojiToastState } from "./toast";
 import { userState, loginUserSeletor } from "./user";
 import { workFormModalState, workDetailModalState } from "./work";
 import { workspaceDetailState, workspaceUIState } from "./workspace";
+import { loadingState } from "./loading";
 
 export {
   cheerUpMessageState,
@@ -13,4 +14,5 @@ export {
   workDetailModalState,
   workspaceDetailState,
   workspaceUIState,
+  loadingState,
 };

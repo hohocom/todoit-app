@@ -1,12 +1,12 @@
-import customAxios from "core/api";
 import { userState } from "core/state";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useEmojiToast } from ".";
+import { useAxios, useEmojiToast } from "core/hook";
 
 export function useUser() {
   const [user, setUser] = useRecoilState(userState);
   const { setEmojiToast } = useEmojiToast();
+  const { customAxios } = useAxios();
 
   const getUserDetailById = async (userId) => {
     const { user } = await customAxios({
@@ -39,7 +39,7 @@ export function useUser() {
         ...user,
         exp: 100,
       });
-      
+
       setEmojiToast({
         open: true,
         type: "HAPPY",
@@ -134,6 +134,7 @@ export function useUser() {
 
 export function useUserLogout() {
   const navigate = useNavigate();
+  const { customAxios } = useAxios();
 
   const logout = async () => {
     const res = await customAxios({

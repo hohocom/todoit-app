@@ -1,15 +1,15 @@
-.fc-toolbar-chunk > div{
+.fc-toolbar-chunk > div {
   display: flex !important;
 }
 
-.fc .fc-toolbar.fc-header-toolbar{
+.fc .fc-toolbar.fc-header-toolbar {
   margin-top: 10px;
   margin-bottom: 0px !important;
 }
-.fc-event-title{
+.fc-event-title {
   padding-left: 2px !important;
   color: black !important;
-  font-family: 'noto-light';
+  font-family: "noto-light";
 }
 
 .fc-scrollgrid {
@@ -33,11 +33,10 @@ td:last-child {
 
 .fc-toolbar-title {
   padding-left: 15px;
-  font-family: 'apple-h' !important;
+  font-family: "apple-h" !important;
   color: black !important;
   width: 220px;
 }
-
 
 .fc-button {
   background-color: transparent !important;
@@ -45,48 +44,47 @@ td:last-child {
   border: none !important;
 }
 
-
 .fc-today-button {
   padding-left: 20px !important;
   padding-right: 20px !important;
-  font-family: 'apple-h' !important;
-  color:black !important;
+  font-family: "apple-h" !important;
+  color: black !important;
 }
-.fc-event-main{
+.fc-event-main {
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.fc-daygrid-event{
+.fc-daygrid-event {
   margin-bottom: 2px;
 }
-.fc-event-title::before{
+.fc-event-title::before {
   content: " ";
   margin-right: 2px;
 }
-.rdrDateDisplayWrapper{
+.rdrDateDisplayWrapper {
   display: none;
 }
-.rdrInRange{
+.rdrInRange {
   background-color: #ff935dad;
 }
-.rdrStartEdge{
+.rdrStartEdge {
   background-color: #ff935dad;
 }
-.rdrEndEdge{
-  background-color: #ff935dad
+.rdrEndEdge {
+  background-color: #ff935dad;
 }
 
-.fc-workCreateButton-button{
+.fc-workCreateButton-button {
   width: 80px;
   border-radius: 10px;
   padding-top: 2px !important;
   padding-bottom: 0.5px !important;
-  background-color: #f3f1f1  !important;
+  background-color: #f3f1f1 !important;
   margin-bottom: 2.5px !important;
 }
-.fc-workCreateButton-button:hover{
-  background-color: #FF9E5D  !important;
-  color: white  !important;
+.fc-workCreateButton-button:hover {
+  background-color: #ff9e5d !important;
+  color: white !important;
 }
 
 /* .fc-scroller::-webkit-scrollbar {

@@ -1,3 +1,4 @@
+import { useAxios } from "./useAxios";
 import { useKakaoApi } from "./useKakaoApi";
 import { useNaverApi, useNaverButton } from "./useNaverApi";
 import { useWelcomeScrollHandler } from "./useScrollHandler";
@@ -12,6 +13,7 @@ import { useFullCalendar } from "./useFullCalendar";
 import { useToast, useEmojiToast } from "./useToast";
 
 export {
+  useAxios,
   useKakaoApi,
   useNaverApi,
   useNaverButton,

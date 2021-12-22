@@ -14,10 +14,14 @@ public interface WorkspaceGroupRepository extends JpaRepository<WorkspaceGroup, 
 
     void deleteByWorkspaceId(Long id);
 
-    List<WorkspaceGroup> findByWorkspaceIdOrderByUserNicknameAsc(Long workspaceId);
-
-    List<WorkspaceGroup> findByWorkspaceCodeOrderByUserNicknameAsc(String workspaceCode);
+    WorkspaceGroup findByWorkspaceId(Long workspaceId);
 
     WorkspaceGroup findOneByWorkspaceAndUser(Workspace workspace, User user);
 
+    WorkspaceGroup findByUser(User user);
+
+    void deleteByUser(User exitUser);
+
+
+    void deleteByUserAndWorkspace(User exitUser, Workspace workspace);
 }

@@ -2,12 +2,13 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState, workspaceDetailState } from "core/state";
-import customAxios from "core/api";
 import { useLocation } from "react-router-dom";
+import { useAxios } from ".";
 
 export function useWorkspace() {
   const [user, setUser] = useRecoilState(userState);
   const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const { customAxios } = useAxios();
 
   const join = async () => {
     console.debug("%c[워크스페이스 가입중..]", "color:#5499C7");
@@ -122,6 +123,7 @@ export function useSetWorkspaceDetail() {
   const [workspaceDetail, setWorkspaceDetail] =
     useRecoilState(workspaceDetailState);
   const user = useRecoilValue(userState);
+  const { customAxios } = useAxios();
 
   useEffect(() => {
     // 유저 아이디가 존재하고 워크스페이스 디테일 아이디가 없을 때

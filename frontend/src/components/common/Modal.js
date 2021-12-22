@@ -10,7 +10,11 @@ function Modal({
         className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black/70"
         onClick={() => {
           if (options.backgroundClose) {
-            state.setOpen(false);
+            if (state.setOpen) {
+              state.setOpen(false);
+            } else if (state.close) {
+              state.close();
+            }
           }
         }}
       >
@@ -23,7 +27,13 @@ function Modal({
               {options.closeButtonType === 1 && (
                 <i
                   className="text-xl fas fa-chevron-left text-[#424242] cursor-pointer hover:text-yellow-500"
-                  onClick={() => state.setOpen(false)}
+                  onClick={() => {
+                    if (state.setOpen) {
+                      state.setOpen(false);
+                    } else if (state.close) {
+                      state.close();
+                    }
+                  }}
                 ></i>
               )}
             </div>
@@ -31,7 +41,13 @@ function Modal({
               {options.closeButtonType === 2 && (
                 <i
                   className="text-xl fas fa-times text-[#424242] cursor-pointer hover:text-yellow-500"
-                  onClick={() => state.setOpen(false)}
+                  onClick={() => {
+                    if (state.setOpen) {
+                      state.setOpen(false);
+                    } else if (state.close) {
+                      state.close();
+                    }
+                  }}
                 ></i>
               )}
             </div>

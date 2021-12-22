@@ -1,14 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
-import customAxios from "core/api";
 import { useSetWorkspaceDetail } from "core/hook";
+import useAxios from "./useAxios";
+import { useRecoilState } from "recoil";
+import { workDetailModalState } from "core/state";
 
 export function useFullCalendar() {
+  const { customAxios } = useAxios();
   const { workspaceDetail, setWorkspaceDetail } = useSetWorkspaceDetail();
+  const [workDetailModal, setWorkDetailModal] =
+    useRecoilState(workDetailModalState);
+
   useEffect(() => {
-    console.log("먼저실행됨");
     if (workspaceDetail.id) {
-      console.debug("실행되디되도디");
       getWorks();
     }
   }, [workspaceDetail.id]);
@@ -27,12 +31,19 @@ export function useFullCalendar() {
   };
 
   const handleEventClick = (args) => {
-    // workspaceDetail.works.forEach((work) => {
-    //   if (work.id === Number(args.event.id)) {
-    //     setWorkDetail(work);
-    //   }
-    // });
-    // setWorksShowModal(!worksShowModal);
+    workspaceDetail.works.forEach((work) => {
+      if (work.id === Number(args.event.id)) {
+        console.debug("%c[일정 디테일 설정중..],", "color:red");
+        setWorkDetailModal({
+          isOpen: true,
+          title: work.title,
+          content: work.content,
+          themeColor: work.color,
+          isFinished: work.isFinished,
+          workers: work.users,
+        });
+      }
+    });
   };
 
   // 풀캘린더에서 보여줄 일정 커스터마이징

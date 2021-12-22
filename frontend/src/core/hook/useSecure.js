@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect } from "react";
-import customAxios from "core/api";
 import { useUser } from "core/hook";
 import axios from "axios";
+import useAxios from "./useAxios";
 
 export function useSecure() {
   const { user, getUserDetailById } = useUser();
+  const { customAxios } = useAxios();
 
   useEffect(() => {
     console.debug("%c[유저 시큐리티 작동중..]", "color:red");

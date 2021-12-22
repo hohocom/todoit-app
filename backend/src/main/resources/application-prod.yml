@@ -1,4 +1,0 @@
-custom:
-  secret: 'rhwoqjacjswo'
-  path:
-    upload-images: '/home/ubuntu/apps/todoit/upload'
