@@ -27,7 +27,7 @@ public class WorkspaceController {
     @GetMapping("")
     public ResponseEntity<Map<String, Object>> index(
             @Valid @RequestParam
-            WorkspaceFindRequest workspaceFindRequest,
+                    WorkspaceFindRequest workspaceFindRequest,
             BindingResult bindingResult,
             HttpServletRequest servletRequest
     ) {
@@ -126,6 +126,25 @@ public class WorkspaceController {
         response.put("message", "워크스페이스에 가입되었습니다.");
         response.put("statusCode", 200);
         response.put("workspaces", workspaceFindResponse);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @DeleteMapping("/exit")
+    public ResponseEntity<Map<String, Object>> exit(
+            @Valid WorkspaceExitRequest workspaceExitRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest
+    ) {
+        log.info("[워크스페이스 탈퇴 요청중..]");
+
+        if (bindingResult.hasErrors())
+            throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
+
+        workspaceService.exitWorkspace(workspaceExitRequest, Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "["+ workspaceExitRequest.getMemberId() + "]번 유저가 [" + workspaceExitRequest.getWorkspaceId() + "]번 워크스페이스에서 탈퇴되었습니다.");
+        response.put("statusCode", 200);
         return ResponseEntity.ok().body(response);
     }
 }

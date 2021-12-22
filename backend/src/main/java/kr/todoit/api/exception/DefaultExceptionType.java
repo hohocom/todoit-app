@@ -16,6 +16,7 @@ public enum DefaultExceptionType implements ExceptionType {
     AUTHENTICATE_NOT_MATCH(1008, 403, "허용되지 않는 접근입니다."),
     // 워크스페이스
     NOT_FOUND_WORKSPACE(2001, 200, "워크스페이스를 찾을 수 없습니다."),
+    NOT_FOUND_WORKSPACE_GROUP(2001, 200, "워크스페이스 그룹을 찾을 수 없습니다."),
     NOT_FOUND_WORKSPACE_ROLE(2002, 200, "워크스페이스 룰이 정의되지 않았습니다."),
     DUPLICATE_WORKSPACE(2003, 200, "워크스페이스에 이미 가입되어있습니다."),
     // 파일
