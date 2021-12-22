@@ -10,6 +10,7 @@ import {
   Forbidden403Page,
   MemberPage,
 } from "pages";
+import { AppContainer } from "components/layout";
 
 function AppRouter() {
   const route = useRoutes([
@@ -26,7 +27,7 @@ function AppRouter() {
     { path: "/403", element: <Forbidden403Page /> },
   ]);
 
-  return route;
+  return <AppContainer>{route}</AppContainer>;
 }
 
 export default AppRouter;

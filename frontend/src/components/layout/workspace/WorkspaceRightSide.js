@@ -52,18 +52,16 @@ function WorkspaceRightSide() {
 
   return (
     <aside className="min-w-[350px] h-full border-l">
-      <div className="flex flex-col justify-start w-full h-full p-5 bg-gray-50">
+      <div className="flex flex-col justify-start w-full h-full p-5 bg-white">
         <div className="flex items-center justify-between w-full px-2 pt-2 pb-5">
-          <div>
-            {/* <i className="text-3xl text-red-300 cursor-pointer far fa-bell"></i> */}
-          </div>
+          <div className="font-apple-bold">My Profile</div>
           <i
             className="far fa-edit text-[#FF9E5D] text-2xl cursor-pointer"
             onClick={() => navigate("/workspaces")}
           ></i>
         </div>
-        <div className="flex flex-col items-center justify-center w-full bg-white rounded-xl box-shadow1">
-          <div className="relative w-[120px] h-[120px] flex justify-center items-center -mt-7">
+        <div className="flex flex-col items-center justify-center w-full bg-white">
+          <div className="relative w-[120px] h-[120px] flex justify-center items-center">
             <div
               className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 
               hover-spin transition-all duration-500
@@ -85,20 +83,19 @@ function WorkspaceRightSide() {
           </div>
 
           <div className="flex flex-col items-center justify-start w-full">
-            <div className="flex items-center justify-between w-8/12 mt-2 -mb-1 text-gray-600 font-apple-hard">
+            <div className="flex items-center justify-between w-full mt-2 -mb-1 text-gray-600 font-apple-hard">
               <div>
                 <span className="text-2xl">{user.level}</span>
                 <span className="text-base">&nbsp;LVL</span>
               </div>
-
               <div className="mt-1 ml-2 text-base text-black font-apple-bold">
                 {user.exp}%
               </div>
             </div>
-            <div className="flex items-center justify-center w-8/12">
+            <div className="flex items-center justify-center w-full">
               <div
                 id="lv-progress"
-                className="h-[20px] border border-[#FF9E5D] rounded-md w-full overflow-hidden"
+                className="h-[30px] w-full overflow-hidden bg-yellow-300 rounded-[4px]"
               >
                 <div
                   className="h-full bg-[#FF9E5D] transition-all ease-in-out duration-500 delay-150"
@@ -108,14 +105,14 @@ function WorkspaceRightSide() {
                 ></div>
               </div>
             </div>
-            <button
+            {/* <button
               onClick={() => updateUserLevel(Math.floor(100 / user.level))}
             >
               경험치 올라가는 버튼
-            </button>
+            </button> */}
           </div>
         </div>
-        <div className="mt-10 mb-6">
+        <div className="mt-6 mb-6 bg-gray-50 p-2 rounded-[4px]">
           <div className="flex flex-col items-start mt-1 text-base">
             <p className="text-lg font-apple-bold">
               {user.nickname}
@@ -129,7 +126,7 @@ function WorkspaceRightSide() {
           {workspaceDetail.works.map((work) => {
             return (
               <div
-                className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg box-shadow1"
+                className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg"
                 key={work.id}
               >
                 <div className="flex flex-col">
