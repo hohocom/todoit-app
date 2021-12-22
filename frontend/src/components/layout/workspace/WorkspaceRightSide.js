@@ -24,7 +24,11 @@ function WorkspaceRightSide() {
   }, []);
 
   useEffect(() => {
-    if (cheerUpMessageState) {
+    if (
+      cheerUpMessageState !== null ||
+      cheerUpMessageState !== "" ||
+      cheerUpMessageState !== " "
+    ) {
       const notification = new Notification("투두잇", {
         body: cheerUpMessage,
         icon: bgImg,
