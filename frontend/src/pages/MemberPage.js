@@ -13,6 +13,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "core/state";
 import customAxios from "core/api";
 function MemberPage() {
+  
   const currentUser= useRecoilValue(userState);
   const {workspaceDetail} = useSetWorkspaceDetail() //워크스페이스 정보 가져오기
   const [currentUserRole, setCurrentUserRole] = useState(false) // 현재 로그인한 유저 권한
@@ -22,6 +23,9 @@ function MemberPage() {
   const pageLimit = 10; // 한화면에 보여줄 유저 수
   const totalPageNumber = Math.ceil(userDataLength / pageLimit) //총 페이지수
   const [currentPageNumber, setCurrentPageNumber] = useState(1); // 현재 페이지 수
+  // let prepage = 1;
+//  let lastpage =  totalPageNumber;
+  const pageCount = 5;
   // 현재 워크스페이스에 로그인한 유저 권한 가져오기 
   const getRole = () => {
     workspaceDetail.users.map(user=>{
@@ -65,12 +69,15 @@ function MemberPage() {
   formData.append("memberId", num);
   formData.append("workspaceId", workspaceDetail.id);
   formData.append("superMemberId", currentUser.id);
-  await customAxios({
+  const result = await customAxios({
     method: "delete",
     url: '/workspaces/exit',
     data: formData,
   });
+  console.log(result)
+  getAllUserData();
  }
+ 
 
 
   useSecure()//??????????
@@ -136,8 +143,8 @@ function MemberPage() {
                 </div>
               );
             })}
-            <div className="flex w-full  h-10  justify-center mt-1 items-baseline pt-2">
-              {/* <div className="mr-3">&lt;</div> */}
+            <div className="flex w-full  h-10  justify-center mt-1 items-baseline pt-2 cursor-pointer font-apple-bold">
+              <div className="mr-3" onClick={()=>{setPage(1)}}>&lt;</div>
               {Array.from(Array(totalPageNumber), (e, i) => {
                 if(i+1===currentPageNumber){
                   return (
@@ -155,7 +162,7 @@ function MemberPage() {
                 }
                 
               })}
-              {/* <div className="mr-3">&gt;</div> */}
+              <div className="mr-3 cursor-pointer" onClick={()=>{setPage(totalPageNumber)}}>&gt;</div>
             </div>
           </div>
         </WorkspaceSection>
