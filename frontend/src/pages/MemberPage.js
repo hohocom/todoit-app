@@ -7,21 +7,32 @@ import {
   WorkspaceSection,
 } from "components/layout/workspace";
 import { useSecure, useSetWorkspaceDetail } from "core/hook";
-import { workspaceDetailState } from "core/state";
 import img from "assets/images/bg.jpg";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { userState } from "core/state";
 import customAxios from "core/api";
 function MemberPage() {
-
-  const [workspaceDetail, setWorkspaceDetail] =
-    useRecoilState(workspaceDetailState); // 워크스페이스 code 가져오기!
+  const currentUser= useRecoilValue(userState);
+  const {workspaceDetail} = useSetWorkspaceDetail() //워크스페이스 정보 가져오기
+  const [currentUserRole, setCurrentUserRole] = useState(false) // 현재 로그인한 유저 권한
+  console.log(workspaceDetail)
   const [usersData, setUsersData] = useState([]); // 모든 user
-  let userDataLength = 0; //총 유저수
-  const [totalPageNumber, setTotalPageNumber] = useState(0); //총 페이지수
-
+  const userDataLength = workspaceDetail.users.length; //총 유저수
   const pageLimit = 10; // 한화면에 보여줄 유저 수
+  const totalPageNumber = Math.ceil(userDataLength / pageLimit) //총 페이지수
   const [currentPageNumber, setCurrentPageNumber] = useState(1); // 현재 페이지 수
+  // 현재 워크스페이스에 로그인한 유저 권한 가져오기 
+  const getRole = () => {
+    workspaceDetail.users.map(user=>{
+      if(user.id === currentUser.id){
+        if(user.role === 1 || user.role ===2) {
+         setCurrentUserRole(true)
+        }
+      }
+    })
+  }
+ 
   const getAllUserData = async () => {
     // 워크스페이스에 해당하는 유저 10명씩 불러오기
     const { users } = await customAxios({
@@ -29,16 +40,6 @@ function MemberPage() {
       url: `users?workspaceCode=${workspaceDetail.code}&pageNumber=${currentPageNumber}`,
     });
     setUsersData(users);
-    // 워크스페이스에 해당하는 모든 불러오기
-    const totalUser = await customAxios({
-      method: "GET",
-      url: `users?workspaceCode=${workspaceDetail.code}`,
-    });
-
-    userDataLength = totalUser.users.length;
-    setTotalPageNumber(Math.ceil(userDataLength / pageLimit));
-
-    console.log(totalPageNumber);
   };
   //유저 역할
   const role = (num) => {
@@ -47,21 +48,35 @@ function MemberPage() {
   };
   //페이지 교체
   const setPage = (num) => {
-    console.log(num)
     setCurrentPageNumber(num)
   }
   useEffect(() => {
     getAllUserData();
+    getRole()
   }, []);
   useEffect(() => {
     console.log('currentpagenumber 바뀜')
     getAllUserData();
   }, [currentPageNumber]);
+  console.log(workspaceDetail.id)
+ const userExit = async (num) => {
+   
+  const formData = new FormData();
+  formData.append("memberId", num);
+  formData.append("workspaceId", workspaceDetail.id);
+  formData.append("superMemberId", currentUser.id);
+  await customAxios({
+    method: "delete",
+    url: '/workspaces/exit',
+    data: formData,
+  });
+ }
 
 
+  useSecure()//??????????
 
-  useSecure();
-  useSetWorkspaceDetail();
+
+  
 
   return (
     <WorkspaceContainer>
@@ -109,10 +124,13 @@ function MemberPage() {
                       {user.createdAt.substring(0, 10)}
                     </div>
                     <div className="flex justify-center w-40 ">
-                      <button className="mr-4  rounded-md px-2 ">수정</button>
-                      <button className=" rounded-md px-2 text-red-500">
+                      <button className="mr-4  rounded-md px-2 "></button>
+                      {
+                        currentUserRole ?     <button className=" rounded-md px-2 text-red-500" onClick={()=>{userExit(user.id)}}>
                         삭제
-                      </button>
+                      </button> : null
+                      }
+                  
                     </div>
                   </div>
                 </div>
