@@ -23,19 +23,19 @@ function WorkspaceRightSide() {
     };
   }, []);
 
-  useEffect(() => {
-    if (
-      cheerUpMessageState !== null ||
-      cheerUpMessageState !== "" ||
-      cheerUpMessageState !== " "
-    ) {
-      const notification = new Notification("투두잇", {
-        body: cheerUpMessage,
-        icon: bgImg,
-      });
-      setTimeout(notification.close.bind(notification), 10000);
-    }
-  }, [cheerUpMessage]);
+  // useEffect(() => {
+  //   if (
+  //     cheerUpMessageState !== null ||
+  //     cheerUpMessageState !== "" ||
+  //     cheerUpMessageState !== " "
+  //   ) {
+  //     const notification = new Notification("투두잇", {
+  //       body: cheerUpMessage,
+  //       icon: bgImg,
+  //     });
+  //     setTimeout(notification.close.bind(notification), 10000);
+  //   }
+  // }, [cheerUpMessage]);
 
   const setMessageByMatchTimes = () => {
     const RESET_TIME = 1000 * 60;

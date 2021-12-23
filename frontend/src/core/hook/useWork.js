@@ -6,22 +6,16 @@ import {
   workFormModalState,
   userState,
   workspaceDetailState,
+  workFormDateState,
 } from "core/state";
 import customAxios from "core/api";
-import { addDays } from "date-fns";
 import { dateObjectParser } from "utils/dateObjectParser";
 
 export function useWork() {
   const user = useRecoilValue(userState);
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   const [workFormModal, setWorkFormModal] = useRecoilState(workFormModalState);
-  const [workDate, setWorkDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: addDays(new Date(), 0),
-      key: "selection",
-    },
-  ]);
+  const [workFormDate, setWorkFormDate] = useRecoilState(workFormDateState);
 
   useEffect(() => {
     if (user.id) {
@@ -65,8 +59,8 @@ export function useWork() {
     formData.append("content", workFormModal.content);
     formData.append("workspaceId", workspaceDetail.id);
     formData.append("themeColor", workFormModal.themeColor);
-    formData.append("startDate", dateObjectParser(workDate[0].startDate));
-    formData.append("endDate", dateObjectParser(workDate[0].endDate));
+    formData.append("startDate", dateObjectParser(workFormDate[0].startDate));
+    formData.append("endDate", dateObjectParser(workFormDate[0].endDate));
 
     workFormModal.workers.forEach((worker) => {
       if (worker.isChecked === true) {
@@ -79,6 +73,8 @@ export function useWork() {
       url: "/works",
       data: formData,
     });
+
+    workFormModalToggle(false);
   };
 
   // 일정 폼 조건에 따라 닫기
@@ -111,8 +107,8 @@ export function useWork() {
     workFormModalToggle,
     workFormInputChange,
     store,
-    workDate,
-    setWorkDate,
+    workFormDate,
+    setWorkFormDate,
     workerToggle,
   };
 }

@@ -18,8 +18,8 @@ function WorkFormModal() {
     workFormModalToggle,
     workFormInputChange,
     store,
-    workDate,
-    setWorkDate,
+    workFormDate,
+    setWorkFormDate,
   } = useWork();
 
   return (
@@ -56,10 +56,10 @@ function WorkFormModal() {
           editableDateInputs={true}
           onChange={(item) => {
             console.debug(item.selection);
-            setWorkDate([item.selection]);
+            setWorkFormDate([item.selection]);
           }}
           moveRangeOnFirstSelection={false}
-          ranges={workDate}
+          ranges={workFormDate}
           months={1}
           color="#ff935dad"
           direction="horizontal"
