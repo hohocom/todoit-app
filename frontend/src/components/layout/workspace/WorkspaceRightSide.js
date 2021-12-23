@@ -99,7 +99,7 @@ function WorkspaceRightSide() {
             <div className="absolute flex items-center justify-center w-full h-full">
               <Avatar
                 thumbnailImage={user.thumbnailImage}
-                size={100}
+                size={108}
                 hover={false}
               />
             </div>
@@ -112,24 +112,25 @@ function WorkspaceRightSide() {
           </div>
 
           <div className="flex flex-col items-center justify-start w-full">
-            <div className="flex items-center justify-between w-10/12 mt-2 -mb-1 text-gray-600 font-apple-hard">
+            <div className="flex items-center justify-between w-10/12 mt-2 -mb-1 text-black font-apple-hard">
               <div>
-                <span className="text-2xl">{user.level}</span>
+                <span className="text-base">{user.level}</span>
                 <span className="text-base">&nbsp;LVL</span>
               </div>
               <div className="mt-1 ml-2 text-base text-black font-apple-bold">
                 {user.exp}%
               </div>
             </div>
-            <div className="flex items-center justify-center w-10/12">
+            <div className="flex items-center justify-center w-10/12 mt-1">
               <div
                 id="lv-progress"
-                className="h-4 w-full overflow-hidden bg-yellow-300 rounded-[4px]"
+                className="h-4 w-full overflow-hidden bg-gray-200 rounded-full"
               >
                 <div
                   className="h-full bg-[#FF9E5D] transition-all ease-in-out duration-500 delay-150"
                   style={{
-                    width: `${user.exp}%`,
+                    // width: `30%`,
+                     width: `${user.exp}%`,
                   }}
                 ></div>
               </div>
@@ -141,8 +142,8 @@ function WorkspaceRightSide() {
             </button> */}
           </div>
         </div>
-        <div className="mt-6 mb-6 bg-gray-50 p-2 rounded-[4px]">
-          <div className="flex flex-col items-start mt-1 text-base">
+        <div className="mt-6 mb-6  rounded-[4px]   flex justify-center">
+          <div className="flex flex-col items-start mt-1 text-base  w-64  ">
             <p className="text-lg font-apple-bold">
               {user.nickname}
               <span className="font-apple-regular">님</span>
