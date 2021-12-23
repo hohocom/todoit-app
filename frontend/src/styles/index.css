@@ -859,6 +859,9 @@ video {
 .w-10\/12 {
 	width: 83.333333%;
 }
+.w-64 {
+	width: 16rem;
+}
 .min-w-\[150px\] {
 	min-width: 150px;
 }
