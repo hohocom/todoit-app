@@ -6,6 +6,8 @@ import kr.todoit.api.domain.WorkGroup;
 import kr.todoit.api.domain.Workspace;
 import kr.todoit.api.dto.WorkCreateRequest;
 import kr.todoit.api.dto.WorkFindResponse;
+import kr.todoit.api.dto.WorkFinishedRequest;
+import kr.todoit.api.dto.WorkUpdateRequest;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.mapper.WorkMapper;
@@ -58,5 +60,29 @@ public class WorkService {
                     .build();
             workGroupRepository.save(workGroup);
         }
+    }
+
+    public void update(WorkUpdateRequest workUpdateRequest) {
+        Work work = workRepository.findWorkById(workUpdateRequest.getWorkId());
+        if(work == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_WORK);
+
+        work.setTitle(workUpdateRequest.getTitle());
+        work.setStartDate(workUpdateRequest.getStartDate());
+
+        if(workUpdateRequest.getThemeColor() != null)
+            work.setThemeColor(workUpdateRequest.getThemeColor());
+        if(workUpdateRequest.getContent() != null)
+            work.setContent(workUpdateRequest.getContent());
+        if(workUpdateRequest.getEndDate() != null)
+            work.setEndDate(workUpdateRequest.getEndDate());
+    }
+
+    public void update(WorkFinishedRequest workFinishedRequest){
+        Work work = workRepository.findWorkById(workFinishedRequest.getWorkId());
+        work.setIsFinished(workFinishedRequest.getResult());
+    }
+
+    public void delete(Long workId){
+        workRepository.deleteById(workId);
     }
 }

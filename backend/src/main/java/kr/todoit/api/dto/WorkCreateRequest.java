@@ -22,7 +22,6 @@ public class WorkCreateRequest {
     @NotBlank(message = "작업 제목은 필수값입니다.")
     private String title;
 
-    @NotBlank(message = "작업 내용은 필수값입니다.")
     private String content;
 
     @NotNull(message = "작업 시작일은 필수값입니다.")

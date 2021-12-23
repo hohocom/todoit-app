@@ -3,6 +3,7 @@ package kr.todoit.api.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @Table(name = "works")
 @NoArgsConstructor
 @Getter
+@Setter
 public class Work {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

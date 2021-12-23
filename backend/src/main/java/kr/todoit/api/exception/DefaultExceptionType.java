@@ -18,6 +18,7 @@ public enum DefaultExceptionType implements ExceptionType {
     NOT_FOUND_WORKSPACE(2001, 200, "워크스페이스를 찾을 수 없습니다."),
     NOT_FOUND_WORKSPACE_GROUP(2001, 200, "워크스페이스 그룹을 찾을 수 없습니다."),
     NOT_FOUND_WORKSPACE_ROLE(2002, 200, "워크스페이스 룰이 정의되지 않았습니다."),
+    NOT_FOUND_WORK(2002, 200, "일정을 찾을 수 없습니다."),
     DUPLICATE_WORKSPACE(2003, 200, "워크스페이스에 이미 가입되어있습니다."),
     // 파일
     FILE_SIZE_OVERFLOW(5001,200, "File Size Overflow: 파일 하나의 사이즈는 최대 2MB로 제한됩니다."),
