@@ -1,24 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useEffect } from "react";
+import {
+  useRecoilState,
+  useRecoilValue,
+  useResetRecoilState,
+  useSetRecoilState,
+} from "recoil";
 
 import {
   workFormModalState,
   userState,
   workspaceDetailState,
   workFormDateState,
+  workDetailModalState,
 } from "core/state";
 import customAxios from "core/api";
 import { dateObjectParser } from "utils/dateObjectParser";
+import { addDays } from "date-fns";
 
-export function useWork() {
+// 작업자 명단 세팅
+export function useWorkInit() {
   const user = useRecoilValue(userState);
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   const [workFormModal, setWorkFormModal] = useRecoilState(workFormModalState);
-  const [workFormDate, setWorkFormDate] = useRecoilState(workFormDateState);
 
   useEffect(() => {
-    if (user.id) {
+    if (user.id && workspaceDetail.users.length) {
+      console.debug("%c[일정 작업자 설정중..]", "color:red");
+      console.debug(workspaceDetail.users);
       const workers = workspaceDetail.users.map((u) => {
         if (u.id === user.id) {
           return {
@@ -39,7 +48,16 @@ export function useWork() {
         workers: workers,
       });
     }
-  }, [user.id]);
+  }, [user.id, workspaceDetail.users.length]);
+}
+
+export function useWork() {
+  const user = useRecoilValue(userState);
+  const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const [workFormModal, setWorkFormModal] = useRecoilState(workFormModalState);
+  const [workFormDate, setWorkFormDate] = useRecoilState(workFormDateState);
+  // const resetWorkFormModal = useResetRecoilState(workFormModalState);
+  const resetWorkFormDate = useResetRecoilState(workFormDateState);
 
   const workFormInputChange = (e) => {
     const value = e.target.value;
@@ -51,41 +69,27 @@ export function useWork() {
     }
   };
 
-  //일정 저장
-  const store = async () => {
-    console.debug("%c[일정 저장중..]", "color: #EC7063");
-    const formData = new FormData();
-    formData.append("title", workFormModal.title);
-    formData.append("content", workFormModal.content);
-    formData.append("workspaceId", workspaceDetail.id);
-    formData.append("themeColor", workFormModal.themeColor);
-    formData.append("startDate", dateObjectParser(workFormDate[0].startDate));
-    formData.append("endDate", dateObjectParser(workFormDate[0].endDate));
-
-    workFormModal.workers.forEach((worker) => {
-      if (worker.isChecked === true) {
-        formData.append("users", worker.id);
-      }
-    });
-
-    await customAxios({
-      method: "post",
-      url: "/works",
-      data: formData,
-    });
-
-    workFormModalToggle(false);
-  };
-
   // 일정 폼 조건에 따라 닫기
-  const workFormModalToggle = (result) => {
-    console.debug(`%c[일정 모달창 상태 : ${result}`, "color: #EC7063");
+  const workFormModalOpen = () => {
     setWorkFormModal({
       ...workFormModal,
-      isOpen: result,
+      isOpen: true,
     });
   };
 
+  // 일정 작성 폼 닫기
+  const workFormModalClose = () => {
+    setWorkFormModal({
+      ...workFormModal,
+      id: "",
+      title: "",
+      content: "",
+      isOpen: false,
+    });
+    resetWorkFormDate();
+  };
+
+  // 작업 인원 설정
   const workerToggle = (e, workerId) => {
     const newWorkers = workFormModal.workers.map((worker) => {
       if (worker.id === workerId && workerId !== user.id)
@@ -101,14 +105,126 @@ export function useWork() {
     });
   };
 
+  const setFormData = () => {
+    const formData = new FormData();
+    formData.append("title", workFormModal.title);
+    formData.append("content", workFormModal.content);
+    formData.append("workspaceId", workspaceDetail.id);
+    formData.append("themeColor", workFormModal.themeColor);
+    formData.append("startDate", dateObjectParser(workFormDate[0].startDate));
+    formData.append(
+      "endDate",
+      dateObjectParser(addDays(workFormDate[0].endDate, 1))
+    );
+    workFormModal.workers.forEach((worker) => {
+      if (worker.isChecked === true) {
+        formData.append("users", worker.id);
+      }
+    });
+    return formData;
+  };
+
+  //일정 저장
+  const store = async () => {
+    console.debug("%c[일정 저장중..]", "color: #EC7063");
+    const formData = setFormData();
+    await customAxios({
+      method: "post",
+      url: "/works",
+      data: formData,
+    });
+    workFormModalClose();
+  };
+
+  // 일정 수정
+  const edit = async () => {
+    console.debug("%c[일정 수정중..]", "color: #EC7063");
+    const formData = setFormData();
+    await customAxios({
+      method: "put",
+      url: `/works/${workFormModal.id}`,
+      data: formData,
+    });
+    workFormModalClose();
+  };
+
+  const destory = async (workId) => {
+    const result = window.confirm("일정을 삭제하시겠어요?");
+    if (!result) return false;
+
+    console.debug("%c[일정 삭제중..]", "color: #EC7063");
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    await customAxios({
+      method: "delete",
+      url: `/works/${workId}`,
+      data: formData,
+    });
+  };
+
+  const editFinished = async (workId, result) => {
+    console.debug("%c[일정 수정중..]", "color: #EC7063");
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("result", result);
+    await customAxios({
+      method: "put",
+      url: `/works/${workId}/finished`,
+      data: formData,
+    });
+  };
+
   return {
     workFormModal,
     setWorkFormModal,
-    workFormModalToggle,
+    workFormModalOpen,
     workFormInputChange,
     store,
+    edit,
+    editFinished,
+    destory,
     workFormDate,
     setWorkFormDate,
     workerToggle,
+    workFormModalClose,
+  };
+}
+
+export function useWorkDetail() {
+  const [workDetailModal, setWorkDetailModal] =
+    useRecoilState(workDetailModalState);
+  const resetWorkDetailModal = useResetRecoilState(workDetailModalState);
+  const [workFormModal, setWorkFormModal] = useRecoilState(workFormModalState);
+  const setWorkFormDate = useSetRecoilState(workFormDateState);
+
+  const closeWorkDetailModal = () => {
+    resetWorkDetailModal();
+  };
+
+  const changeEditModal = () => {
+    setWorkFormDate([
+      {
+        startDate: new Date(workDetailModal.startDate),
+        endDate: addDays(new Date(workDetailModal.endDate), -1),
+        key: "selection",
+      },
+    ]);
+
+    setWorkFormModal({
+      ...workFormModal,
+      isOpen: true,
+      id: workDetailModal.id,
+      title: workDetailModal.title,
+      content: workDetailModal.content,
+      // workers: newWorkers,
+    });
+    closeWorkDetailModal();
+  };
+
+  return {
+    workDetailModal,
+    setWorkDetailModal,
+    closeWorkDetailModal,
+    changeEditModal,
   };
 }

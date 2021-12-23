@@ -1,7 +1,7 @@
 import { Modal } from "components/common";
 import { DateRange } from "react-date-range";
 import ko from "date-fns/locale/ko";
-import { useWork } from "core/hook";
+import { useWork, useWorkInit } from "core/hook";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import {
@@ -15,16 +15,17 @@ function WorkFormModal() {
   const {
     workFormModal,
     setWorkFormModal,
-    workFormModalToggle,
     workFormInputChange,
     store,
+    edit,
     workFormDate,
     setWorkFormDate,
+    workFormModalClose,
   } = useWork();
 
   return (
     <Modal
-      state={{ open: workFormModal.isOpen, setOpen: workFormModalToggle }}
+      state={{ open: workFormModal.isOpen, close: workFormModalClose }}
       options={{
         backgroundClose: true,
         closeButtonType: 1, // 1: arrow, 2: X
@@ -32,7 +33,9 @@ function WorkFormModal() {
     >
       <div className="w-full mt-2 max-h-[800px] overflow-y-scroll custom-scroll px-2">
         <p className="mb-2 text-xl font-apple-bold">
-          일정을 작성해보세요. (●'◡'●)
+          {!workFormModal.id
+            ? "일정을 작성해보세요.(●'◡'●)"
+            : "일정을 수정해보세요.╰(*°▽°*)╯"}
         </p>
         <WorkFormTitle
           title={workFormModal.title}
@@ -66,12 +69,21 @@ function WorkFormModal() {
           locale={ko}
         />
         <div className="flex text-white font-apple-bold">
-          <button
-            className="w-full h-10  mt-2  rounded-md bg-[#ff925d]"
-            onClick={store}
-          >
-            일정입력
-          </button>
+          {!workFormModal.id ? (
+            <button
+              className="w-full h-10  mt-2  rounded-md bg-[#ff925d]"
+              onClick={store}
+            >
+              일정입력
+            </button>
+          ) : (
+            <button
+              className="w-full h-10  mt-2  rounded-md bg-[#ff925d]"
+              onClick={edit}
+            >
+              일정수정
+            </button>
+          )}
         </div>
       </div>
     </Modal>

@@ -8,7 +8,7 @@ import { useWorkspace, useSetWorkspaceDetail } from "./useWorkspace";
 import { useUser, useUserLogout } from "./useUser";
 import { useSecure } from "./useSecure";
 import { useNavChange } from "./useNavChange";
-import { useWork } from "./useWork";
+import { useWork, useWorkInit, useWorkDetail } from "./useWork";
 import { useFullCalendar } from "./useFullCalendar";
 import { useToast, useEmojiToast } from "./useToast";
 
@@ -24,6 +24,8 @@ export {
   useUserLogout,
   useSecure,
   useWorkspace,
+  useWorkInit,
+  useWorkDetail,
   useWork,
   useSetWorkspaceDetail,
   useNavChange,

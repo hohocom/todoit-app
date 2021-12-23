@@ -23,7 +23,7 @@ function SchedulePage() {
   useSecure();
   const { workspaceDetail } = useSetWorkspaceDetail();
   const { renderEventContent, handleEventClick } = useFullCalendar();
-  const { workFormModalToggle } = useWork();
+  const { workFormModalOpen } = useWork();
 
   return (
     <React.Fragment>
@@ -38,7 +38,7 @@ function SchedulePage() {
                   workCreateButton: {
                     text: "일정추가",
                     click: function () {
-                      workFormModalToggle(true);
+                      workFormModalOpen();
                     },
                   },
                 }}

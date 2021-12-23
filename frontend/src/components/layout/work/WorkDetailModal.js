@@ -1,29 +1,20 @@
 import { Modal } from "components/common";
-import { userState, workDetailModalState } from "core/state";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { userState } from "core/state";
+import { useRecoilValue } from "recoil";
 import workDetailImg from "assets/images/work_detail.svg";
-import { useWork } from "core/hook";
-import { addDays } from "date-fns";
+import { useWork, useWorkDetail } from "core/hook";
 
 function WorkDetailModal() {
   const user = useRecoilValue(userState);
-  const [workDetailModal, setWorkDetailModal] =
-    useRecoilState(workDetailModalState);
-  const { workFormModal, setWorkFormModal, workFormDate, setWorkFormDate } =
-    useWork();
-
-  const closeModal = () => {
-    setWorkDetailModal({
-      ...workDetailModal,
-      isOpen: false,
-    });
-  };
+  const { workDetailModal, closeWorkDetailModal, changeEditModal } =
+    useWorkDetail();
+  const { destory } = useWork();
 
   return (
     <Modal
       state={{
         open: workDetailModal.isOpen,
-        close: closeModal,
+        close: closeWorkDetailModal,
       }}
     >
       <div className="w-full mt-2">
@@ -37,26 +28,12 @@ function WorkDetailModal() {
               <div className="min-w-[100px] flex justify-end" key={worker.id}>
                 <i
                   className="text-lg text-gray-600 cursor-pointer fas fa-pencil-alt"
-                  onClick={() => {
-                    setWorkFormModal({
-                      ...workFormModal,
-                      isOpen: true,
-                      id: workDetailModal.id,
-                      title: workDetailModal.title,
-                      content: workDetailModal.content,
-                      workers: workDetailModal.workers,
-                    });
-                    setWorkFormDate([
-                      {
-                        startDate: workDetailModal.startDate,
-                        endDate: workDetailModal.endDate,
-                        key: "selection",
-                      },
-                    ]);
-                    closeModal();
-                  }}
+                  onClick={changeEditModal}
                 ></i>
-                <i className="ml-4 text-lg text-gray-600 cursor-pointer fas fa-trash-alt"></i>
+                <i
+                  className="ml-4 text-lg text-gray-600 cursor-pointer fas fa-trash-alt"
+                  onClick={() => destory(workDetailModal.id)}
+                ></i>
               </div>
             );
           }

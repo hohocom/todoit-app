@@ -57,7 +57,7 @@ export function useFullCalendar() {
     let isChecked = false;
     workspaceDetail.works.forEach((work) => {
       if (work.id === eventInfo.event.id) {
-        isChecked = work.isChecked;
+        isChecked = work.isFinished;
       }
     });
     return (
@@ -65,7 +65,7 @@ export function useFullCalendar() {
         <p className="pl-1 mt-0.5 text-black w-full overflow-hidden">
           {eventInfo.event.title}
         </p>
-        {isChecked && (
+        {isChecked === "1" && (
           <img
             src={scheduleCompletedImg}
             alt="img"
