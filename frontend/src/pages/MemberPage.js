@@ -58,8 +58,19 @@ function MemberPage() {
     console.log('currentpagenumber 바뀜')
     getAllUserData();
   }, [currentPageNumber]);
-
- 
+  console.log(workspaceDetail.id)
+ const userExit = async (num) => {
+   
+  const formData = new FormData();
+  formData.append("memberId", num);
+  formData.append("workspaceId", workspaceDetail.id);
+  formData.append("superMemberId", currentUser.id);
+  await customAxios({
+    method: "delete",
+    url: '/workspaces/exit',
+    data: formData,
+  });
+ }
 
 
   useSecure()//??????????
@@ -115,7 +126,7 @@ function MemberPage() {
                     <div className="flex justify-center w-40 ">
                       <button className="mr-4  rounded-md px-2 "></button>
                       {
-                        currentUserRole ?     <button className=" rounded-md px-2 text-red-500">
+                        currentUserRole ?     <button className=" rounded-md px-2 text-red-500" onClick={()=>{userExit(user.id)}}>
                         삭제
                       </button> : null
                       }
