@@ -84,16 +84,16 @@ function WorkspaceRightSide() {
             onClick={() => navigate("/workspaces")}
           ></i>
         </div>
-        <div className="flex flex-col items-center justify-center w-full">
+        <div className="flex flex-col items-center justify-center w-full group">
           <div className="relative w-[120px] h-[120px] flex justify-center items-center">
-            <div className="absolute top-0 w-2 h-2 bg-yellow-300 rounded-full -right-8"></div>
-            <div className="absolute w-3 h-3 bg-green-300 rounded-full top-12 -right-16"></div>
-            <div className="absolute bottom-0 w-4 h-4 bg-blue-400 rounded-full -right-8"></div>
-            <div className="absolute top-0 w-4 h-4 bg-red-300 rounded-full -left-8"></div>
-            <div className="absolute w-2 h-2 bg-red-400 rounded-full top-12 -left-16"></div>
-            <div className="absolute bottom-0 w-3 h-3 bg-purple-400 rounded-full -left-8"></div>
+            <div className="absolute top-0 w-2 h-2 bg-yellow-300 rounded-full -right-8 group-hover:animate-bounce"></div>
+            <div className="absolute w-3 h-3 bg-green-300 rounded-full top-12 -right-16 group-hover:animate-bounce"></div>
+            <div className="absolute bottom-0 w-4 h-4 bg-blue-400 rounded-full -right-8 group-hover:animate-bounce"></div>
+            <div className="absolute top-0 w-4 h-4 bg-red-300 rounded-full -left-8 group-hover:animate-bounce"></div>
+            <div className="absolute w-2 h-2 bg-red-400 rounded-full top-12 -left-16 group-hover:animate-bounce"></div>
+            <div className="absolute bottom-0 w-3 h-3 bg-purple-400 rounded-full -left-8 group-hover:animate-bounce"></div>
             <div
-              className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 hover-spin
+              className="absolute w-[120px] h-[120px] rounded-full  flex items-center justify-center border-2 group-hover:animate-spin
           border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D] z-10"
             ></div>
             <div className="absolute flex items-center justify-center w-full h-full">
@@ -147,7 +147,7 @@ function WorkspaceRightSide() {
               {user.nickname}
               <span className="font-apple-regular">님</span>
             </p>
-            <p className="text-lg">{cheerUpMessage}</p>
+            <p className="text-sm">{cheerUpMessage}</p>
           </div>
         </div>
         <div>
