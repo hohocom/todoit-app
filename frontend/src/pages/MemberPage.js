@@ -60,7 +60,7 @@ function MemberPage() {
   }, [currentPageNumber]);
   console.log(workspaceDetail.id)
  const userExit = async (num) => {
-   
+  console.log(workspaceDetail.id)
   const formData = new FormData();
   formData.append("memberId", num);
   formData.append("workspaceId", workspaceDetail.id);
