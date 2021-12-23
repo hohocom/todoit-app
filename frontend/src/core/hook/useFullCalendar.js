@@ -56,7 +56,7 @@ export function useFullCalendar() {
       }
     });
     return (
-      <div className="flex items-center">
+      <div className="flex items-center cursor-pointer">
         {isChecked ? (
           <div className="relative flex items-center justify-center ml-1 mr-1 bg-white rounded-full min-w-4 min-h-4">
             <i
@@ -69,7 +69,9 @@ export function useFullCalendar() {
         ) : (
           <div className="relative flex items-center justify-center w-4 h-4 ml-1 mr-1 bg-white rounded-full"></div>
         )}
-        <p className="mt-0.5 text-black w-full overflow-hidden">{eventInfo.event.title}</p>
+        <p className="mt-0.5 text-black w-full overflow-hidden">
+          {eventInfo.event.title}
+        </p>
       </div>
     );
   }
