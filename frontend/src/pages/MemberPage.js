@@ -7,36 +7,33 @@ import {
   WorkspaceSection,
 } from "components/layout/workspace";
 import { useSecure, useSetWorkspaceDetail } from "core/hook";
-import img from "assets/images/bg.jpg";
+ 
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "core/state";
 import customAxios from "core/api";
+import noneImg from "assets/images/noneImg.png";
 function MemberPage() {
-  
-  const currentUser= useRecoilValue(userState);
-  const {workspaceDetail} = useSetWorkspaceDetail() //워크스페이스 정보 가져오기
-  const [currentUserRole, setCurrentUserRole] = useState(false) // 현재 로그인한 유저 권한
-  console.log(workspaceDetail)
+  const currentUser = useRecoilValue(userState);
+  const { workspaceDetail } = useSetWorkspaceDetail(); //워크스페이스 정보 가져오기
+  const [currentUserRole, setCurrentUserRole] = useState(false); // 현재 로그인한 유저 권한
+
   const [usersData, setUsersData] = useState([]); // 모든 user
   const userDataLength = workspaceDetail.users.length; //총 유저수
   const pageLimit = 10; // 한화면에 보여줄 유저 수
-  const totalPageNumber = Math.ceil(userDataLength / pageLimit) //총 페이지수
+  const totalPageNumber = Math.ceil(userDataLength / pageLimit); //총 페이지수
   const [currentPageNumber, setCurrentPageNumber] = useState(1); // 현재 페이지 수
-  // let prepage = 1;
-//  let lastpage =  totalPageNumber;
-  const pageCount = 5;
-  // 현재 워크스페이스에 로그인한 유저 권한 가져오기 
+  // 현재 워크스페이스에 로그인한 유저 권한 가져오기
   const getRole = () => {
-    workspaceDetail.users.map(user=>{
-      if(user.id === currentUser.id){
-        if(user.role === 1 || user.role ===2) {
-         setCurrentUserRole(true)
+    workspaceDetail.users.map((user) => {
+      if (user.id === currentUser.id) {
+        if (user.role === 1 || user.role === 2) {
+          setCurrentUserRole(true);
         }
       }
-    })
-  }
- 
+    });
+  };
+
   const getAllUserData = async () => {
     // 워크스페이스에 해당하는 유저 10명씩 불러오기
     const { users } = await customAxios({
@@ -52,38 +49,30 @@ function MemberPage() {
   };
   //페이지 교체
   const setPage = (num) => {
-    setCurrentPageNumber(num)
-  }
+    setCurrentPageNumber(num);
+  };
   useEffect(() => {
     getAllUserData();
-    getRole()
+    getRole();
   }, []);
   useEffect(() => {
-    console.log('currentpagenumber 바뀜')
+    console.log("currentpagenumber 바뀜");
     getAllUserData();
   }, [currentPageNumber]);
-  console.log(workspaceDetail.id)
- const userExit = async (num) => {
-  console.log(workspaceDetail.id)
-  const formData = new FormData();
-  formData.append("memberId", num);
-  formData.append("workspaceId", workspaceDetail.id);
-  formData.append("superMemberId", currentUser.id);
-  const result = await customAxios({
-    method: "delete",
-    url: '/workspaces/exit',
-    data: formData,
-  });
-  console.log(result)
-  getAllUserData();
- }
- 
+  const userExit = async (num) => {
+    const formData = new FormData();
+    formData.append("memberId", num);
+    formData.append("workspaceId", workspaceDetail.id);
+    formData.append("superMemberId", currentUser.id);
+    await customAxios({
+      method: "delete",
+      url: "/workspaces/exit",
+      data: formData,
+    });
+    getAllUserData();
+  };
 
-
-  useSecure()//??????????
-
-
-  
+  useSecure(); 
 
   return (
     <WorkspaceContainer>
@@ -110,9 +99,9 @@ function MemberPage() {
                   <div className="flex  justify-between  items-center w-full ">
                     <div className="flex items-center  w-44  pl-4 ">
                       <div className="relative">
-                        <img
-                          src={img}
-                          className=" w-10 h-10 rounded-full mr-2"
+                         <img
+                          src={user.img ? process.env.REACT_APP_API_URL+"/images"+user.img : noneImg}
+                          className=" w-10 h-10 rounded-full mr-2 bg-gray-200"
                         />
                         <div className="absolute top-[28px] left-[28px]   ">
                           <div className=" w-3 h-3 rounded-full bg-white"></div>
@@ -132,37 +121,68 @@ function MemberPage() {
                     </div>
                     <div className="flex justify-center w-40 ">
                       <button className="mr-4  rounded-md px-2 "></button>
-                      {
-                        currentUserRole ?     <button className=" rounded-md px-2 text-red-500" onClick={()=>{userExit(user.id)}}>
-                        삭제
-                      </button> : null
-                      }
-                  
+                      {currentUserRole &&
+                      !(user.id === currentUser.id) &&
+                      !(user.role === 1) ? (
+                        <button
+                          className=" rounded-md px-2 text-red-500"
+                          onClick={() => {
+                            userExit(user.id);
+                          }}
+                        >
+                          삭제
+                        </button>
+                      ) : null}
                     </div>
                   </div>
                 </div>
               );
             })}
             <div className="flex w-full  h-10  justify-center mt-1 items-baseline pt-2 cursor-pointer font-apple-bold">
-              <div className="mr-3" onClick={()=>{setPage(1)}}>&lt;</div>
+              <div
+                className="mr-3"
+                onClick={() => {
+                  setPage(1);
+                }}
+              >
+                &lt;
+              </div>
               {Array.from(Array(totalPageNumber), (e, i) => {
-                if(i+1===currentPageNumber){
+                if (i + 1 === currentPageNumber) {
                   return (
-                  
-                    <div className="mr-3 font-apple-bold cursor-pointer border-b border-black" key={i} onClick={()=>{setPage(i+1)}}>
+                    <div
+                      className="mr-3 font-apple-bold cursor-pointer border-b border-black"
+                      key={i}
+                      onClick={() => {
+                        setPage(i + 1);
+                      }}
+                    >
                       {i + 1}
                     </div>
                   );
-                }else{
-                  return(
-                    <div className="mr-3 font-apple-regular cursor-pointer hover:font-apple-bold " key={i} onClick={()=>{setPage(i+1)}}>
+                } else {
+                  return (
+                    <div
+                      className="mr-3 font-apple-regular cursor-pointer hover:font-apple-bold "
+                      key={i}
+                      onClick={() => {
+                        setPage(i + 1);
+                      }}
+                    >
                       {i + 1}
                     </div>
                   );
                 }
-                
               })}
-              <div className="mr-3 cursor-pointer" onClick={()=>{setPage(totalPageNumber)}}>&gt;</div>
+              <div
+                className="mr-3 cursor-pointer"
+                onClick={() => {
+                  setPage(totalPageNumber);
+                }}
+              >
+                &gt;
+              </div>
+              
             </div>
           </div>
         </WorkspaceSection>

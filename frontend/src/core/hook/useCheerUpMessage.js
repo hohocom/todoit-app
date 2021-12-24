@@ -10,23 +10,19 @@ export function useCheerUpMessageInit() {
   useEffect(() => {
     const timer = setMessageByMatchTimes();
 
-    return () => {
-      console.debug("타이머 종료");
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
-    const notification = new Notification("투두잇", {
-      body: cheerUpMessage,
-      // icon: bgImg,
-    });
-
     if (
       cheerUpMessageState !== null ||
       cheerUpMessageState !== "" ||
       cheerUpMessageState !== " "
     ) {
+      const notification = new Notification("투두잇", {
+        body: cheerUpMessage,
+        // icon: bgImg,
+      });
       setTimeout(notification.close.bind(notification), 5000);
     }
   }, [cheerUpMessage]);

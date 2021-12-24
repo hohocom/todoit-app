@@ -4,7 +4,7 @@ function UserCheerUpMessageBox() {
   const { user } = useUser();
   const { cheerUpMessage } = useCheerUpMessage();
   return (
-    <div className="mt-6 mb-6  rounded-[4px]   flex justify-center">
+    <div className="mt-6 mb-5  rounded-[4px] flex justify-center">
       <div className="flex flex-col items-start w-64 mt-1 text-base ">
         <p className="text-lg font-apple-bold">
           {user.nickname}

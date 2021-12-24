@@ -32,7 +32,10 @@ function WorkDetailModal() {
                 ></i>
                 <i
                   className="ml-4 text-lg text-gray-600 cursor-pointer fas fa-trash-alt"
-                  onClick={() => destory(workDetailModal.id)}
+                  onClick={() => {
+                    destory(workDetailModal.id);
+                    closeWorkDetailModal();
+                  }}
                 ></i>
               </div>
             );

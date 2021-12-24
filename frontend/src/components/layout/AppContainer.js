@@ -1,8 +1,9 @@
 import { EmojiToast } from "components/common";
-import { useEmojiToast } from "core/hook";
+import { useCheerUpMessageInit, useEmojiToast } from "core/hook";
 import { LoadingContainer } from ".";
 
 function AppContainer({ children }) {
+  useCheerUpMessageInit();
   const { emojiToast, reset } = useEmojiToast();
   return (
     <>

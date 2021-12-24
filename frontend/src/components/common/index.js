@@ -5,13 +5,15 @@ import EmojiToast from "./EmojiToast";
 import ImagePreview from "./ImagePreview";
 import UserPicker from "./UserPicker";
 import Modal from "./Modal";
+import CheckBox from "./CheckBox";
 
 export {
   Avatar,
   AvatarGroup,
-  Toast,
+  CheckBox,
   EmojiToast,
   ImagePreview,
-  UserPicker,
   Modal,
+  Toast,
+  UserPicker,
 };

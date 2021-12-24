@@ -42,6 +42,7 @@ function SchedulePage() {
                     },
                   },
                 }}
+                width="100%"
                 height="100%"
                 headerToolbar={{
                   left: "title,workCreateButton",

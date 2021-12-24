@@ -1,22 +1,23 @@
 import rocketImg from "assets/images/rocket.svg";
 import { useNavChange } from "core/hook";
-
+import logo from "assets/images/todo-it.png";
+import logo1 from "assets/images/todo-it1.png";
 import { Link } from "react-router-dom";
 
 function WorkspaceLeftSide() {
   const { workspaceUI, changeMenu, getMenuIndex } = useNavChange();
 
   return (
-    <div className="relative bg-white border-r dark:bg-gray-800">
+    <div className="relative bg-white border-r dark:bg-gray-800 w-[310px]">
       <div className="flex flex-col sm:flex-row sm:justify-around">
-        <div className="h-screen w-72">
-          <div className="flex items-center justify-start mx-6 mt-10">
-            <img className="h-10" src={rocketImg} alt="img" />
-            <span className="ml-4 text-2xl font-bold text-gray-600 dark:text-gray-300">
+        <div className="h-screen w-72 ">
+          <div className="flex items-center justify-start mx-4 mt-5">
+            
+            <span className="ml-4 text-3xl  text-black font-apple-hard">
               Todo-It
             </span>
           </div>
-          <nav className="px-6 mt-10 ">
+          <nav className="px-6 mt-3 ">
             {workspaceUI.menus.map((menu) => {
               return (
                 <Link
@@ -27,7 +28,7 @@ function WorkspaceLeftSide() {
                   }}
                 >
                   <div
-                    className={`flex items-center p-2 my-6 text-gray-600 transition-colors duration-200 
+                    className={`flex items-center p-2 my-2 text-gray-600 transition-colors duration-200 
                       rounded-lg menu-item hover:text-gray-800 
                       hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-600 dark:text-gray-400 `.concat(
                       getMenuIndex() === menu.id && "bg-gray-100 text-gray-800"
