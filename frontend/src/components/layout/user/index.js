@@ -1,4 +1,11 @@
 import UserNicknameEditButton from "./UserNicknameEditButton";
 import UserLogoutButton from "./UserLogoutButton";
+import UserProfileContainer from "./UserProfileContainer";
+import UserCheerUpMassgeBox from "./UserCheerUpMassgeBox";
 
-export { UserNicknameEditButton, UserLogoutButton };
+export {
+  UserProfileContainer,
+  UserCheerUpMassgeBox,
+  UserNicknameEditButton,
+  UserLogoutButton,
+};

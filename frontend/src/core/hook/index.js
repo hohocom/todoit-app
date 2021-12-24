@@ -11,6 +11,7 @@ import { useNavChange } from "./useNavChange";
 import { useWork, useWorkInit, useWorkDetail } from "./useWork";
 import { useFullCalendar } from "./useFullCalendar";
 import { useToast, useEmojiToast } from "./useToast";
+import { useCheerUpMessage, useCheerUpMessageInit } from "./useCheerUpMessage";
 
 export {
   useAxios,
@@ -32,4 +33,6 @@ export {
   useFullCalendar,
   useToast,
   useEmojiToast,
+  useCheerUpMessage,
+  useCheerUpMessageInit,
 };
