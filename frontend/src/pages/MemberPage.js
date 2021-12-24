@@ -12,8 +12,17 @@ import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState } from "core/state";
 import customAxios from "core/api";
-import noneImg from "assets/images/noneImg.png";
+import noneImg1 from "assets/images/noneImg1.png";
+import noneImg2 from "assets/images/noneImg2.png";
+import noneImg3 from "assets/images/noneImg3.png";
+import noneImg4 from "assets/images/noneImg4.png";
+import noneImg5 from "assets/images/noneImg5.png";
+import noneImg6 from "assets/images/noneImg6.png";
+import noneImg7 from "assets/images/noneImg7.png";
+import noneImg8 from "assets/images/noneImg8.png";
+import noneImg9 from "assets/images/noneImg9.png";
 function MemberPage() {
+  const noneImg = [noneImg1,noneImg2,noneImg3,noneImg4,noneImg5,noneImg6,noneImg7,noneImg8,noneImg9]
   const currentUser = useRecoilValue(userState);
   const { workspaceDetail } = useSetWorkspaceDetail(); //워크스페이스 정보 가져오기
   const [currentUserRole, setCurrentUserRole] = useState(false); // 현재 로그인한 유저 권한
@@ -44,7 +53,7 @@ function MemberPage() {
   };
   //유저 역할
   const role = (num) => {
-    const roleText = ["관리자", "매니저", "방문자"]; // 1 관리자 2 매니저 3 방문자
+    const roleText = ["관리자", "매니저", "일반"]; // 1 관리자 2 매니저 3 일반
     return roleText[num - 1];
   };
   //페이지 교체
@@ -100,7 +109,7 @@ function MemberPage() {
                     <div className="flex items-center  w-44  pl-4 ">
                       <div className="relative">
                          <img
-                          src={user.img ? process.env.REACT_APP_API_URL+"/images"+user.img : noneImg}
+                          src={user.img ? process.env.REACT_APP_API_URL+"/images"+user.img : noneImg[(user.id%noneImg.length)]}
                           className=" w-10 h-10 rounded-full mr-2 bg-gray-200"
                         />
                         <div className="absolute top-[28px] left-[28px]   ">

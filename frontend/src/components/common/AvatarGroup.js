@@ -17,8 +17,14 @@ function AvatarGroup({ items, space = "m" }) {
               return (
                 <Avatar
                   key={index}
+<<<<<<< HEAD
                   originImage={user.originImagePath}
                   thumbnailImage={user.thumbnailImagePath}
+=======
+                  userId={user.id}
+                  originImage={user.originImage}
+                  thumbnailImage={user.thumbnailImage}
+>>>>>>> 1659f547141ba2819e152f8b5f3afdc3d3468643
                   userName={user.name}
                 />
               );
