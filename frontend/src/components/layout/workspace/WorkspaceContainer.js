@@ -1,27 +1,24 @@
-import { useWorkInit, useWorkspace } from "core/hook";
-import { useEffect, useRef } from "react";
-import SockJsClient from "react-stomp";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useWorkInit } from "core/hook";
+// import { useRef } from "react";
+// import SockJsClient from "react-stomp";
 
 function WorkspaceContainer({ children }) {
   useWorkInit();
-  const { workspaceDetail } = useWorkspace();
-  const websocket = useRef(null);
-
-  useEffect(() => {
-    console.debug("----------------------------------");
-    console.debug(websocket);
-  }, []);
+  // const websocket = useRef(null);
+  // websocket.current.sendMessage("/works", workspaceDetail.id);
 
   return (
     <div className="fixed top-0 left-0 flex w-full h-full bg-gray-100 font-apple-light">
-      <SockJsClient
+      {/* <SockJsClient
         url={`${process.env.REACT_APP_API_URL}/start`}
-        topics={["/topics/sendTo", "/topics/template", "/topics/api"]}
+        topics={["/topics/works"]}
         onMessage={(msg) => {
-          console.log(msg);
+          console.debug("메시지 안날라와~~~~~~~~~~~~~~~~~~~~~~~~~");
+          console.debug(msg);
         }}
         ref={websocket}
-      />
+      /> */}
       {children}
     </div>
   );

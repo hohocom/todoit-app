@@ -8,6 +8,17 @@ export function useUser() {
   const { setEmojiToast } = useEmojiToast();
   const { customAxios } = useAxios();
 
+  const getUsersByWorkspace = async (workspaceCode) => {
+    console.debug("%c[Path에서 워크스페이스 코드 추출]", "color:gray");
+    console.debug(workspaceCode);
+
+    const { users } = await customAxios({
+      method: "GET",
+      url: `/users?workspaceCode=${workspaceCode}`,
+    });
+    return users;
+  };
+
   const getUserDetailById = async (userId) => {
     const { user } = await customAxios({
       method: "get",
@@ -32,22 +43,6 @@ export function useUser() {
   };
 
   const updateUserLevel = async (exp) => {
-    console.debug("%c[유저 레벨 오르는중..]", "color:purple");
-    // 레벨업 하기 전 효과를 주기위한 로직
-    if (user.exp + exp >= 100) {
-      setUser({
-        ...user,
-        exp: 100,
-      });
-
-      setEmojiToast({
-        open: true,
-        type: "HAPPY",
-        second: 5000,
-        message: "레벨업!! 앞으로도 호호컴퍼니를 위해 열심히 굴러주세요 ^.^",
-      });
-    }
-
     const formData = new FormData();
     formData.append("exp", exp);
     const res = await customAxios({
@@ -61,6 +56,18 @@ export function useUser() {
       level: res.user.level,
       exp: res.user.exp,
     });
+  };
+
+  const levelUpCheck = () => {
+    console.debug(user.exp + 100 / user.level);
+    if (user.exp + 100 / user.level >= 100) {
+      setEmojiToast({
+        open: true,
+        type: "HAPPY",
+        second: 5000,
+        message: "레벨업!! 앞으로도 호호컴퍼니를 위해 열심히 굴러주세요 ^.^",
+      });
+    }
   };
 
   const editNickname = async () => {
@@ -129,6 +136,8 @@ export function useUser() {
     storeProfileImage,
     editNickname,
     updateUserLevel,
+    getUsersByWorkspace,
+    levelUpCheck,
   };
 }
 

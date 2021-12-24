@@ -24,11 +24,12 @@ function EmojiToast({ toast = { type: "HAPPY" }, resetToast }) {
           onClick={(e) => e.stopPropagation()}
         >
           <img src={emoji} alt="img" className="-mt-24" />
-          <p className="font-apple-light text-[#2E2E2E]">{toast.message}</p>
-          <i
-            className="text-xl fas fa-times text-[#424242] cursor-pointer hover:text-yellow-500 mt-4"
-            onClick={() => resetToast()}
-          ></i>
+          <p className="font-apple-regular text-[#2E2E2E]">{toast.message}</p>
+          <div className="flex justify-end w-full">
+            <div className="hover:text-yellow-500 font-apple-bold text-[#2E2E2E]" onClick={() => resetToast()}>
+              닫기
+            </div>
+          </div>
         </div>
         {toast.type === "HAPPY" && <FireWorkContainer />}
       </div>

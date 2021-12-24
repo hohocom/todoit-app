@@ -59,7 +59,10 @@ function AvatarGroup({ items, space = "m" }) {
               className="flex items-center justify-start w-full mb-2"
               key={item.id}
             >
-              <Avatar thumbnailImage={item.thumbnailImagePath} />
+              <Avatar
+                thumbnailImage={item.thumbnailImagePath}
+                userId={item.id}
+              />
               <div className="mt-1 ml-1 text-xs">{item.nickname}</div>
             </div>
           );

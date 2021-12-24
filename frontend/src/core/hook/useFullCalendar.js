@@ -1,35 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
-import { useSetWorkspaceDetail } from "core/hook";
-import useAxios from "./useAxios";
-import { useRecoilState } from "recoil";
-import { workDetailModalState } from "core/state";
+import React from "react";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { workDetailModalState, workspaceDetailState } from "core/state";
 import scheduleCompletedImg from "assets/images/schedule_complete2.svg";
 
 export function useFullCalendar() {
-  const { customAxios } = useAxios();
-  const { workspaceDetail, setWorkspaceDetail } = useSetWorkspaceDetail();
-  const [workDetailModal, setWorkDetailModal] =
-    useRecoilState(workDetailModalState);
-
-  useEffect(() => {
-    if (workspaceDetail.id) {
-      getWorks();
-    }
-  }, [workspaceDetail.id]);
-
-  const getWorks = async () => {
-    const res = await customAxios({
-      method: "get",
-      url: `/works?workspaceId=${workspaceDetail.id}`,
-    });
-    console.debug("워크 리스트");
-    console.debug(res.works);
-    setWorkspaceDetail({
-      ...workspaceDetail,
-      works: res.works,
-    });
-  };
+  const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const setWorkDetailModal = useSetRecoilState(workDetailModalState);
 
   const handleEventClick = (args) => {
     workspaceDetail.works.forEach((work) => {
@@ -53,19 +30,19 @@ export function useFullCalendar() {
 
   // 풀캘린더에서 보여줄 일정 커스터마이징
   function renderEventContent(eventInfo) {
-    console.debug(eventInfo.event);
-    let isChecked = false;
+    let isFinished = 0;
     workspaceDetail.works.forEach((work) => {
-      if (work.id === eventInfo.event.id) {
-        isChecked = work.isFinished;
+      if (work.id === Number(eventInfo.event.id)) {
+        isFinished = Number(work.isFinished);
       }
     });
+
     return (
       <div className="relative flex items-center overflow-hidden cursor-pointer">
         <p className="pl-1 mt-0.5 text-black w-full overflow-hidden">
           {eventInfo.event.title}
         </p>
-        {isChecked === "1" && (
+        {isFinished === 1 && (
           <img
             src={scheduleCompletedImg}
             alt="img"

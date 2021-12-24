@@ -2,13 +2,15 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userState, workspaceDetailState } from "core/state";
+import { useAxios, useUser } from ".";
 import { useLocation } from "react-router-dom";
-import { useAxios } from ".";
 
 export function useWorkspace() {
-  const [user, setUser] = useRecoilState(userState);
-  const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const { user, setUser, getUsersByWorkspace } = useUser();
+  const [workspaceDetail, setWorkspaceDetail] =
+    useRecoilState(workspaceDetailState);
   const { customAxios } = useAxios();
+  const location = useLocation();
 
   const join = async () => {
     console.debug("%c[워크스페이스 가입중..]", "color:#5499C7");
@@ -109,47 +111,22 @@ export function useWorkspace() {
     });
   };
 
-  return {
-    workspaceDetail,
-    store,
-    edit,
-    destroy,
-    join,
+  const getWorksByWorkspace = async (workspaceCode) => {
+    const { works } = await customAxios({
+      method: "get",
+      url: `/works?workspaceCode=${workspaceCode}`,
+    });
+    return works;
   };
-}
 
-export function useSetWorkspaceDetail() {
-  const location = useLocation();
-  const [workspaceDetail, setWorkspaceDetail] =
-    useRecoilState(workspaceDetailState);
-  const user = useRecoilValue(userState);
-  const { customAxios } = useAxios();
-
-  useEffect(() => {
-    // 유저 아이디가 존재하고 워크스페이스 디테일 아이디가 없을 때
-    if (user.id && !workspaceDetail.id) {
-      console.debug(
-        "%c[워크스페이스 컬랙션중 선택한 워크스페이스 설정중..]",
-        "color:blue"
-      );
-      getMatchWorkspace();
-    }
-  }, [user]);
-
-  const getMatchWorkspace = async () => {
+  const workspaceDetailInit = async () => {
     let workspaceCode = location.pathname.split("workspaces/")[1];
     if (workspaceCode.includes("/"))
       workspaceCode = workspaceCode.split("/")[0];
 
-    console.debug("%c[Path에서 워크스페이스 코드 추출]", "color:gray");
-    console.debug(workspaceCode);
-
-    const { users } = await customAxios({
-      method: "GET",
-      url: `/users?workspaceCode=${workspaceCode}`,
-    });
-    console.debug(users);
-
+    const users = await getUsersByWorkspace(workspaceCode);
+    const works = await getWorksByWorkspace(workspaceCode);
+    
     user.workspaces.forEach((workspace) => {
       if (workspace.code === workspaceCode) {
         setWorkspaceDetail({
@@ -158,10 +135,39 @@ export function useSetWorkspaceDetail() {
           code: workspace.code,
           name: workspace.name,
           users: users,
+          works: works,
         });
       }
     });
   };
+
+  return {
+    workspaceDetail,
+    store,
+    edit,
+    destroy,
+    join,
+    workspaceDetailInit,
+    getWorksByWorkspace,
+  };
+}
+
+export function useSetWorkspaceDetail() {
+  const [workspaceDetail, setWorkspaceDetail] =
+    useRecoilState(workspaceDetailState);
+  const user = useRecoilValue(userState);
+  const { workspaceDetailInit } = useWorkspace();
+
+  useEffect(() => {
+    // 유저 아이디가 존재하고 워크스페이스 디테일 아이디가 없을 때
+    if (user.id && !workspaceDetail.id) {
+      console.debug(
+        "%c[워크스페이스 컬랙션중 선택한 워크스페이스 설정중..]",
+        "color:blue"
+      );
+      workspaceDetailInit();
+    }
+  }, [user]);
 
   return { workspaceDetail, setWorkspaceDetail };
 }

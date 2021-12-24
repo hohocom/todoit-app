@@ -17,6 +17,7 @@ import {
 import customAxios from "core/api";
 import { dateObjectParser } from "utils/dateObjectParser";
 import { addDays } from "date-fns";
+import { useUser } from ".";
 
 // 작업자 명단 세팅
 export function useWorkInit() {
@@ -52,8 +53,9 @@ export function useWorkInit() {
 }
 
 export function useWork() {
-  const user = useRecoilValue(userState);
-  const workspaceDetail = useRecoilValue(workspaceDetailState);
+  const { user, levelUpCheck } = useUser();
+  const [workspaceDetail, setWorkspaceDetail] =
+    useRecoilState(workspaceDetailState);
   const [workFormModal, setWorkFormModal] = useRecoilState(workFormModalState);
   const [workFormDate, setWorkFormDate] = useRecoilState(workFormDateState);
   // const resetWorkFormModal = useResetRecoilState(workFormModalState);
@@ -127,11 +129,19 @@ export function useWork() {
   //일정 저장
   const store = async () => {
     console.debug("%c[일정 저장중..]", "color: #EC7063");
+
+    levelUpCheck();
+
     const formData = setFormData();
-    await customAxios({
+    const { works } = await customAxios({
       method: "post",
       url: "/works",
       data: formData,
+    });
+
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: works,
     });
     workFormModalClose();
   };
@@ -145,6 +155,23 @@ export function useWork() {
       url: `/works/${workFormModal.id}`,
       data: formData,
     });
+    const editWorks = workspaceDetail.works.map((work) => {
+      if (workFormModal.id === work.id) {
+        return {
+          ...work,
+          title: workFormModal.title,
+          content: workFormModal.content,
+          start: dateObjectParser(workFormDate[0].startDate),
+          end: dateObjectParser(addDays(workFormDate[0].endDate, 1)),
+          color: workFormModal.themeColor,
+        };
+      }
+      return work;
+    });
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: editWorks,
+    });
     workFormModalClose();
   };
 
@@ -155,14 +182,27 @@ export function useWork() {
     console.debug("%c[일정 삭제중..]", "color: #EC7063");
     const formData = new FormData();
     formData.append("userId", user.id);
+
     await customAxios({
       method: "delete",
       url: `/works/${workId}`,
       data: formData,
     });
+
+    const deleteWorks = workspaceDetail.works.filter(
+      (work) => work.id !== workId
+    );
+
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: deleteWorks,
+    });
   };
 
   const editFinished = async (workId, result) => {
+    if(result === 1){
+      levelUpCheck();
+    }
     console.debug("%c[일정 수정중..]", "color: #EC7063");
     const formData = new FormData();
     formData.append("userId", user.id);
@@ -171,6 +211,20 @@ export function useWork() {
       method: "put",
       url: `/works/${workId}/finished`,
       data: formData,
+    });
+    const editWorks = workspaceDetail.works.map((work) => {
+      if (work.id === workId) {
+        return {
+          ...work,
+          isFinished: result,
+        };
+      } else {
+        return work;
+      }
+    });
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: editWorks,
     });
   };
 

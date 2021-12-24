@@ -4,10 +4,7 @@ import kr.todoit.api.domain.User;
 import kr.todoit.api.domain.Work;
 import kr.todoit.api.domain.WorkGroup;
 import kr.todoit.api.domain.Workspace;
-import kr.todoit.api.dto.WorkCreateRequest;
-import kr.todoit.api.dto.WorkFindResponse;
-import kr.todoit.api.dto.WorkFinishedRequest;
-import kr.todoit.api.dto.WorkUpdateRequest;
+import kr.todoit.api.dto.*;
 import kr.todoit.api.exception.CustomException;
 import kr.todoit.api.exception.DefaultExceptionType;
 import kr.todoit.api.mapper.WorkMapper;
@@ -32,26 +29,37 @@ public class WorkService {
     private UserRepository userRepository;
     private WorkMapper workMapper;
 
-    public List<WorkFindResponse> findWorksByWorkspaceId(Long workspaceId) {
-        System.out.println(workspaceId);
-        List<WorkFindResponse> _works = workMapper.findWorkByWorkspaceIdAndGroupByWorkId(workspaceId);
-        return _works;
+    public List<WorkFindResponse> findWorksByOptions(WorkFindRequest workFindRequest) {
+        return workMapper.findWorksByOptions(workFindRequest);
     }
 
-    public void create(WorkCreateRequest workCreateRequest) throws ParseException {
+    public List<WorkFindResponse> create(WorkCreateRequest workCreateRequest) throws ParseException {
         Workspace workspace = workspaceRepository.findOneById(workCreateRequest.getWorkspaceId());
-        if (workspace == null) {
+        WorkFindRequest workFindRequest = new WorkFindRequest();
+
+        if (workspace == null)
             throw new CustomException(DefaultExceptionType.NOT_FOUND_WORKSPACE);
-        }
+
         Work work = workCreateRequest.toWork();
         workRepository.save(work);
 
         for (Long userId : workCreateRequest.getUsers()) {
             User user = userRepository.findUserById(userId);
-            if (user == null) {
+            if (user == null)
                 throw new CustomException(DefaultExceptionType.NOT_FOUND_USER);
+
+            // SET LEVEL
+            int userLevel = user.getLevel();
+            Short userExp = user.getExp();
+            int newExp = userExp + (100 / userLevel);
+            while (newExp >= 100) {
+                System.out.println(newExp);
+                newExp -= 100;
+                userLevel += 1;
             }
-            System.out.println(user);
+            user.setExp((short) newExp);
+            user.setLevel((short) (userLevel));
+            // SET LEVEL
 
             WorkGroup workGroup = WorkGroup.builder()
                     .user(user)
@@ -59,30 +67,54 @@ public class WorkService {
                     .workspace(workspace)
                     .build();
             workGroupRepository.save(workGroup);
+            workFindRequest.setWorkspaceId(workGroup.getWorkspace().getId());
         }
+
+        return workMapper.findWorksByOptions(workFindRequest);
     }
 
     public void update(WorkUpdateRequest workUpdateRequest) {
         Work work = workRepository.findWorkById(workUpdateRequest.getWorkId());
-        if(work == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_WORK);
+        if (work == null) throw new CustomException(DefaultExceptionType.NOT_FOUND_WORK);
 
         work.setTitle(workUpdateRequest.getTitle());
         work.setStartDate(workUpdateRequest.getStartDate());
 
-        if(workUpdateRequest.getThemeColor() != null)
+        if (workUpdateRequest.getThemeColor() != null)
             work.setThemeColor(workUpdateRequest.getThemeColor());
-        if(workUpdateRequest.getContent() != null)
+        if (workUpdateRequest.getContent() != null)
             work.setContent(workUpdateRequest.getContent());
-        if(workUpdateRequest.getEndDate() != null)
+        if (workUpdateRequest.getEndDate() != null)
             work.setEndDate(workUpdateRequest.getEndDate());
     }
 
-    public void update(WorkFinishedRequest workFinishedRequest){
+    public void update(WorkFinishedRequest workFinishedRequest) {
         Work work = workRepository.findWorkById(workFinishedRequest.getWorkId());
         work.setIsFinished(workFinishedRequest.getResult());
+        List<WorkGroup> workGroups = workGroupRepository.findWorkGroupByWork(work);
+
+        if(workFinishedRequest.getResult() == 1){
+            for (WorkGroup workGroup : workGroups) {
+                User user = workGroup.getUser();
+                // SET LEVEL
+                int userLevel = user.getLevel();
+                Short userExp = user.getExp();
+                int newExp = userExp + (100 / userLevel);
+                while (newExp >= 100) {
+                    System.out.println(newExp);
+                    newExp -= 100;
+                    userLevel += 1;
+                }
+                user.setExp((short) newExp);
+                user.setLevel((short) (userLevel));
+                // SET LEVEL
+            }
+        }
     }
 
-    public void delete(Long workId){
+    public void delete(Long workId) {
         workRepository.deleteById(workId);
     }
+
+
 }

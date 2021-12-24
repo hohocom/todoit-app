@@ -62,6 +62,7 @@ function SchedulePage() {
         </WorkspaceMain>
         <WorkspaceRightSide />
       </WorkspaceContainer>
+
       <WorkFormModal />
       <WorkDetailModal />
     </React.Fragment>

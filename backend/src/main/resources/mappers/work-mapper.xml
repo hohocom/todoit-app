@@ -17,11 +17,14 @@
         <collection resultMap="user" property="users"/>
     </resultMap>
 
-    <select id="findWorkByWorkspaceIdAndGroupByWorkId" parameterType="java.lang.Long" resultMap="work">
-        select u.id as user_id, u.nickname, w.id as work_id, w.title, w.theme_color, w.content, w.start_date, w.end_date, w.is_finished
+    <select id="findWorksByOptions" parameterType="kr.todoit.api.dto.WorkFindRequest" resultMap="work">
+        select u.id as user_id, u.nickname, w.id as work_id, w.title, w.theme_color, w.content, w.start_date, w.end_date,
+        if(w.is_finished = 0, 0, 1) as is_finished
         from work_groups wg
                  left join users u on wg.user_id = u.id
                  left join works w on wg.work_id = w.id
-        where workspace_id = #{workspaceId}
+                 left join workspaces ws on wg.workspace_id = ws.id
+        <if test="workspaceId != null">where workspace_id = #{workspaceId}</if>
+        <if test="workspaceId == null and workspaceCode">where ws.code = #{workspaceCode}</if>
     </select>
 </mapper>

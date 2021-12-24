@@ -12,6 +12,7 @@ import { useWork, useWorkInit, useWorkDetail } from "./useWork";
 import { useFullCalendar } from "./useFullCalendar";
 import { useToast, useEmojiToast } from "./useToast";
 import { useCheerUpMessage, useCheerUpMessageInit } from "./useCheerUpMessage";
+import { useSocket } from "./useSocket";
 
 export {
   useAxios,
@@ -35,4 +36,5 @@ export {
   useEmojiToast,
   useCheerUpMessage,
   useCheerUpMessageInit,
+  useSocket,
 };

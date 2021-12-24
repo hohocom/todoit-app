@@ -1,7 +1,7 @@
 import { Modal } from "components/common";
 import { DateRange } from "react-date-range";
 import ko from "date-fns/locale/ko";
-import { useWork, useWorkInit } from "core/hook";
+import { useUser, useWork } from "core/hook";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import {
@@ -22,6 +22,7 @@ function WorkFormModal() {
     setWorkFormDate,
     workFormModalClose,
   } = useWork();
+  const { user, getUserDetailById } = useUser();
 
   return (
     <Modal
@@ -72,7 +73,10 @@ function WorkFormModal() {
           {!workFormModal.id ? (
             <button
               className="w-full h-10  mt-2  rounded-md bg-[#ff925d]"
-              onClick={store}
+              onClick={async () => {
+                await store();
+                await getUserDetailById(user.id);
+              }}
             >
               일정입력
             </button>

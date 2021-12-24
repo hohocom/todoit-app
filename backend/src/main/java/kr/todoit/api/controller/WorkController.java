@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +29,14 @@ import java.util.Map;
 public class WorkController {
 
     private WorkService workService;
+    private SimpMessagingTemplate webSocket;
+
 
     @GetMapping("")
-    public ResponseEntity<Map<Object, Object>> index(@RequestParam Long workspaceId) {
+    public ResponseEntity<Map<Object, Object>> index(WorkFindRequest workFindRequest) {
         log.info("[일정 목록 요청중..]");
 
-        List<WorkFindResponse> works = workService.findWorksByWorkspaceId(workspaceId);
+        List<WorkFindResponse> works = workService.findWorksByOptions(workFindRequest);
         Map<Object, Object> response = new HashMap<>();
         response.put("message", "작업일정 조회");
         response.put("statusCode", 200);
@@ -41,12 +44,15 @@ public class WorkController {
         return ResponseEntity.ok().body(response);
     }
 
-    @MessageMapping("/sendTo")
-    @SendTo("/topics/sendTo")
-    public List<WorkFindResponse> socketIndex(@RequestBody Long workspaceId) {
+    @MessageMapping("/works")
+    @SendTo("/topics/works")
+    public List<WorkFindResponse> socketIndex(WorkFindRequest workFindRequest) {
         log.info("[소캣으로 일정 목록 요청중..]");
 
-        return workService.findWorksByWorkspaceId(workspaceId);
+//        HashMap<String, Object> response = new HashMap<>();
+//        response.put("room", workspaceId);
+//        response.put("works", workService.findWorksByWorkspaceId(workspaceId));
+        return workService.findWorksByOptions(workFindRequest);
     }
 
     @PostMapping("")
@@ -67,11 +73,12 @@ public class WorkController {
         }
         if (!result) throw new CustomException(DefaultExceptionType.AUTHENTICATE_NOT_MATCH);
 
-        workService.create(workCreateRequest);
+        List<WorkFindResponse> workFindResponses = workService.create(workCreateRequest);
 
         Map<String, Object> response = new HashMap<>();
         response.put("message", "작업일정을 생성하였습니다.");
         response.put("statusCode", 200);
+        response.put("works", workFindResponses);
         return ResponseEntity.ok().body(response);
     }
 
