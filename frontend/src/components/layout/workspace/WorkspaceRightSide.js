@@ -9,6 +9,7 @@ import bgImg from "assets/images/bg.jpg";
 
 function WorkspaceRightSide() {
   const { user, updateUserLevel } = useUser();
+
   const navigate = useNavigate();
   const workspaceDetail = useRecoilValue(workspaceDetailState);
   const [cheerUpMessage, setCheerUpMessage] =
@@ -98,6 +99,7 @@ function WorkspaceRightSide() {
             ></div>
             <div className="absolute flex items-center justify-center w-full h-full">
               <Avatar
+                userId={user.id}
                 thumbnailImage={user.thumbnailImage}
                 size={108}
                 hover={false}

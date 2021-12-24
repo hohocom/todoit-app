@@ -17,6 +17,7 @@ function AvatarGroup({ items, space = "m" }) {
               return (
                 <Avatar
                   key={index}
+                  userId={user.id}
                   originImage={user.originImage}
                   thumbnailImage={user.thumbnailImage}
                   userName={user.name}
