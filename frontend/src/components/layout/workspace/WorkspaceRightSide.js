@@ -155,9 +155,10 @@ function WorkspaceRightSide() {
         </div>
         <div>
           <div className="text-base font-apple-bold mb-2">Today</div>
+          <div className="overflow-y-scroll h-[230px] custom-scroll "> 
           {workspaceDetail.works.map((work) => {
             return (
-              <div className="flex justify-center">
+              <div className="flex justify-center ">
                 <div
                   className="flex items-center justify-between w-64 p-4 mb-3  bg-gray-100 rounded-lg "
                   key={work.id}
@@ -173,6 +174,7 @@ function WorkspaceRightSide() {
               </div>
             );
           })}
+          </div>
         </div>
       </div>
     </aside>

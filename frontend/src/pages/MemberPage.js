@@ -53,7 +53,7 @@ function MemberPage() {
   };
   //유저 역할
   const role = (num) => {
-    const roleText = ["관리자", "매니저", "방문자"]; // 1 관리자 2 매니저 3 방문자
+    const roleText = ["관리자", "매니저", "일반"]; // 1 관리자 2 매니저 3 일반
     return roleText[num - 1];
   };
   //페이지 교체
