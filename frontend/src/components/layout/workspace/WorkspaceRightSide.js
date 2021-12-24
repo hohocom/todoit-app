@@ -75,7 +75,7 @@ function WorkspaceRightSide() {
   };
 
   return (
-    <aside className="min-w-[350px] max-w-[350px] h-full border-l">
+    <aside className="min-w-[320px] max-w-[320px] h-full border-l">
       <div className="flex flex-col justify-start w-full h-full p-5 bg-white">
         <div className="flex items-center justify-between w-full mb-10">
           <div className="font-apple-bold">My Profile</div>
@@ -112,7 +112,7 @@ function WorkspaceRightSide() {
           </div>
 
           <div className="flex flex-col items-center justify-start w-full">
-            <div className="flex items-center justify-between w-10/12 mt-2 -mb-1 text-black font-apple-hard">
+            <div className="flex items-center justify-between w-64 mt-2 -mb-1 text-black font-apple-hard">
               <div>
                 <span className="text-base">{user.level}</span>
                 <span className="text-base">&nbsp;LVL</span>
@@ -121,7 +121,7 @@ function WorkspaceRightSide() {
                 {user.exp}%
               </div>
             </div>
-            <div className="flex items-center justify-center w-10/12 mt-1">
+            <div className="flex items-center justify-center w-64 mt-1">
               <div
                 id="lv-progress"
                 className="h-4 w-full overflow-hidden bg-gray-200 rounded-full"
@@ -129,8 +129,8 @@ function WorkspaceRightSide() {
                 <div
                   className="h-full bg-[#FF9E5D] transition-all ease-in-out duration-500 delay-150"
                   style={{
-                    // width: `30%`,
-                     width: `${user.exp}%`,
+                   width: `30%`,
+                    // width: `${user.exp}%`,
                   }}
                 ></div>
               </div>
@@ -142,7 +142,7 @@ function WorkspaceRightSide() {
             </button> */}
           </div>
         </div>
-        <div className="mt-6 mb-6  rounded-[4px]   flex justify-center">
+        <div className="mt-6 mb-5  rounded-[4px]   flex justify-center">
           <div className="flex flex-col items-start mt-1 text-base  w-64  ">
             <p className="text-lg font-apple-bold">
               {user.nickname}
@@ -152,20 +152,22 @@ function WorkspaceRightSide() {
           </div>
         </div>
         <div>
-          <div className="text-base font-apple-bold">TODAY</div>
+          <div className="text-base font-apple-bold mb-2">Today</div>
           {workspaceDetail.works.map((work) => {
             return (
-              <div
-                className="flex items-center justify-between w-full p-4 mb-3 bg-white rounded-lg"
-                key={work.id}
-              >
-                <div className="flex flex-col">
-                  <p className="font-apple-bold ">{work.title}</p>
-                  <p className="text-sm text-gray-500 font-apple-bold">
-                    {work.content}
-                  </p>
+              <div className="flex justify-center">
+                <div
+                  className="flex items-center justify-between w-64 p-4 mb-3  bg-gray-100 rounded-lg "
+                  key={work.id}
+                >
+                  <div className="flex flex-col">
+                    <p className="font-apple-bold ">{work.title}</p>
+                    <p className="text-sm text-gray-500 font-apple-bold">
+                      {work.content}
+                    </p>
+                  </div>
+                  <div className="w-5 h-5 rounded-full bg-white"> </div>
                 </div>
-                <div>채크박스</div>
               </div>
             );
           })}
