@@ -22,13 +22,6 @@ function WorkspaceContainer({ children }) {
         }}
         ref={websocket}
       />
-      <button
-        onClick={() => {
-          websocket.current.sendMessage("/sendTo", workspaceDetail.id);
-        }}
-      >
-        dlsfkjaslfkjsadlkfjasdlfkj
-      </button>
       {children}
     </div>
   );

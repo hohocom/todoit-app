@@ -804,9 +804,6 @@ video {
 .h-24 {
 	height: 6rem;
 }
-.h-\[230px\] {
-	height: 230px;
-}
 .max-h-\[300px\] {
 	max-height: 300px;
 }
