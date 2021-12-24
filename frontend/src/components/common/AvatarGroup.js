@@ -20,6 +20,7 @@ function AvatarGroup({ items, space = "m" }) {
                   originImage={user.originImagePath}
                   thumbnailImage={user.thumbnailImagePath}
                   userName={user.name}
+                  userId={user.id}
                 />
               );
             }

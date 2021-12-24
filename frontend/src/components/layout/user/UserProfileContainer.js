@@ -22,6 +22,7 @@ function UserProfileContainer() {
             thumbnailImage={user.thumbnailImage}
             size={108}
             hover={false}
+            userId={user.id}
           />
         </div>
       </div>
