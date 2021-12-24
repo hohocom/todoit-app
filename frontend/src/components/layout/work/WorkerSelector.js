@@ -25,7 +25,7 @@ function WorkerSelector() {
 
       {isOpen && !workFormModal.id && (
         <div
-          className="absolute w-full  bg-white shadow-xl
+          className="absolute w-full bg-white shadow-xl
         max-h-[300px] overflow-y-scroll custom-scroll z-10 border"
         >
           {workFormModal.workers.map((worker) => {

@@ -29,6 +29,9 @@ public class User {
     @Column(length = 20, nullable = false)
     private String nickname;
 
+    @Column(length = 50)
+    private String duty;
+
     private Short level;
 
     private Short exp;

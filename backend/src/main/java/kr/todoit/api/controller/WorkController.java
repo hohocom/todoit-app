@@ -41,7 +41,7 @@ public class WorkController {
         return ResponseEntity.ok().body(response);
     }
 
-    @MessageMapping("/getWorks")
+    @MessageMapping("/sendTo")
     @SendTo("/topics/sendTo")
     public List<WorkFindResponse> socketIndex(@RequestBody Long workspaceId) {
         log.info("[소캣으로 일정 목록 요청중..]");
@@ -60,12 +60,12 @@ public class WorkController {
             throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
 
         boolean result = false;
-        for(Long userId : workCreateRequest.getUsers()){
-            if(userId == Long.parseLong(servletRequest.getAttribute("id").toString())){
+        for (Long userId : workCreateRequest.getUsers()) {
+            if (userId == Long.parseLong(servletRequest.getAttribute("id").toString())) {
                 result = true;
             }
         }
-        if(!result) throw new CustomException(DefaultExceptionType.AUTHENTICATE_NOT_MATCH);
+        if (!result) throw new CustomException(DefaultExceptionType.AUTHENTICATE_NOT_MATCH);
 
         workService.create(workCreateRequest);
 

@@ -148,6 +148,7 @@ export function useSetWorkspaceDetail() {
       method: "GET",
       url: `/users?workspaceCode=${workspaceCode}`,
     });
+    console.debug(users);
 
     user.workspaces.forEach((workspace) => {
       if (workspace.code === workspaceCode) {

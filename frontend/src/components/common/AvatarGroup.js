@@ -17,9 +17,8 @@ function AvatarGroup({ items, space = "m" }) {
               return (
                 <Avatar
                   key={index}
-                  userId={user.id}
-                  originImage={user.originImage}
-                  thumbnailImage={user.thumbnailImage}
+                  originImage={user.originImagePath}
+                  thumbnailImage={user.thumbnailImagePath}
                   userName={user.name}
                 />
               );
@@ -59,7 +58,7 @@ function AvatarGroup({ items, space = "m" }) {
               className="flex items-center justify-start w-full mb-2"
               key={item.id}
             >
-              <Avatar thumbnailImage={item.thumbnailImage} />
+              <Avatar thumbnailImage={item.thumbnailImagePath} />
               <div className="mt-1 ml-1 text-xs">{item.nickname}</div>
             </div>
           );
