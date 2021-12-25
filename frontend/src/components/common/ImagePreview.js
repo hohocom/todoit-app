@@ -25,7 +25,7 @@ function ImagePreview({ storeImage, initImage }) {
 
   return (
     <>
-      <button className="p-1 text-xs" onClick={setOpen}>
+      <button className="px-2 pt-1 text-xs bg-gray-100 rounded-[4px] mt-1" onClick={setOpen}>
         이미지 변경
       </button>
       <Modal

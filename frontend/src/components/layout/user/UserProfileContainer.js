@@ -29,7 +29,9 @@ function UserProfileContainer() {
       <div className="mt-4 text-xl text-black font-apple-hard">
         {user.nickname}
       </div>
-      <div className="text-base text-gray-600 font-apple-bold">Developer</div>
+      <div className="text-base text-gray-600 font-apple-bold">
+        {user.email}
+      </div>
 
       <div className="flex flex-col items-center justify-start w-full">
         <div className="flex items-center justify-between w-10/12 mt-2 -mb-1 text-black font-apple-hard">

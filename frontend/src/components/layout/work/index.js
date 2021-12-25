@@ -4,6 +4,7 @@ import WorkFormContent from "./WorkFormContent";
 import ThemeColorPicker from "./ThemeColorPicker";
 import WorkerSelector from "./WorkerSelector";
 import WorkDetailModal from "./WorkDetailModal";
+import TodayWorkList from "./TodayWorkList";
 
 export {
   WorkFormModal,
@@ -12,4 +13,5 @@ export {
   ThemeColorPicker,
   WorkerSelector,
   WorkDetailModal,
+  TodayWorkList,
 };

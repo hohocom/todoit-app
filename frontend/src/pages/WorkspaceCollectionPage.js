@@ -29,15 +29,20 @@ function WorkspaceCollectionPage() {
       <ThemeMainBox>
         <div className="flex items-start justify-start w-full mb-4">
           <div className="flex flex-col items-center">
-            <Avatar thumbnailImage={user.thumbnailImage} size={60} userId={user.id} />
+            <Avatar
+              thumbnailImage={user.thumbnailImage}
+              size={60}
+              userId={user.id}
+            />
             <ImagePreview
               initImage={initProfileImage}
               storeImage={storeProfileImage}
             />
           </div>
           <div className="ml-2">
-            <div>
-              {user.nickname} <UserNicknameEditButton />
+            <div className="flex items-center justify-start">
+              <div className="mt-1 mr-2">{user.nickname}</div>
+              <UserNicknameEditButton />
             </div>
             <div>{user.email}</div>
           </div>

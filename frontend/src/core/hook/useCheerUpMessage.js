@@ -1,31 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { cheerUpMessageState } from "core/state";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 export function useCheerUpMessageInit() {
-  const [cheerUpMessage, setCheerUpMessage] =
-    useRecoilState(cheerUpMessageState);
+  const setCheerUpMessage = useSetRecoilState(cheerUpMessageState);
 
   useEffect(() => {
     const timer = setMessageByMatchTimes();
 
     return () => clearInterval(timer);
   }, []);
-
-  useEffect(() => {
-    if (
-      cheerUpMessageState !== null ||
-      cheerUpMessageState !== "" ||
-      cheerUpMessageState !== " "
-    ) {
-      const notification = new Notification("투두잇", {
-        body: cheerUpMessage,
-        // icon: bgImg,
-      });
-      setTimeout(notification.close.bind(notification), 5000);
-    }
-  }, [cheerUpMessage]);
 
   const setMessageByMatchTimes = () => {
     const RESET_TIME = 1000 * 60;

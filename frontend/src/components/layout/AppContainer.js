@@ -3,7 +3,7 @@ import { useCheerUpMessageInit, useEmojiToast } from "core/hook";
 import { LoadingContainer } from ".";
 
 function AppContainer({ children }) {
-  // useCheerUpMessageInit();
+  useCheerUpMessageInit();
   const { emojiToast, reset } = useEmojiToast();
   return (
     <>

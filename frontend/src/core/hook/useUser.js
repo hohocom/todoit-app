@@ -34,6 +34,7 @@ export function useUser() {
       id: user.id,
       email: user.email,
       nickname: user.nickname,
+      duty: user.duty,
       originImage: user.originImage,
       thumbnailImage: user.thumbnailImage,
       workspaces: user.workspaces,
@@ -67,6 +68,11 @@ export function useUser() {
         second: 5000,
         message: "레벨업!! 앞으로도 호호컴퍼니를 위해 열심히 굴러주세요 ^.^",
       });
+      const notification = new Notification("투두잇", {
+        body: `${user.nickname}님이 ${user.level + 1} 을 달성했어요~!`,
+        // icon: bgImg,
+      });
+      setTimeout(notification.close.bind(notification), 5000);
     }
   };
 
