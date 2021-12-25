@@ -1,7 +1,5 @@
-import rocketImg from "assets/images/rocket.svg";
+// import rocketImg from "assets/images/rocket.svg";
 import { useNavChange } from "core/hook";
-import logo from "assets/images/todo-it.png";
-import logo1 from "assets/images/todo-it1.png";
 import { Link } from "react-router-dom";
 
 function WorkspaceLeftSide() {
@@ -13,7 +11,7 @@ function WorkspaceLeftSide() {
         <div className="h-screen w-72 ">
           <div className="flex items-center justify-start mx-4 mt-5">
             
-            <span className="ml-4 text-3xl  text-black font-apple-hard">
+            <span className="ml-4 text-3xl text-black font-apple-hard">
               Todo-It
             </span>
           </div>

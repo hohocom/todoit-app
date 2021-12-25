@@ -34,7 +34,6 @@ export function useUser() {
       id: user.id,
       email: user.email,
       nickname: user.nickname,
-      duty: user.duty,
       originImage: user.originImage,
       thumbnailImage: user.thumbnailImage,
       workspaces: user.workspaces,
