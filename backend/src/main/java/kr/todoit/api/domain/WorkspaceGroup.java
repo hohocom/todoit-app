@@ -39,15 +39,11 @@ public class WorkspaceGroup {
     @Column(name = "role", columnDefinition = "tinyint default 1")
     private Byte role;
 
-    @Column(length = 20)
-    private String duty;
-
     @Builder
     public WorkspaceGroup(Long id, Workspace workspace, User user, Byte role, String duty) {
         this.id = id;
         this.workspace = workspace;
         this.user = user;
         this.role = role;
-        this.duty = duty;
     }
 }

@@ -9,6 +9,7 @@
         <result column="nickname" property="nickname"/>
         <result column="level" property="level"/>
         <result column="role" property="role"/>
+        <result column="duty" property="duty"/>
         <result column="origin_image_path" property="originImagePath"/>
         <result column="thumbnail_image_path" property="thumbnailImagePath"/>
         <result column="created_at" property="createdAt"/>
@@ -16,7 +17,7 @@
 
     <select id="findUserByOptions" parameterType="kr.todoit.api.dto.UserFindRequest" resultMap="user">
         select
-               u.id, u.nickname, u.level, u.created_at, wg.role,
+               u.id, u.nickname, u.level, u.created_at, wg.role, u.duty,
                 if(u.origin_image_path is null, '', u.origin_image_path) as origin_image_path,
                 if(u.thumbnail_image_path is null, '', u.thumbnail_image_path) as thumbnail_image_path
         from workspace_groups wg
