@@ -11,7 +11,7 @@ function WorkspaceHeader() {
         <h2 className="text-xl font-apple-regular">{workspaceDetail.name}</h2>
       </div>
       <div className="flex items-center justify-center">
-        <AvatarGroup items={workspaceDetail.users} />
+        <AvatarGroup users={workspaceDetail.users} />
       </div>
     </header>
   );

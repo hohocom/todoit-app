@@ -126,7 +126,7 @@ export function useWorkspace() {
 
     const users = await getUsersByWorkspace(workspaceCode);
     const works = await getWorksByWorkspace(workspaceCode);
-    
+
     user.workspaces.forEach((workspace) => {
       if (workspace.code === workspaceCode) {
         setWorkspaceDetail({
@@ -160,7 +160,7 @@ export function useSetWorkspaceDetail() {
 
   useEffect(() => {
     // 유저 아이디가 존재하고 워크스페이스 디테일 아이디가 없을 때
-    if (user.id && !workspaceDetail.id) {
+    if (user.id) {
       console.debug(
         "%c[워크스페이스 컬랙션중 선택한 워크스페이스 설정중..]",
         "color:blue"

@@ -17,8 +17,8 @@ function ImagePreview({ storeImage, initImage }) {
 
   const imageChange = (e) => {
     readImgFile(e, (base64Img, file) => {
-      console.debug(base64Img);
-      console.debug(file);
+      // console.debug(base64Img);
+      // console.debug(file);
       setState({ ...state, base64Img: base64Img, file: file });
     });
   };

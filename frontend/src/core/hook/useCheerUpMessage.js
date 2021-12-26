@@ -8,7 +8,6 @@ export function useCheerUpMessageInit() {
 
   useEffect(() => {
     const timer = setMessageByMatchTimes();
-
     return () => clearInterval(timer);
   }, []);
 
@@ -23,24 +22,24 @@ export function useCheerUpMessageInit() {
   const matchMessage = () => {
     const hours = new Date().getHours();
     if (hours >= 6 && 11 > hours) {
-      setCheerUpMessage("즐거운 아침이에요 :) 🐥");
+      setCheerUpMessage(
+        "좋은 아침이에요. 건강 유의하시고 행복 가득한 하루 보내세요.🐥"
+      );
     } else if (hours >= 11 && 12 > hours) {
-      setCheerUpMessage("곧 점심시간이에요! 조금만 더 화이팅!! 👊");
+      setCheerUpMessage("곧 점심시간이에요! 조금만 더 파이팅!👊");
     } else if (hours >= 12 && 13 > hours) {
       setCheerUpMessage(
-        "점심 시간이에요~ 아직도 키보드에 손이 올라가있나요? 😒"
+        "점심 맛있게 드세요! 혹시.. 아직도 키보드에 손이 올라가있나요? 😒"
       );
     } else if (hours >= 13 && 15 > hours) {
       setCheerUpMessage(
-        "이 시간만 되면 눈이 자꾸 감겨요. 🥱 다들 버틸 수 있을까요? ^.^"
+        "점심 맛있게 드셨나요? 점심 식사 이후에 식곤증 조심하세요! 오후 시간도 힘내세요. 파이팅!👊"
       );
     } else if (hours >= 15 && 17 > hours) {
-      setCheerUpMessage(
-        "문도박사는 사실 박사가 아니에요. 본인이 박사라고 생각하는 것 뿐이랍니다. 😎"
-      );
+      setCheerUpMessage("하루의 절반이 지나갔어요~ 남은 시간도 힘내세요!🐈");
     } else if (hours >= 17 && 18 > hours) {
       setCheerUpMessage(
-        "오늘도 고생하셨어요^^. 작업을 마무리하면서 퇴근 준비 하세요~"
+        "퇴근시간이 다가왔어요..! 남은 일과를 마무리하면서 퇴근 준비 하세요~ 🐪"
       );
     } else if (hours >= 18 && 24 > hours) {
       setCheerUpMessage(

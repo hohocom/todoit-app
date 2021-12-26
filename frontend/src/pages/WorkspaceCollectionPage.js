@@ -29,11 +29,7 @@ function WorkspaceCollectionPage() {
       <ThemeMainBox>
         <div className="flex items-start justify-start w-full mb-4">
           <div className="flex flex-col items-center">
-            <Avatar
-              thumbnailImage={user.thumbnailImage}
-              size={60}
-              userId={user.id}
-            />
+            <Avatar size={60} user={user} />
             <ImagePreview
               initImage={initProfileImage}
               storeImage={storeProfileImage}

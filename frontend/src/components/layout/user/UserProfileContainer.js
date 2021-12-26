@@ -18,12 +18,7 @@ function UserProfileContainer() {
           border-l-[#F5A9BC] border-t-[#F781BE] border-b-[#FF9E5D] border-r-[#FF9E5D] z-10"
         ></div>
         <div className="absolute flex items-center justify-center w-full h-full">
-          <Avatar
-            thumbnailImage={user.thumbnailImage}
-            size={108}
-            hover={false}
-            userId={user.id}
-          />
+          <Avatar size={108} hover={false} user={user} />
         </div>
       </div>
       <div className="mt-4 text-xl text-black font-apple-hard">

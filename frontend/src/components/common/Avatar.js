@@ -7,8 +7,11 @@ import noneImg6 from "assets/images/noneImg6.png";
 import noneImg7 from "assets/images/noneImg7.png";
 import noneImg8 from "assets/images/noneImg8.png";
 import noneImg9 from "assets/images/noneImg9.png";
+import { useState } from "react";
+import { AvatarDetailCard } from ".";
+// import { AvatarDetailCard } from ".";
 
-function Avatar({ thumbnailImage, size = 40, hover = true, userId }) {
+function Avatar({ user, size = 40, hover = true }) {
   const noneImg = [
     noneImg1,
     noneImg2,
@@ -20,22 +23,38 @@ function Avatar({ thumbnailImage, size = 40, hover = true, userId }) {
     noneImg8,
     noneImg9,
   ];
+
+  const [open, setOpen] = useState(false);
+
+  const closeEvent = () => {
+    setOpen(false);
+  };
+
   return (
-    <img
-      src={
-        thumbnailImage
-          ? process.env.REACT_APP_API_URL + "/images" + thumbnailImage
-          : noneImg[userId % noneImg.length]
-      }
-      alt="avatar"
-      className={"inline-block object-cover transition duration-150 ease-in-out bg-gray-300 rounded-full cursor-pointer".concat(
-        hover === true && " ring-2 ring-white hover:ring-[#fabb92]"
-      )}
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-      }}
-    />
+    <>
+      <img
+        src={
+          user.thumbnailImagePath
+            ? process.env.REACT_APP_API_URL +
+              "/images" +
+              user.thumbnailImagePath
+            : noneImg[user.id % noneImg.length]
+        }
+        alt="avatar"
+        className={"inline-block object-cover transition duration-150 ease-in-out bg-gray-300 rounded-full cursor-pointer".concat(
+          hover === true && " ring-2 ring-white hover:ring-[#fabb92]"
+        )}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+        }}
+        onClick={() => {
+          if (!hover) return false;
+          setOpen(true);
+        }}
+      />
+      <AvatarDetailCard user={user} open={open} close={closeEvent} />
+    </>
   );
 }
 

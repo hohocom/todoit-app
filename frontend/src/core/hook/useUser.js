@@ -24,7 +24,6 @@ export function useUser() {
       method: "get",
       url: `/users/${userId}`,
     });
-
     setUserDetail(user);
   };
 
@@ -34,8 +33,8 @@ export function useUser() {
       id: user.id,
       email: user.email,
       nickname: user.nickname,
-      originImage: user.originImage,
-      thumbnailImage: user.thumbnailImage,
+      originImagePath: user.originImage,
+      thumbnailImagePath: user.thumbnailImage,
       workspaces: user.workspaces,
       level: user.level,
       exp: user.exp,
@@ -128,8 +127,8 @@ export function useUser() {
 
     setUser({
       ...user,
-      originImage: updateUserInfo.originImage,
-      thumbnailImage: updateUserInfo.thumbnailImage,
+      originImagePath: updateUserInfo.originImage,
+      thumbnailImagePath: updateUserInfo.thumbnailImage,
     });
   };
 

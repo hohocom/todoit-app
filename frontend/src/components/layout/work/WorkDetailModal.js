@@ -1,8 +1,10 @@
 import { Modal } from "components/common";
 import { userState } from "core/state";
 import { useRecoilValue } from "recoil";
-import workDetailImg from "assets/images/work_detail.svg";
+
 import { useWork, useWorkDetail } from "core/hook";
+import { addDays } from "date-fns";
+import { dateObjectParser } from "utils/dateObjectParser";
 
 function WorkDetailModal() {
   const user = useRecoilValue(userState);
@@ -17,11 +19,11 @@ function WorkDetailModal() {
         close: closeWorkDetailModal,
       }}
     >
-      <div className="w-full mt-2">
-        <img src={workDetailImg} alt="img" className="w-full" />
-      </div>
-      <div className="flex items-start justify-between mt-6 mb-1 font-apple-bold">
-        <div className="mb-2 text-xl">{workDetailModal.title}</div>
+      {/* <div className="w-full mt-2">
+        <img src={todayMyWorkImg} alt="img" className="w-full" />
+      </div> */}
+      <div className="flex items-start justify-between mt-6 font-apple-bold">
+        <div className="text-xl">{workDetailModal.title}</div>
         {workDetailModal.workers.map((worker) => {
           if (worker.id === user.id) {
             return (
@@ -43,11 +45,20 @@ function WorkDetailModal() {
           return null;
         })}
       </div>
-
-      <pre className="break-all whitespace-pre-wrap font-apple-light">
+      <div className="font-apple-light">
+        {workDetailModal.startDate ===
+        dateObjectParser(addDays(new Date(workDetailModal.endDate), -1)) ? (
+          workDetailModal.startDate
+        ) : (
+          <>
+            {workDetailModal.startDate} ~{" "}
+            {dateObjectParser(addDays(new Date(workDetailModal.endDate), -1))}
+          </>
+        )}
+      </div>
+      <pre className="mt-4 break-all whitespace-pre-wrap font-apple-light">
         {workDetailModal.content}
       </pre>
-
       <div className="flex flex-wrap items-center justify-start mt-4">
         {workDetailModal.workers.map((worker) => {
           return (
@@ -60,13 +71,6 @@ function WorkDetailModal() {
           );
         })}
       </div>
-      {/* <div className="relative w-full">
-        <img
-          src={scheduleCompletedImg}
-          alt="img"
-          className="absolute right-0 -bottom-20"
-        />
-      </div> */}
     </Modal>
   );
 }
