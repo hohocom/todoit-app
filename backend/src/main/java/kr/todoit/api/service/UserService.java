@@ -134,7 +134,6 @@ public class UserService {
                 .nickname(user.getNickname())
                 .originImage(user.getOriginImagePath())
                 .thumbnailImage(user.getThumbnailImagePath())
-                .duty(user.getDuty())
                 .level(user.getLevel())
                 .exp(user.getExp())
                 .build();

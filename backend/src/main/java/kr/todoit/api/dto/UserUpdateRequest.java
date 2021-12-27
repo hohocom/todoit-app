@@ -1,8 +1,5 @@
 package kr.todoit.api.dto;
 
-import kr.todoit.api.exception.CustomException;
-import kr.todoit.api.exception.DefaultExceptionType;
-import kr.todoit.api.exception.ValidExceptionType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

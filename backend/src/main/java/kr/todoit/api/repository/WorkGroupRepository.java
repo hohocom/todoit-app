@@ -13,5 +13,8 @@ public interface WorkGroupRepository extends JpaRepository<WorkGroup, Long> {
 
     List<WorkGroup> findWorkGroupByWork(Work work);
 
+    List<WorkGroup> findByWorkIdAndUserId(Long workId, Long userId);
+
     void deleteAllByWork(Work work);
+
 }

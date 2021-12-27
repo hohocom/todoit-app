@@ -108,6 +108,24 @@ public class WorkController {
         return ResponseEntity.ok().body(response);
     }
 
+    @PutMapping("/{workId}/date")
+    public ResponseEntity<Map<String, Object>> updateDate(
+            @Valid WorkUpdateDateRequest WorkUpdateDateRequest,
+            BindingResult bindingResult,
+            HttpServletRequest servletRequest) throws ParseException {
+        log.info("[일정 기간 수정 요청중..]");
+
+        if (bindingResult.hasErrors())
+            throw new CustomException(new ValidExceptionType(5000, 200, bindingResult.getFieldError().getDefaultMessage()));
+
+        workService.updateDate(WorkUpdateDateRequest, Long.parseLong(servletRequest.getAttribute("id").toString()));
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "작업일정을 수정하였습니다.");
+        response.put("statusCode", 200);
+        return ResponseEntity.ok().body(response);
+    }
+
     @PutMapping("/{workId}/finished")
     public ResponseEntity<Map<String, Object>> updateFinished(
             @Valid WorkFinishedRequest workFinishedRequest,

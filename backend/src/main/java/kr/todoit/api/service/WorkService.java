@@ -112,9 +112,23 @@ public class WorkService {
         }
     }
 
+    public void updateDate(WorkUpdateDateRequest workUpdateDateRequest, Long loginUserId) {
+        List<WorkGroup> workGroups =  workGroupRepository.findByWorkIdAndUserId(workUpdateDateRequest.getWorkId(), workUpdateDateRequest.getUserId());
+
+        boolean result = false;
+        for (WorkGroup workGroup : workGroups) {
+            if (workGroup.getUser().getId() == loginUserId) {
+                result = true;
+            }
+        }
+        if (!result) throw new CustomException(DefaultExceptionType.AUTHENTICATE_NOT_MATCH);
+
+        Work work = workRepository.findWorkById(workUpdateDateRequest.getWorkId());
+        work.setStartDate(workUpdateDateRequest.getStartDate());
+        work.setEndDate(workUpdateDateRequest.getEndDate());
+    }
+
     public void delete(Long workId) {
         workRepository.deleteById(workId);
     }
-
-
 }
