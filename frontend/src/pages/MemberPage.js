@@ -22,18 +22,22 @@ import noneImg6 from "assets/images/noneImg6.png";
 import noneImg7 from "assets/images/noneImg7.png";
 import noneImg8 from "assets/images/noneImg8.png";
 import noneImg9 from "assets/images/noneImg9.png";
+import { Avatar } from "components/common";
+
+const noneImg = [
+  noneImg1,
+  noneImg2,
+  noneImg3,
+  noneImg4,
+  noneImg5,
+  noneImg6,
+  noneImg7,
+  noneImg8,
+  noneImg9,
+];
+
 function MemberPage() {
-  const noneImg = [
-    noneImg1,
-    noneImg2,
-    noneImg3,
-    noneImg4,
-    noneImg5,
-    noneImg6,
-    noneImg7,
-    noneImg8,
-    noneImg9,
-  ];
+  useSecure();
   const currentUser = useRecoilValue(userState);
   const { workspaceDetail } = useSetWorkspaceDetail(); //워크스페이스 정보 가져오기
   const [currentUserRole, setCurrentUserRole] = useState(false); // 현재 로그인한 유저 권한
@@ -43,6 +47,7 @@ function MemberPage() {
   const pageLimit = 10; // 한화면에 보여줄 유저 수
   const totalPageNumber = Math.ceil(userDataLength / pageLimit); //총 페이지수
   const [currentPageNumber, setCurrentPageNumber] = useState(1); // 현재 페이지 수
+
   // 현재 워크스페이스에 로그인한 유저 권한 가져오기
   const getRole = () => {
     workspaceDetail.users.forEach((user) => {
@@ -92,8 +97,6 @@ function MemberPage() {
     getAllUserData();
   };
 
-  useSecure();
-
   return (
     <WorkspaceContainer>
       <WorkspaceLeftSide />
@@ -119,23 +122,13 @@ function MemberPage() {
                   <div className="flex items-center justify-between w-full ">
                     <div className="flex items-center pl-4 w-44 ">
                       <div className="relative">
-                        <img
-                          src={
-                            user.img
-                              ? process.env.REACT_APP_API_URL +
-                                "/images" +
-                                user.img
-                              : noneImg[user.id % noneImg.length]
-                          }
-                          className="w-10 h-10 mr-2 bg-gray-200 rounded-full "
-                          alt="img"
-                        />
-                        <div className="absolute top-[28px] left-[28px]   ">
+                        <Avatar user={user} />
+                        <div className="absolute top-[28px] left-[28px]">
                           <div className="w-3 h-3 bg-white rounded-full "></div>
                           <div className="absolute top-[1.5px] left-[1.5px] w-[8.8px] h-[8.8px] rounded-full bg-green-500"></div>
                         </div>
                       </div>
-                      <div>{user.nickname}</div>
+                      <div className="mt-1 ml-3">{user.nickname}</div>
                     </div>
                     <div className="flex justify-center w-36 ">
                       {user.level}
@@ -157,7 +150,7 @@ function MemberPage() {
                             userExit(user.id);
                           }}
                         >
-                          삭제
+                          탈퇴
                         </button>
                       ) : null}
                     </div>

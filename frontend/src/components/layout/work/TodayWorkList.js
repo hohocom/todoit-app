@@ -35,7 +35,7 @@ function TodayWorkList() {
 
   return (
     <div className="absolute bottom-0 left-0 w-full p-4">
-      <div className="flex flex-col items-center h-[500px]">
+      <div className="flex flex-col items-center h-[450px]">
         <div className="w-full mb-2 text-base font-apple-bold">Today Works</div>
         <div
           ref={worksRef}
