@@ -175,6 +175,36 @@ export function useWork() {
     workFormModalClose();
   };
 
+  const editDate = async (obj) => {
+    const formData = new FormData();
+    formData.append("userId", user.id);
+    formData.append("startDate", obj.event.startStr);
+    formData.append("endDate", obj.event.endStr);
+    await customAxios({
+      method: "put",
+      url: `/works/${obj.event.id}/date`,
+      data: formData,
+    });
+    const newWorks = workspaceDetail.works.map((work) => {
+      console.debug(work.id);
+      console.debug(obj.event.id);
+
+      if (work.id === Number(obj.event.id)) {
+        return {
+          ...work,
+          start: obj.event.startStr,
+          end: obj.event.endStr,
+        };
+      } else {
+        return work;
+      }
+    });
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: newWorks,
+    });
+  };
+
   const destory = async (workId) => {
     const result = window.confirm("일정을 삭제하시겠어요?");
     if (!result) return false;
@@ -200,7 +230,7 @@ export function useWork() {
   };
 
   const editFinished = async (workId, result) => {
-    if(result === 1){
+    if (result === 1) {
       levelUpCheck();
     }
     console.debug("%c[일정 수정중..]", "color: #EC7063");
@@ -235,6 +265,7 @@ export function useWork() {
     workFormInputChange,
     store,
     edit,
+    editDate,
     editFinished,
     destory,
     workFormDate,

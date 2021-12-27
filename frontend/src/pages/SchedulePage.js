@@ -14,7 +14,6 @@ import {
   useSetWorkspaceDetail,
   useWork,
 } from "core/hook";
-
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
@@ -23,7 +22,7 @@ function SchedulePage() {
   useSecure();
   const { workspaceDetail } = useSetWorkspaceDetail();
   const { renderEventContent, handleEventClick } = useFullCalendar();
-  const { workFormModalOpen } = useWork();
+  const { workFormModalOpen, editDate } = useWork();
 
   return (
     <React.Fragment>
@@ -42,6 +41,8 @@ function SchedulePage() {
                     },
                   },
                 }}
+                eventChange={editDate}
+                editable={true}
                 width="100%"
                 height="100%"
                 headerToolbar={{
