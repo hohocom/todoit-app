@@ -17,7 +17,7 @@ import {
 import customAxios from "core/api";
 import { dateObjectParser } from "utils/dateObjectParser";
 import { addDays } from "date-fns";
-import { useUser } from ".";
+import { useToast, useUser } from ".";
 
 // 작업자 명단 세팅
 export function useWorkInit() {
@@ -60,6 +60,7 @@ export function useWork() {
   const [workFormDate, setWorkFormDate] = useRecoilState(workFormDateState);
   // const resetWorkFormModal = useResetRecoilState(workFormModalState);
   const resetWorkFormDate = useResetRecoilState(workFormDateState);
+  const { toast, setToast } = useToast();
 
   const workFormInputChange = (e) => {
     const value = e.target.value;
@@ -176,6 +177,47 @@ export function useWork() {
   };
 
   const editDate = async (obj) => {
+    let result = false;
+    const newWorks = workspaceDetail.works.map((work) => {
+      if (work.id === Number(obj.event.id)) {
+        work.users.forEach((u) => {
+          if (u.id === user.id) result = true;
+        });
+        if (!result) {
+          return {
+            ...work,
+            start: obj.oldEvent.startStr,
+            end: obj.oldEvent.endStr,
+          };
+        } else {
+          return {
+            ...work,
+            start: obj.event.startStr,
+            end: obj.event.endStr,
+          };
+        }
+      } else {
+        return work;
+      }
+    });
+
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: newWorks,
+    });
+
+    if (result === false) {
+      // window.alert("해당 일정 미참여자는 권한이 없습니다!");
+      setToast({
+        ...toast,
+        open: true,
+        type: "WARNING",
+        second: 2000,
+        message: "해당 일정 미참여자는 권한이 없습니다!",
+      });
+      return false;
+    }
+
     const formData = new FormData();
     formData.append("userId", user.id);
     formData.append("startDate", obj.event.startStr);
@@ -184,48 +226,6 @@ export function useWork() {
       method: "put",
       url: `/works/${obj.event.id}/date`,
       data: formData,
-    });
-    const newWorks = workspaceDetail.works.map((work) => {
-      console.debug(work.id);
-      console.debug(obj.event.id);
-
-      if (work.id === Number(obj.event.id)) {
-        return {
-          ...work,
-          start: obj.event.startStr,
-          end: obj.event.endStr,
-        };
-      } else {
-        return work;
-      }
-    });
-    setWorkspaceDetail({
-      ...workspaceDetail,
-      works: newWorks,
-    });
-  };
-
-  const destory = async (workId) => {
-    const result = window.confirm("일정을 삭제하시겠어요?");
-    if (!result) return false;
-
-    console.debug("%c[일정 삭제중..]", "color: #EC7063");
-    const formData = new FormData();
-    formData.append("userId", user.id);
-
-    await customAxios({
-      method: "delete",
-      url: `/works/${workId}`,
-      data: formData,
-    });
-
-    const deleteWorks = workspaceDetail.works.filter(
-      (work) => work.id !== workId
-    );
-
-    setWorkspaceDetail({
-      ...workspaceDetail,
-      works: deleteWorks,
     });
   };
 
@@ -255,6 +255,30 @@ export function useWork() {
     setWorkspaceDetail({
       ...workspaceDetail,
       works: editWorks,
+    });
+  };
+
+  const destory = async (workId) => {
+    const result = window.confirm("일정을 삭제하시겠어요?");
+    if (!result) return false;
+
+    console.debug("%c[일정 삭제중..]", "color: #EC7063");
+    const formData = new FormData();
+    formData.append("userId", user.id);
+
+    await customAxios({
+      method: "delete",
+      url: `/works/${workId}`,
+      data: formData,
+    });
+
+    const deleteWorks = workspaceDetail.works.filter(
+      (work) => work.id !== workId
+    );
+
+    setWorkspaceDetail({
+      ...workspaceDetail,
+      works: deleteWorks,
     });
   };
 

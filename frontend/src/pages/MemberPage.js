@@ -13,28 +13,7 @@ import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "core/state";
 import customAxios from "core/api";
-import noneImg1 from "assets/images/noneImg1.png";
-import noneImg2 from "assets/images/noneImg2.png";
-import noneImg3 from "assets/images/noneImg3.png";
-import noneImg4 from "assets/images/noneImg4.png";
-import noneImg5 from "assets/images/noneImg5.png";
-import noneImg6 from "assets/images/noneImg6.png";
-import noneImg7 from "assets/images/noneImg7.png";
-import noneImg8 from "assets/images/noneImg8.png";
-import noneImg9 from "assets/images/noneImg9.png";
 import { Avatar } from "components/common";
-
-const noneImg = [
-  noneImg1,
-  noneImg2,
-  noneImg3,
-  noneImg4,
-  noneImg5,
-  noneImg6,
-  noneImg7,
-  noneImg8,
-  noneImg9,
-];
 
 function MemberPage() {
   useSecure();
@@ -147,6 +126,11 @@ function MemberPage() {
                         <button
                           className="px-2 text-red-500 rounded-md "
                           onClick={() => {
+                            const result = window.confirm(
+                              `'${user.nickname}' 회원님을 탈퇴시키겠어요?`
+                            );
+                            if (!result) return false;
+
                             userExit(user.id);
                           }}
                         >

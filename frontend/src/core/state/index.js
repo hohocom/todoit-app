@@ -1,5 +1,5 @@
 import { cheerUpMessageState } from "./message";
-import { emojiToastState } from "./toast";
+import { toastState, emojiToastState } from "./toast";
 import { userState, loginUserSeletor } from "./user";
 import {
   workFormModalState,
@@ -11,6 +11,7 @@ import { loadingState } from "./loading";
 
 export {
   cheerUpMessageState,
+  toastState,
   emojiToastState,
   userState,
   loginUserSeletor,

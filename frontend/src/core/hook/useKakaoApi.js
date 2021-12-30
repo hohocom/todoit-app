@@ -12,7 +12,7 @@ export function useKakaoApi() {
 
   useEffect(async () => {
     const kakaoAccessToken = await getKakaoAccessToken();
-    console.debug(kakaoAccessToken);
+    // console.debug(kakaoAccessToken);
 
     const { id } = await getTotoitAccessToken(kakaoAccessToken);
     await getUserDetailById(id);
@@ -21,7 +21,7 @@ export function useKakaoApi() {
 
   const getKakaoAccessToken = async () => {
     const code = search.split("code=")[1];
-    console.log(code);
+    // console.log(code);
     const params = new URLSearchParams();
     params.append("grant_type", "authorization_code");
     params.append("client_id", process.env.REACT_APP_KAKAO_CLIENT_ID);
@@ -54,7 +54,7 @@ export function useKakaoApi() {
     const formData = new FormData();
     formData.append("providerType", "KAKAO");
     formData.append("accessToken", kakaoAccessToken);
-    console.log(kakaoAccessToken)
+    // console.log(kakaoAccessToken)
     const res = await axios({
       method: "post",
       url: "/users/login-by-oauth",
@@ -69,7 +69,7 @@ export function useKakaoApi() {
         throw new Error(err);
       });
 
-    console.debug(res);
+    // console.debug(res);
     axios.defaults.headers.common["Authorization"] = `bearer ${res.act.token}`;
     return res.act;
   };

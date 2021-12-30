@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ParticleContainer } from "components/layout";
 import {
   ThemeContainer,
@@ -8,8 +9,15 @@ import { Link } from "react-router-dom";
 import { KakaoButton, NaverButton } from "components/layout/button";
 
 import loginCoverImg from "assets/images/login-cover.png";
+import { useLoginEvent } from "core/hook";
+import { useEffect } from "react";
 
 function LoginPage() {
+  const { checkLoginOkThenNavToWorkspacesPage } = useLoginEvent();
+  useEffect(() => {
+    checkLoginOkThenNavToWorkspacesPage();
+  }, []);
+
   return (
     <ThemeContainer>
       <ThemeTitleBox>

@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import { useUser } from "core/hook";
 import axios from "axios";
 import useAxios from "./useAxios";
+import { useLoginEvent } from "./useLogin";
 
 export function useSecure() {
   const { user, getUserDetailById } = useUser();
   const { customAxios } = useAxios();
+  const { loginInit } = useLoginEvent();
 
   useEffect(() => {
     console.debug("%c[유저 시큐리티 작동중..]", "color:red");
@@ -16,6 +18,7 @@ export function useSecure() {
   const isLoggedIn = async () => {
     if (user.id) {
       console.debug("%c[유저정보 인증ok]", "color:orange");
+      loginInit();
     } else {
       console.debug("%c[유저정보 미확인 -> 리프레시 토큰 요청]", "color:gray");
       const { id } = await refreshToken();

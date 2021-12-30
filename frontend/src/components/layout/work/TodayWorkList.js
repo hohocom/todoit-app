@@ -3,7 +3,7 @@ import { useUser, useWork } from "core/hook";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { workDetailModalState, workspaceDetailState } from "core/state";
 // import notFoundWork from "assets/images/notFoundWork.png";
-import todayMyWorkImg from "assets/images/todayMyWork.svg";
+import todayMyWorkImg from "assets/images/twoCat.svg";
 import { useRef } from "react";
 
 function TodayWorkList() {
@@ -16,8 +16,7 @@ function TodayWorkList() {
   const handleEventClick = (id) => {
     workspaceDetail.works.forEach((work) => {
       if (work.id === id) {
-        console.debug("%c[일정 디테일 설정중..],", "color:red");
-        console.debug(work);
+        // console.debug("%c[일정 디테일 설정중..],", "color:red");
         setWorkDetailModal({
           isOpen: true,
           id: work.id,
@@ -34,13 +33,13 @@ function TodayWorkList() {
   };
 
   return (
-    <div className="absolute bottom-0 left-0 w-full p-4">
-      <div className="flex flex-col items-center h-[450px]">
+    <div className="relative w-full p-5">
+      <div className="flex flex-col items-center">
         <div className="w-full mb-2 text-base font-apple-bold">Today Works</div>
         <div
           ref={worksRef}
           id="todayMyWorks"
-          className="w-full overflow-y-auto custom-scroll"
+          className="w-full h-[350px] overflow-y-auto custom-scroll"
         >
           {workspaceDetail.works.map((work) => {
             const startTimestamp = new Date(work.start).getTime();
@@ -58,15 +57,15 @@ function TodayWorkList() {
               if (isTodayMyWork) {
                 return (
                   <div className="flex justify-center" key={work.id}>
-                    <div className="z-10 flex items-center justify-between w-full p-4 mb-4 bg-gray-100 rounded-lg box-shadow2">
+                    <div className="z-10 flex items-center justify-between w-full p-4 mb-4 bg-gray-50 rounded-lg box-shadow2">
                       <div
                         className="flex flex-col cursor-pointer"
                         onClick={() => handleEventClick(work.id)}
                       >
-                        <p className="font-apple-bold max-h-[30px] overflow-hidden">
+                        <p className="font-apple-bold">
                           {work.title}
                         </p>
-                        <p className="text-sm text-gray-500 font-apple-bold max-h-[30px] overflow-hidden">
+                        <p className="text-sm text-gray-500 font-apple-bold">
                           {work.content}
                         </p>
                       </div>
@@ -91,8 +90,8 @@ function TodayWorkList() {
             });
           })}
         </div>
-        <div className="absolute flex flex-col items-center w-10/12 top-[50px] z-0">
-          <img src={todayMyWorkImg} alt="img" className="w-full" />
+        <div className="absolute flex flex-col items-end justify-end w-10/12 bottom-[50px] z-0">
+          <img src={todayMyWorkImg} alt="img" className="w-[100px]" />
         </div>
       </div>
     </div>

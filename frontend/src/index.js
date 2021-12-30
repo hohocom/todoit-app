@@ -6,7 +6,7 @@ import axios from "axios";
 import { BrowserRouter } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 
-import DebugObserver from "components/DebugObserver";
+// import DebugObserver from "components/DebugObserver";
 import * as serviceWorkerRegistration from "utils/serviceWorkerRegistration";
 import reportWebVitals from "utils/reportWebVitals";
 
@@ -23,7 +23,7 @@ axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <RecoilRoot>
-    <DebugObserver />
+    {/* <DebugObserver /> */}
     <BrowserRouter>
       <AppRouter />
     </BrowserRouter>

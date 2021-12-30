@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   WelcomeClouds,
   WelcomeContainer,
@@ -8,10 +9,15 @@ import { ParticleContainer } from "components/layout";
 import { Link } from "react-router-dom";
 
 import heartImg from "assets/images/heart.png";
-import { useWelcomeScrollHandler } from "core/hook";
+import { useLoginEvent, useWelcomeScrollHandler } from "core/hook";
+import { useEffect } from "react";
 
 function WelcomePage() {
   useWelcomeScrollHandler();
+  const { checkLoginOkThenNavToWorkspacesPage } = useLoginEvent();
+  useEffect(() => {
+    checkLoginOkThenNavToWorkspacesPage();
+  }, []);
 
   return (
     <WelcomeContainer>
