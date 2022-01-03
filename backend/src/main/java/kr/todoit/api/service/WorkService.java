@@ -14,7 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -88,10 +91,17 @@ public class WorkService {
             work.setEndDate(workUpdateRequest.getEndDate());
     }
 
-    public void update(WorkFinishedRequest workFinishedRequest) {
+    public void update(WorkFinishedRequest workFinishedRequest) throws ParseException {
         Work work = workRepository.findWorkById(workFinishedRequest.getWorkId());
         work.setIsFinished(workFinishedRequest.getResult());
         List<WorkGroup> workGroups = workGroupRepository.findWorkGroupByWork(work);
+
+//        SimpleDateFormat format =  new SimpleDateFormat("yyyy-MM-dd");
+//        Date start = format.parse(work.getStartDate());
+//        Date end = format.parse(work.getEndDate());
+//        Long subtractTime = end.getTime() - start.getTime();
+//        int rageNum = (int) (subtractTime /86400000);
+//        rageNum *= 100;
 
         if(workFinishedRequest.getResult() == 1){
             for (WorkGroup workGroup : workGroups) {
